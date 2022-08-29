@@ -1,0 +1,7 @@
+{
+  "name": "TSB.Portal.Frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
