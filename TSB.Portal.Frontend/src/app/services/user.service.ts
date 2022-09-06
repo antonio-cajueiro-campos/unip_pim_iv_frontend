@@ -8,63 +8,59 @@ import { DataManagerService } from './data-manager.service';
 import { MessageService } from './message.service';
 import { RequestService } from './request.service';
 import { StorageKeys } from './enums/StorageKeys';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public timeoutInterval: any;
-  public user: any = null;
-  public jwt: any = null;
 
+  public user: User = null;
+  public jwt: Jwt = null;
 
   constructor(private router: Router, public dataManager: DataManagerService, public request: RequestService, public message: MessageService) {
-
     this.user = JSON.parse(this.dataManager.getData(StorageKeys.USER));
     this.jwt = JSON.parse(this.dataManager.getData(StorageKeys.JWT_TOKEN));
-
-   
-    if (isDevMode()) {
-    } else {
-    }
   }
 
   public login(credential: Credential, inputs: ElementRef[]): boolean {
 
     this.request.postAsync('/authenticate/login', credential).toPromise()
+      .then(response => {
+        if (response.statusCode == 200) {
 
-    .then(response => {
+          var jwt = response.data.jwt;
 
-      if (response.statusCode == 200) {
-        this.dataManager.setData(StorageKeys.JWT_TOKEN, response.data.token);
-        this.jwt = response.data.token;
+          this.dataManager.setData(StorageKeys.JWT_TOKEN, jwt);
+          this.jwt = jwt;
 
-        this.request.getAsync('/user/infos').toPromise()
-        .then(response => {
-          if (response.statusCode == 200) {
-            this.dataManager.setData(StorageKeys.USER, response.data);
-            this.user == response.data;
+          this.request.getAsync('/user/infos').toPromise()
+            .then(response => {
+              if (response.statusCode == 200) {
 
-            this.router.navigateByUrl('/');
-            window.location.reload();
-          } else {
-            // falha ao obter dados do usuário
-          }
-        });
-      } else {
-        // autenticação falhou
-      }
-    }).catch(response => {
-      console.log(response);
+                this.dataManager.setData(StorageKeys.USER, response.data);
+                this.user == response.data;
 
-      if ((response.status == 400 || response.status == 401) && response.error.errors) {
-        this.message.inputExceptionHandler(response, inputs);
-      }
+                this.router.navigateByUrl('/');
+                window.location.reload();
+              } else {
+                // falha ao obter dados do usuário
+              }
+            });
+        } else {
+          // autenticação falhou
+        }
+      }).catch(response => {
+        console.log(response);
 
-      if (response.status == 401) {
-        this.message.toast(response.error.message, "error");
-      }
-    });
+        if ((response.status == 400 || response.status == 401) && response.error.errors) {
+          this.message.inputExceptionHandler(response, inputs);
+        }
+
+        if (response.status == 401) {
+          this.message.toast(response.error.message, "error");
+        }
+      });
 
     return true;
   }
