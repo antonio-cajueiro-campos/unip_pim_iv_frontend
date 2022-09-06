@@ -6,11 +6,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ionic build --prod",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "ng build"
   },
   "private": true,
   "dependencies": {
