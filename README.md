@@ -37,7 +37,7 @@ ng serve
 				</sub>
 			</a>
 			<br />
-			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_backend/commits?author=antonio-cajueiro-campos" title="Code">Commits: 💻</a>
+			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend/commits?author=antonio-cajueiro-campos" title="Code">Commits: 💻</a>
 		</td>
     	<td align="center">
 			<a href="https://github.com/Dudu-Arsenal">
@@ -47,7 +47,7 @@ ng serve
 				</sub>
 			</a>
 			<br />
-			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_backend/commits?author=Dudu-Arsenal" title="Code">Commits: 💻</a>
+			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend/commits?author=Dudu-Arsenal" title="Code">Commits: 💻</a>
 		</td>
     	<td align="center">
 			<a href="https://github.com/RafaMatsu">
@@ -57,7 +57,7 @@ ng serve
 				</sub>
 			</a>
 			<br />
-			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_backend/commits?author=RafaMatsu" title="Code">Commits: 💻</a>
+			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend/commits?author=RafaMatsu" title="Code">Commits: 💻</a>
 		</td>
 	</tr>
 </table>
