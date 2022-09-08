@@ -43,7 +43,7 @@ ng serve
 			<a href="https://github.com/Dudu-Arsenal">
 				<img src="https://avatars.githubusercontent.com/u/111618029?v=4" width="100px;" alt=""/><br />
 				<sub>
-					<b>Lucas Fernandes</b>
+					<b>Dudu Arsenal</b>
 				</sub>
 			</a>
 			<br />
