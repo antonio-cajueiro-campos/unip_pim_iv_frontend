@@ -10499,7 +10499,7 @@ body {
 .sidebar {
   width: 70px !important;
   background-color: #212529;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 70px);
 }
 
 .sidebar .nav-item:last-child {
@@ -10713,7 +10713,7 @@ footer.sticky-footer {
   right: 0;
   bottom: 0;
   width: calc(100% - 65px);
-  height: 80px;
+  min-height: 80px;
   background-color: #e9ecef55;
 }
 
