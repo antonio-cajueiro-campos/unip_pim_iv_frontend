@@ -20,7 +20,7 @@ ng serve
 
 # Deploy
 - Portal está sendo viabilizado pelo serviço de Host do Heroku
-- Para poder acessar a versão de release acesse o [Heroku APP: top-seguros-brasil](https://top-seguros-brasil.herokuapp.com/register)
+- Para poder acessar a versão de release acesse o [Heroku APP: top-seguros-brasil](https://top-seguros-brasil.herokuapp.com/)
 
 # Conexão com o Back
 - Para poder enviar requisições a API basta utilizar o link de deploy https://tsb-portal.herokuapp.com/
