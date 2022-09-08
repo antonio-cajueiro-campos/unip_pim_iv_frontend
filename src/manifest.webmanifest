@@ -4,6 +4,8 @@
   "theme_color": "#1190CB",
   "background_color": "#fafafa",
   "display": "standalone",
+  "orientation": "portrait-primary",
+  "description": "O seu portal para o seguro da sua casa!",
   "scope": "./",
   "start_url": "./",
   "icons": [
