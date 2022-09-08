@@ -19,7 +19,7 @@ ng serve
 ```
 
 # Deploy
-- Portal está sendo viabilizado pelo serviçod e Host do Heroku
+- Portal está sendo viabilizado pelo serviço de Host do Heroku
 - Para poder acessar a versão de release acesse o [Heroku APP: top-seguros-brasil](https://top-seguros-brasil.herokuapp.com/register)
 
 # Conexão com o Back
