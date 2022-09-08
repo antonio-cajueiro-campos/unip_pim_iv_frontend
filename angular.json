@@ -31,7 +31,13 @@
               },
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss",              
+              "src/assets/vendor/fontawesome-free/css/all.min.css",
+              "src/assets/css/style.css",
+              "src/assets/css/layout.css"
+            ],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,

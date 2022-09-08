@@ -15,13 +15,21 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpInterceptorProvider } from './services/http-interceptor';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    SidebarComponent,
+    NavbarComponent,
+    BreadcrumbComponent,
+    FooterComponent,
   ],
   imports: [
     IonicModule.forRoot(),

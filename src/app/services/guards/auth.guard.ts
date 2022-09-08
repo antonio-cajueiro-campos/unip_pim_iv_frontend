@@ -3,29 +3,27 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { UserService } from '../user.service';
-import { User } from 'src/app/models/user.model';
+import { DataManagerService } from '../data-manager.service';
+import { StorageKeys } from '../enums/StorageKeys';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private dataManagerService: DataManagerService, private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      let url: string = state.url;
-      return this.checkUserLoginAndRoles(route, url);
+      return this.checkUserLogin(route);
   }
 
-  public checkUserLoginAndRoles(route: ActivatedRouteSnapshot, url: any): boolean {
-    if (this.userService.user != null) {
-      var userRole: string = this.userService.user.role;
+  public checkUserLogin(route: ActivatedRouteSnapshot): boolean {
+    var user = this.dataManagerService.getData(StorageKeys.USER);
 
-      if (userRole == route.data['role']) return true;
-    }
+    if (user != null)
+        return true;
 
     this.router.navigate(['/']);
     return false;

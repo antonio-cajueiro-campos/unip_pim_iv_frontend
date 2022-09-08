@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginGuard } from './services/guards/login.guard';
 
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
     canActivate: [LoginGuard]
   },
   {

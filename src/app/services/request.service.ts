@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DefaultResponse } from '../models/default-response.model';
-import { User } from '../models/user.model';
+import { Jwt } from '../models/jwt.model';
 import { DataManagerService } from './data-manager.service';
 import { StorageKeys } from './enums/StorageKeys';
 
@@ -31,10 +31,10 @@ export class RequestService {
 
     headers.delete('authorization');
 
-    const token: any = this.dataManager.getData(StorageKeys.JWT_TOKEN);
-
-    if (token) {
-      headers =  headers.append('Authorization', token);
+    var jwt: Jwt = this.dataManager.getData(StorageKeys.JWT);
+    
+    if (jwt != null) {
+      headers =  headers.append('Authorization', jwt.token);
     }
 
     return headers;

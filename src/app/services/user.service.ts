@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { ElementRef, Injectable, isDevMode } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { switchMap, catchError } from 'rxjs/operators';
 import { Credential } from '../models/credential.model';
 import { Jwt } from '../models/jwt.model';
@@ -8,39 +8,35 @@ import { DataManagerService } from './data-manager.service';
 import { MessageService } from './message.service';
 import { RequestService } from './request.service';
 import { StorageKeys } from './enums/StorageKeys';
-import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  public user: User = null;
-  public jwt: Jwt = null;
+  constructor(
+    private router: Router,
+    public dataManager: DataManagerService,
+    public request: RequestService,
+    public message: MessageService) { }
 
-  constructor(private router: Router, public dataManager: DataManagerService, public request: RequestService, public message: MessageService) {
-    this.user = JSON.parse(this.dataManager.getData(StorageKeys.USER));
-    this.jwt = JSON.parse(this.dataManager.getData(StorageKeys.JWT_TOKEN));
+  public isLogged(): Observable<boolean> {
+    if (this.dataManager.getData(StorageKeys.USER) != null)
+      return of(true);
+    else
+      return of(false);
   }
-
+  
   public login(credential: Credential, inputs: ElementRef[]): boolean {
-
     this.request.postAsync('/authenticate/login', credential).toPromise()
       .then(response => {
         if (response.statusCode == 200) {
-
-          var jwt = response.data.jwt;
-
-          this.dataManager.setData(StorageKeys.JWT_TOKEN, jwt);
-          this.jwt = jwt;
+          this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
 
           this.request.getAsync('/user/infos').toPromise()
             .then(response => {
               if (response.statusCode == 200) {
-
                 this.dataManager.setData(StorageKeys.USER, response.data);
-                this.user == response.data;
-
                 this.router.navigateByUrl('/');
                 window.location.reload();
               } else {
@@ -50,14 +46,12 @@ export class UserService {
         } else {
           // autenticação falhou
         }
-      }).catch(response => {
-        console.log(response);
-
-        if ((response.status == 400 || response.status == 401) && response.error.errors) {
+      }).catch(response => {        
+        if ((response.status == 400 || response.status == 401) && response.error.errors) {          
           this.message.inputExceptionHandler(response, inputs);
         }
 
-        if (response.status == 401) {
+        if (response.status == 401 || response.status == 404) {
           this.message.toast(response.error.message, "error");
         }
       });
@@ -89,7 +83,6 @@ export class UserService {
       refreshToken: '',
       expirationTime: ''
     }
-
 
     var result: Observable<Jwt> = this.request.getAsync('/authenticate/refresh_token').pipe(
       switchMap(res => {
@@ -123,9 +116,7 @@ export class UserService {
   public logout() {
     this.message.popup("Deseja sair?", "question", () => {
       this.dataManager.removeData(StorageKeys.USER)
-      this.user = null;
-      this.dataManager.removeData(StorageKeys.JWT_TOKEN)
-      this.jwt = null;
+      this.dataManager.removeData(StorageKeys.JWT)
       this.router.navigateByUrl('/login');
     })
   }
