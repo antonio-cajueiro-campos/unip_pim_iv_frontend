@@ -1,4 +1,5 @@
 export enum StorageKeys {
 	JWT,
-	USER
+	USER,
+	SINISTROS
 }

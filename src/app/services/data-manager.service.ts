@@ -7,7 +7,7 @@ import { StorageKeys } from './enums/StorageKeys';
 export class DataManagerService {
 
 	public localStorage: Storage;
-	public readonly UNIQUE_APP_STORATE: string = "tsb-portal-storage";
+	public readonly UNIQUE_APP_STORAGE: string = "tsb-portal-storage";
 
 	constructor() {
 		this.localStorage = window.localStorage;
@@ -15,14 +15,14 @@ export class DataManagerService {
 
 	public getData(key: StorageKeys): any {
 		if (this.isLocalStorageSupported) {
-			return JSON.parse(this.localStorage.getItem(key + this.UNIQUE_APP_STORATE));
+			return JSON.parse(this.localStorage.getItem(key + this.UNIQUE_APP_STORAGE));
 		}
 		return null;
 	}
 
 	public setData(key: StorageKeys, value: any): boolean {
 		if (this.isLocalStorageSupported) {
-			this.localStorage.setItem(key + this.UNIQUE_APP_STORATE, JSON.stringify(value));
+			this.localStorage.setItem(key + this.UNIQUE_APP_STORAGE, JSON.stringify(value));
 			return true;
 		}
 		return false;
@@ -30,7 +30,7 @@ export class DataManagerService {
 
 	public removeData(key: StorageKeys): boolean {
 		if (this.isLocalStorageSupported) {
-			this.localStorage.removeItem(key + this.UNIQUE_APP_STORATE);
+			this.localStorage.removeItem(key + this.UNIQUE_APP_STORAGE);
 			return true;
 		}
 		return false;
