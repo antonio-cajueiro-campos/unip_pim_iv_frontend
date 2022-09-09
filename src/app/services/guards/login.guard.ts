@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import {
-  ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataManagerService } from '../data-manager.service';
 import { StorageKeys } from '../enums/StorageKeys';

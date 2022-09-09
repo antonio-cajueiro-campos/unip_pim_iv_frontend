@@ -1,7 +1,8 @@
 import { Observable, of } from 'rxjs';
-import { ElementRef, Injectable } from '@angular/core';
+import { ElementRef, Injectable, isDevMode } from '@angular/core';
 import { switchMap, catchError } from 'rxjs/operators';
 import { Credential } from '../models/credential.model';
+import { User } from '../models/user.model';
 import { Jwt } from '../models/jwt.model';
 import { Router } from '@angular/router';
 import { DataManagerService } from './data-manager.service';
@@ -18,7 +19,17 @@ export class UserService {
     private router: Router,
     public dataManager: DataManagerService,
     public request: RequestService,
-    public message: MessageService) { }
+    public message: MessageService) {
+      if (isDevMode()) {
+        var user: User = {
+          id: 0,
+          name: "Guest",
+          document: "000000",
+          role: "Cliente"
+        }
+        this.dataManager.setData(StorageKeys.USER, user)
+      }
+    }
 
   public isLogged(): Observable<boolean> {
     if (this.dataManager.getData(StorageKeys.USER) != null)
@@ -38,7 +49,6 @@ export class UserService {
               if (response.statusCode == 200) {
                 this.dataManager.setData(StorageKeys.USER, response.data);
                 this.router.navigateByUrl('/');
-                window.location.reload();
               } else {
                 // falha ao obter dados do usuário
               }
