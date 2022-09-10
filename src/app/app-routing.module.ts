@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginGuard } from './services/guards/login.guard';
@@ -25,9 +26,12 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard],
-    data: { role: 'cliente' },
-  }
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent
+  },
   // {
   //   path: 'profile',
   //   loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)

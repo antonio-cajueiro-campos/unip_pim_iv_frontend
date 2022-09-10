@@ -20,6 +20,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoaderScreenComponent } from './components/loader-screen/loader-screen.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoaderScreenComponent } from './components/loader-screen/loader-screen.
     NavbarComponent,
     BreadcrumbComponent,
     FooterComponent,
-    LoaderScreenComponent
+    LoaderScreenComponent,
+    PaymentComponent
   ],
   imports: [
     IonicModule.forRoot(),

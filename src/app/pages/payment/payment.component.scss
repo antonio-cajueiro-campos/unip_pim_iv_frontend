@@ -1,0 +1,26 @@
+.btn-cancelar-compra {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    width: 100%;
+	line-height: 55px;
+	max-width: 750px;
+    color: #2C2E2F;
+    border-radius: 4px;
+    text-align: center;
+    background: transparent;
+	padding: 0;
+	border: none;
+	-webkit-box-shadow: inset 0px 0px 0px 2px #2C2E2F;
+    -moz-box-shadow: inset 0px 0px 0px 2px #2C2E2F;
+    box-shadow: inset 0px 0px 0px 2px #2C2E2F;
+	transition: all 170ms ease-in-out ;
+}
+
+.btn-cancelar-compra:hover {
+	cursor: pointer;
+    filter: brightness(1.2);
+
+	color: white;
+	background: #2C2E2F;
+}
