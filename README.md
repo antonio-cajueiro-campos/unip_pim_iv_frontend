@@ -15,6 +15,7 @@ Frontend do projeto de PIM do quarto semestre da Universidade Paulista UNIP
 git clone https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend.git
 cd unip_pim_iv_frontend
 npm install
+npm i -g @angular/cli
 ng serve
 ```
 
@@ -38,6 +39,16 @@ ng serve
 			</a>
 			<br />
 			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend/commits?author=antonio-cajueiro-campos" title="Code">Commits: 💻</a>
+		</td>
+    <td align="center">
+			<a href="https://github.com/Lucas4985">
+				<img src="https://avatars.githubusercontent.com/u/102609797?v=4" width="100px;" alt=""/><br />
+				<sub>
+					<b>Lucas Fernandes</b>
+				</sub>
+			</a>
+			<br />
+			<a href="https://github.com/antonio-cajueiro-campos/unip_pim_iv_backend/commits?author=Lucas4985" title="Code">Commits: 💻</a>
 		</td>
 		<td align="center">
 			<a href="https://github.com/RafaMatsu">
