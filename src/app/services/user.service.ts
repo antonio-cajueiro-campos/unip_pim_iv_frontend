@@ -20,15 +20,7 @@ export class UserService {
     public dataManager: DataManagerService,
     public request: RequestService,
     public message: MessageService) {
-      if (isDevMode()) {
-        var user: User = {
-          id: 0,
-          name: "Guest",
-          document: "000000",
-          role: "Cliente"
-        }
-        this.dataManager.setData(StorageKeys.USER, user)
-      }
+      
     }
 
   public isLogged(): Observable<boolean> {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataManagerService } from 'src/app/services/data-manager.service';
 import { StorageKeys } from 'src/app/services/enums/StorageKeys';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, public dataManager: DataManagerService) { }
 
   ngOnInit(): void {}
   
@@ -18,7 +19,10 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserName() {
-    var user = this.userService.dataManager.getData(StorageKeys.USER)
+    var user = this.dataManager.getData(StorageKeys.USER)
+    if (user != null)
     return user.name.split(" ")[0];
+    else
+      return "UserNotFound";
   }
 }

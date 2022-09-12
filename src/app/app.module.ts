@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -50,8 +50,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
   ],
   providers: [
     HttpInterceptorProvider,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-    { provide: LOCALE_ID, useValue: 'pt-br' }
+    { provide: LOCALE_ID, useValue: 'pt-br' },
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],
 })
