@@ -39,10 +39,8 @@ ionic build --configuration=production
 // Atualize o subprojeto de android com o capacitor.
 ionic capacitor build android --prod --release --no-open
 
-// Gerar o APK
+// Gerar o release APK
 cd android
-
-// Gerar Release
 gradlew assembleRelease
 ```
 
