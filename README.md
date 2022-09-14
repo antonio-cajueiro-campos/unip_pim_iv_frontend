@@ -12,12 +12,12 @@ Frontend do projeto de PIM do quarto semestre da Universidade Paulista UNIP
 ## Instalação
 
 ```sh
-git clone https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend.git
-cd unip_pim_iv_frontend
-npm install
-npm i -g @angular/cli
-npm i -g @ionic/cli
-ng serve
+$ git clone https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend.git
+$ cd unip_pim_iv_frontend
+$ npm install
+$ npm i -g @angular/cli
+$ npm i -g @ionic/cli
+$ ng serve
 ```
 
 ## Deploy
