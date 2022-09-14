@@ -108,7 +108,6 @@ export class MessageService {
 
 					element.focus();
 					element.setAttribute('style', 'border: red 1px solid!important');
-					console.log(errorMessage);
 					
 					this.toast(errorMessage, "error");
 				} else {
