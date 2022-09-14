@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ElementRef, Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import { DefaultResponse } from '../models/default-response.model';
 import { HttpStatus } from './constants/http-status';
 
 @Injectable({
@@ -10,18 +11,26 @@ export class MessageService {
 
 	constructor() { }
 
-	public async handleException(response, inputs: any[] = []) {
-		console.log(HttpStatus.BadRequest(response));
-
-		//HttpErrorResponse to DefaultResponse
+	public async handleException(response: HttpErrorResponse | DefaultResponse, inputs: any[] = []) {
 		
-		if (HttpStatus.BadRequest(response) && response.error.errors) {
+		console.log(response);
+		
+
+		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse) {
 			this.inputException(response, inputs);
 		}
 
-		if (HttpStatus.BadRequest(response)) {
+		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse && response.error.message) {
 			this.toast(response.error.message, "error");
 		}
+		
+		if (HttpStatus.BadRequest(response) && this.instanceOfDefaultResponse(response)) {
+			this.toast(response.message, "error");
+		}
+	}
+
+	private instanceOfDefaultResponse(object: any): object is DefaultResponse {
+		return 'data' in object;
 	}
 
 	public async popup(title: string, icon: any, callback: any, text: string = "") {
@@ -102,7 +111,8 @@ export class MessageService {
 
 					element.focus();
 					element.setAttribute('style', 'border: red 1px solid!important');
-
+					console.log(errorMessage);
+					
 					this.toast(errorMessage, "error");
 				} else {
 					element.setAttribute('style', 'border: #ccc 1px solid!important');
