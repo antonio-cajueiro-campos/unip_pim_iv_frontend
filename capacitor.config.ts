@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'TSB.Portal.Frontend',
+  appId: 'TSB.Portal.Frontend',
+  appName: 'Top Seguros Brasil',
   webDir: 'www',
   bundledWebRuntime: false
 };

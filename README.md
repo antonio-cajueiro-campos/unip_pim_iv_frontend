@@ -16,6 +16,7 @@ git clone https://github.com/antonio-cajueiro-campos/unip_pim_iv_frontend.git
 cd unip_pim_iv_frontend
 npm install
 npm i -g @angular/cli
+npm i -g @ionic/cli
 ng serve
 ```
 
@@ -26,6 +27,25 @@ ng serve
 ## Conexão com o Back
 - Para poder enviar requisições a API basta utilizar o link de deploy https://tsb-portal.herokuapp.com/
 - Contará também com a documentação e consulta em tempo real da aplicação com o [Swagger da API](https://tsb-portal.herokuapp.com/swagger/index.html)
+
+## Aplicação Android
+```sh
+// Atualize os resources (splash screen ou icone) do projeto.
+capacitor-resources -p android
+
+// Gerar os arquivos estáticos do projeto.
+ionic build --configuration=production
+
+// Atualize o subprojeto de android com o capacitor.
+ionic capacitor build android --prod --release --no-open
+
+// Gerar o APK
+cd android
+
+// Gerar Release
+gradlew assembleRelease
+```
+
 
 ## Desenvolvedores
 <table>
