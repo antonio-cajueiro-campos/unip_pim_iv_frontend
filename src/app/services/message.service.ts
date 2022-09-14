@@ -11,10 +11,7 @@ export class MessageService {
 
 	constructor() { }
 
-	public async handleException(response: HttpErrorResponse | DefaultResponse, inputs: any[] = []) {
-		
-		console.log(response);
-		
+	public async handleException(response: HttpErrorResponse | DefaultResponse, inputs: any[] = []) {		
 
 		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse) {
 			this.inputException(response, inputs);
