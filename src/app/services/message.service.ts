@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ElementRef, Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import { HttpStatus } from './constants/http-status';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,6 +9,20 @@ import Swal from 'sweetalert2';
 export class MessageService {
 
 	constructor() { }
+
+	public async handleException(response, inputs: any[] = []) {
+		console.log(HttpStatus.BadRequest(response));
+
+		//HttpErrorResponse to DefaultResponse
+		
+		if (HttpStatus.BadRequest(response) && response.error.errors) {
+			this.inputException(response, inputs);
+		}
+
+		if (HttpStatus.BadRequest(response)) {
+			this.toast(response.error.message, "error");
+		}
+	}
 
 	public async popup(title: string, icon: any, callback: any, text: string = "") {
 		await Swal.fire({
@@ -20,6 +35,8 @@ export class MessageService {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				callback();
+
+				this.toast("Até logo!", "success")
 
 				// Swal.fire(
 				//   'Deleted!',
@@ -55,7 +72,7 @@ export class MessageService {
 			title: message
 		})
 	}
-	public inputExceptionHandler(response: HttpErrorResponse, inputs: any[]) {
+	public inputException(response: HttpErrorResponse, inputs: any[]) {
 
 		var inputsWithError = []
 		for (let inputIdWithError in response.error.errors) {
@@ -126,19 +143,6 @@ export class MessageService {
 			} else {
 				input.nativeElement.setAttribute('style', 'border: #ccc 1px solid!important');
 			}
-		}
-	}
-
-	private pjInputValidate(inputs: ElementRef[], isValid: boolean) {
-		if (isValid) {
-
-			inputs[2].nativeElement.focus();
-			inputs[2].nativeElement.setAttribute('style', 'border: red 1px solid!important');
-			inputs[3].nativeElement.setAttribute('style', 'border: red 1px solid!important');
-
-		} else {
-			inputs[2].nativeElement.setAttribute('style', 'border: #ccc 1px solid!important');
-			inputs[3].nativeElement.setAttribute('style', 'border: #ccc 1px solid!important');
 		}
 	}
 }

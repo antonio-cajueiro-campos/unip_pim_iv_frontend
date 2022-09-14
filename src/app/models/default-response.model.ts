@@ -1,5 +1,5 @@
 export interface DefaultResponse {
-    statusCode: number;
+    status: number;
     error: boolean;
     message: string;
     data: any;
