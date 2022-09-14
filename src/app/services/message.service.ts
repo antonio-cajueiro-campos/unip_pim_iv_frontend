@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ElementRef, Injectable } from '@angular/core';
+import { TimeoutError } from 'rxjs';
 import { mergeScan } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { DefaultResponse } from '../models/default-response.model';
@@ -12,7 +13,7 @@ export class MessageService {
 
 	constructor() { }
 
-	public async handle(response: HttpErrorResponse | DefaultResponse, inputs: any[] = []) {
+	public async handle(response: HttpErrorResponse | DefaultResponse | any, inputs: any[] = []) {
 		
 		if (HttpStatus.BadRequest(response) && this.instanceOfDefaultResponse(response)) {
 			this.toast(response.message, "error");
@@ -28,6 +29,10 @@ export class MessageService {
 		
 		if (HttpStatus.ServerError(response) && response instanceof HttpErrorResponse && response.error.message) {
 			this.serverErrorHandle(response.error.message);
+		}		
+
+		if (response instanceof TimeoutError) {			
+			this.serverErrorHandle(response.message);
 		}
 	}
 
@@ -83,11 +88,14 @@ export class MessageService {
 	private instanceOfDefaultResponse = (o: any): o is DefaultResponse  => 'data' in o;
 
 	private serverErrorHandle(message: string) {
+		console.log(message);
+		
 		switch(true) {
 			case message.includes("Microsoft.Data.SqlClient.SqlException"):
-				this.present("Server Error", "Erro no serviço de banco de dados, entre em contato com um administrador do sistema ou tente novamente mais tarde", "error");
+				this.present("Server Error", "Erro no serviço de banco de dados, entre em contato com um administrador do sistema ou tente novamente mais tarde.", "error");
 				break;
-			case message.includes("______"):
+			case message.includes("Timeout has occurred"):
+				this.present("Timeout", "Tempo de comunicação com o servidor se esgotou, tente novamente mais tarde. Se o problema persistir contate um administrador.", "error");
 				break;
 		}
 	}
