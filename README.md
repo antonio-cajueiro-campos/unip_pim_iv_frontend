@@ -30,17 +30,17 @@ ng serve
 
 ## Aplicação Android
 ```sh
-// Atualize os resources (splash screen ou icone) do projeto.
-npm run resources
+# Atualize os resources (splash screen ou icone) do projeto.
+$ npm run resources
 
-// Gerar os arquivos estáticos do projeto.
-npm run build-prod
+# Gerar os arquivos estáticos do projeto.
+$ npm run build-prod
 
-// Atualize o subprojeto de android com o capacitor.
-npm run build-android
+# Atualize o subprojeto de android com o capacitor.
+$ npm run build-android
 
-// Gerar o APK de debug
-npm run android-debug
+# Gerar o APK de debug
+$ npm run android-debug
 ```
 na raiz do projeto irá aparecer uma pasta output com o APK dentro
 
