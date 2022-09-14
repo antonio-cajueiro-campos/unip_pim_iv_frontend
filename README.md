@@ -39,7 +39,7 @@ $ npm run build-android
 # Atualize os resources (splash screen ou icone) do projeto.
 $ npm run resources
 
-# Gerar o APK de debug
+# Gerar o APK de debug.
 $ npm run android-debug
 ```
 na raiz do projeto irá aparecer uma pasta output com o APK dentro
