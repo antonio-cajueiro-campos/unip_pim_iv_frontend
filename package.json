@@ -10,7 +10,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --configuration=production"
+    "heroku-postbuild": "ng build --configuration=production",
+    "build-prod": "ionic build --configuration=production",
+    "resources": "capacitor-resources -p android",
+    "build-android": "ionic capacitor build android --prod --release --no-open",
+    "android-debug": "cd android && gradlew assembleDebug && cd .. && rm -rf debug && mkdir debug && cp ./android/app/build/outputs/apk/debug/app-debug.apk debug/app-debug.apk"
   },
   "private": true,
   "dependencies": {

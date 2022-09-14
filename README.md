@@ -31,19 +31,18 @@ ng serve
 ## Aplicação Android
 ```sh
 // Atualize os resources (splash screen ou icone) do projeto.
-capacitor-resources -p android
+npm run resources
 
 // Gerar os arquivos estáticos do projeto.
-ionic build --configuration=production
+npm run build-prod
 
 // Atualize o subprojeto de android com o capacitor.
-ionic capacitor build android --prod --release --no-open
+npm run build-android
 
-// Gerar o release APK
-cd android
-gradlew assembleRelease
+// Gerar o APK de debug
+npm run android-debug
 ```
-
+na raiz do projeto irá aparecer uma pasta output com o APK dentro
 
 ## Desenvolvedores
 <table>
