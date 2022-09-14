@@ -33,10 +33,7 @@ export class MessageService {
 
 	public async present(title: string, text: string = "", icon: any) {
 		await Swal.fire({
-			title, text, icon,
-			showCancelButton: false,
-			confirmButtonColor: '#3085d6',
-			confirmButtonText: 'Ok',
+			title, text, icon
 		});
 	}
 
@@ -52,13 +49,7 @@ export class MessageService {
 			if (result.isConfirmed) {
 				callback();
 
-				this.toast("Até logo!", "success")
-
-				// Swal.fire(
-				//   'Deleted!',
-				//   'Your file has been deleted.',
-				//   'success'
-				// )
+				this.toast("Até logo!", "success");
 			}
 		});
 	}
