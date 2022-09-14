@@ -42,7 +42,7 @@ export class UserService {
         this.getUserInfos();
 
       }).catch(response => {
-        this.message.handleException(response, inputs);
+        this.message.handle(response, inputs);
         return false;
       });
 
@@ -61,7 +61,7 @@ export class UserService {
         this.getUserInfos();
 
       }).catch(response => {
-        this.message.handleException(response, inputs);
+        this.message.handle(response, inputs);
         return false;
       });
 
@@ -79,7 +79,7 @@ export class UserService {
         this.router.navigateByUrl('/');
 
       }).catch(response => {
-        this.message.handleException(response);
+        this.message.handle(response);
         return false;
       });
 

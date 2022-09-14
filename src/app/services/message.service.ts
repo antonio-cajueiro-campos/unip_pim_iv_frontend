@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ElementRef, Injectable } from '@angular/core';
+import { mergeScan } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { DefaultResponse } from '../models/default-response.model';
 import { HttpStatus } from './constants/http-status';
@@ -11,23 +12,32 @@ export class MessageService {
 
 	constructor() { }
 
-	public async handleException(response: HttpErrorResponse | DefaultResponse, inputs: any[] = []) {		
+	public async handle(response: HttpErrorResponse | DefaultResponse, inputs: any[] = []) {
+		
+		if (HttpStatus.BadRequest(response) && this.instanceOfDefaultResponse(response)) {
+			this.toast(response.message, "error");
+		}
 
-		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse) {
-			this.inputException(response, inputs);
+		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse && response.error.errors) {
+			this.inputErrorHandle(response, inputs);
 		}
 
 		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse && response.error.message) {
 			this.toast(response.error.message, "error");
 		}
 		
-		if (HttpStatus.BadRequest(response) && this.instanceOfDefaultResponse(response)) {
-			this.toast(response.message, "error");
+		if (HttpStatus.ServerError(response) && response instanceof HttpErrorResponse && response.error.message) {
+			this.serverErrorHandle(response.error.message);
 		}
 	}
 
-	private instanceOfDefaultResponse(object: any): object is DefaultResponse {
-		return 'data' in object;
+	public async present(title: string, text: string = "", icon: any) {
+		await Swal.fire({
+			title, text, icon,
+			showCancelButton: false,
+			confirmButtonColor: '#3085d6',
+			confirmButtonText: 'Ok',
+		});
 	}
 
 	public async popup(title: string, icon: any, callback: any, text: string = "") {
@@ -78,7 +88,20 @@ export class MessageService {
 			title: message
 		})
 	}
-	public inputException(response: HttpErrorResponse, inputs: any[]) {
+
+	private instanceOfDefaultResponse = (o: any): o is DefaultResponse  => 'data' in o;
+
+	private serverErrorHandle(message: string) {
+		switch(true) {
+			case message.includes("Microsoft.Data.SqlClient.SqlException"):
+				this.present("Server Error", "Erro no serviço de banco de dados, entre em contato com um administrador do sistema ou tente novamente mais tarde", "error");
+				break;
+			case message.includes("______"):
+				break;
+		}
+	}
+
+	private inputErrorHandle(response: HttpErrorResponse, inputs: any[]) {
 
 		var inputsWithError = []
 		for (let inputIdWithError in response.error.errors) {
@@ -119,7 +142,7 @@ export class MessageService {
 		}
 	}
 
-	public inputExceptionHandlers(response: HttpErrorResponse, inputs: ElementRef[]) {
+	public inputExceptionHandlerTest(response: HttpErrorResponse, inputs: ElementRef[]) {
 		console.log(inputs)
 
 		var inputsWithError = []
