@@ -41,9 +41,13 @@ $ npm run compile-debug
 ```
 Após executar as etapas do processo, na raiz do projeto irá aparecer uma pasta chamada **debug** com o APK para testes dentro
 
-Para automatizar este processo, você pode utilizar o seguinte comando:
+Para automatizar este processo, você pode utilizar os seguintes comandos:
 ```sh
-$ npm run buind-and-compile-debug
+# Roda os três processos de build e compile
+$ npm run buind-and-compile
+
+# Ou usando o alias BAC
+$ npm run bac
 ```
 
 ## Desenvolvedores
