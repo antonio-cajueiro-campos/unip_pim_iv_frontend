@@ -10614,7 +10614,7 @@ body {
 }
 @media (max-width: 767px) {
   .sidebar {
-    min-height: calc(100vh - 59px);
+    min-height: calc(100vh - 69px);
   }
 }
 @media (min-width: 576px) {

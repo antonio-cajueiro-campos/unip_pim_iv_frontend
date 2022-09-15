@@ -31,7 +31,7 @@ export class MessageService {
 			this.serverErrorHandle(response.error.message);
 		}		
 
-		if (response instanceof TimeoutError) {			
+		if (HttpStatus.Unknown(response) && response instanceof HttpErrorResponse) {
 			this.serverErrorHandle(response.message);
 		}
 	}
@@ -96,6 +96,9 @@ export class MessageService {
 				break;
 			case message.includes("Timeout has occurred"):
 				this.present("Timeout", "Tempo de comunicação com o servidor se esgotou, tente novamente mais tarde. Se o problema persistir contate um administrador.", "error");
+				break;
+			case message.includes("Http failure response for"):
+				this.present("Connection Error", "Erro de conexão com o servidor, verifique sua rede ou tente novamente mais tarde.", "error");
 				break;
 		}
 	}

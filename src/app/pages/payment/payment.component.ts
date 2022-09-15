@@ -16,10 +16,10 @@ export class PaymentComponent implements OnInit {
 
   constructor(public userService: UserService, public paypalService: PaypalService) {
     //this.userService.dataManager.getData
-    this.paypalService.renderPaypalPayment(this.insurancePlan);
   }
-
+  
   ngOnInit() {
+    this.paypalService.renderPaypalPayment(this.insurancePlan);
     // verificar se o usuário tem conta ativa, conta pendente ou conta desativada
   }
 }
