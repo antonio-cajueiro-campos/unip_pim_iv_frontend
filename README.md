@@ -41,6 +41,11 @@ $ npm run compile-debug
 ```
 Após executar as etapas do processo, na raiz do projeto irá aparecer uma pasta chamada **debug** com o APK para testes dentro
 
+Para automatizar este processo, você pode utilizar o seguinte comando:
+```sh
+$ npm run buind-and-compile-debug
+```
+
 ## Desenvolvedores
 <table>
 	<tr>
