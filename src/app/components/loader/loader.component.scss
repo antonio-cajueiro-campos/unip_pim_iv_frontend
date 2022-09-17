@@ -1,0 +1,125 @@
+@font-face {
+	font-family: 'clear-sans-regular';
+	src: url('../../../assets/fonts/clear-sans-regular.ttf');
+}
+
+@font-face {
+	font-family: 'glacial-indifference-regular';
+	src: url('../../../assets/fonts/glacial-indifference-regular.otf');
+}
+
+.app-loader-div {
+	position: absolute;
+	transform: translateY(-50%);
+	top: 50%;
+	background: #000;
+	width: 100%;
+	height: 100%;
+	padding-top: 200px;
+}
+
+.telhado-div {
+	position: relative;
+	height: 20vw;
+	width: 70%;
+	margin: auto;
+}
+
+.telhado {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-image: url('../../../assets/images/telhado.webp');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.telhado-shadown {
+	position: absolute;
+	height: 100%;
+	width: 0%;
+	left: 0;
+	background-color: black;
+	animation: telhado-shadown 1500ms both;
+}
+
+.top-div {
+	position: relative;
+	height: calc(2em +  18vw);
+	line-height: calc(2em +  18vw);
+	width: 100%;
+	background: black;
+}
+
+.top {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	font-family: 'clear-sans-regular';
+	font-size: calc(1em +  18vw);
+	color: white;
+	top: 0;	
+}
+
+.top-shadown {
+	position: absolute;
+	height: 100%;
+	width: 0%;
+	right: 0;
+	background-color: black;
+	animation: top-shadown 2500ms both;
+}
+
+.sb-div {
+	position: relative;
+	height: calc(1em +  7vw);
+	width: 100%;
+	background: black;
+}
+
+.sb {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	color: white;
+	font-size: calc(1em + 5vw);
+	font-family: 'glacial-indifference-regular';
+}
+
+.sb-shadown {
+	position: absolute;
+	height: 100%;
+	width: 0%;
+	right: 0;
+	background-color: black;
+	animation: sb-shadown 2000ms linear infinite;
+}
+
+@keyframes telhado-shadown {
+	0% {
+		width: 100%;
+	}
+	100% {
+		width: 0%;
+	}
+}
+
+@keyframes top-shadown {
+	0% {
+		width: 100%;
+	}
+	100% {
+		width: 0%;
+	}
+}
+
+@keyframes sb-shadown {
+	0% {
+		width: 100%;
+	}
+	100% {
+		width: 0%;
+	}
+}

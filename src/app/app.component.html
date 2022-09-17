@@ -1,12 +1,17 @@
-<app-navbar></app-navbar>
-<div id="wrapper">
-  <app-sidebar class="sidebar"></app-sidebar>
-  <div id="content-wrapper">
-    <div class="container-fluid">
-      <app-breadcrumb></app-breadcrumb>
-      <router-outlet></router-outlet>
+<div *ngIf="isLoader | async">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!(isLoader | async)">
+  <app-navbar></app-navbar>
+  <div id="wrapper">
+    <app-sidebar class="sidebar"></app-sidebar>
+    <div id="content-wrapper">
+      <div class="container-fluid">
+        <app-breadcrumb></app-breadcrumb>
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+      <app-loader-screen></app-loader-screen>
     </div>
-    <app-footer></app-footer>
-    <app-loader-screen></app-loader-screen>
   </div>
 </div>

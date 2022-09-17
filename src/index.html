@@ -63,7 +63,7 @@
   <script src="https://www.paypal.com/sdk/js?client-id=AcEGXC3G4xb7sFpRlY-8yQo0iy5NdM7k0bZefBUAhGZGcdW0D9eTFHAjlRMC6erwsCLkrJvQ27f8OEE8"></script>
 </head>
 
-<body id="page-top">
+<body id="page-top" style="background-color:black">
 
   <app-root></app-root>
 
@@ -76,7 +76,9 @@
 
   <script type="text/javascript">
     $(document).ready(() => {
-      document.getElementById("year").insertAdjacentHTML('beforeend', new Date().getFullYear());
+      var footerYear = document.getElementById("year");
+      if (footerYear)
+      footerYear.insertAdjacentHTML('beforeend', new Date().getFullYear());
       //$('[data-toggle="tooltip"]').tooltip()
     });
   </script>

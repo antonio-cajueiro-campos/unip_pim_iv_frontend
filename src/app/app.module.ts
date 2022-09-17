@@ -21,6 +21,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { LoaderScreenComponent } from './components/loader-screen/loader-screen.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
     BreadcrumbComponent,
     FooterComponent,
     LoaderScreenComponent,
-    PaymentComponent
+    PaymentComponent,
+    LoaderComponent
   ],
   imports: [
     IonicModule.forRoot(),
