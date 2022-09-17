@@ -42,7 +42,7 @@ Após executar as etapas do processo, na raiz do projeto irá aparecer uma pasta
 Para automatizar este processo, você pode utilizar os seguintes comandos:
 ```sh
 # Roda os três processos de build e compile
-$ npm run buind-and-compile
+$ npm run build-and-compile
 
 # Ou usando o alias BAC
 $ npm run bac

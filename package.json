@@ -13,7 +13,7 @@
     "e2e": "npx ng e2e",
     "build-prod": "npx ionic build --configuration=production",
     "heroku-postbuild": "npx ionic build --configuration=production",
-    "build-android": "rm -rf android && npx ionic capacitor build android --prod --release --no-open",
+    "build-android": "npx ionic capacitor build android --prod --release --no-open",
     "build-resources": "npx capacitor-resources -p android",
     "compile-debug": "cd android && gradlew assembleDebug && cd .. && rm -rf debug && mkdir debug && cp ./android/app/build/outputs/apk/debug/app-debug.apk debug/app-debug.apk",
     "build-and-compile": "npm run build-android && npm run build-resources && npm run compile-debug",
