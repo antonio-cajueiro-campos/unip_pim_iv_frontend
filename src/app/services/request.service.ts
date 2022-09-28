@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { DefaultResponse } from '../models/default-response.model';
 import { Jwt } from '../models/jwt.model';
 import { DataManagerService } from './data-manager.service';
-import { StorageKeys } from './enums/StorageKeys';
+import { StorageKeys } from './enums/storage-keys';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class RequestService {
 
   private readonly BACKEND_BASE_URL: string = "https://tsb-portal.herokuapp.com"
 
-  constructor(private http: HttpClient, public dataManager: DataManagerService) {}
+  constructor(private http: HttpClient, private dataManager: DataManagerService) {}
 
   public getAsync(endpoint: string) {
     return this.http.get<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, { headers: this.getHeaders() })

@@ -1,6 +1,6 @@
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { ElementRef, Injectable, isDevMode } from '@angular/core';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 import { Credential } from '../models/credential.model';
 import { Jwt } from '../models/jwt.model';
 import { User } from '../models/user.model';
@@ -8,26 +8,35 @@ import { Router } from '@angular/router';
 import { DataManagerService } from './data-manager.service';
 import { MessageService } from './message.service';
 import { RequestService } from './request.service';
-import { StorageKeys } from './enums/StorageKeys';
+import { StorageKeys } from './enums/storage-keys';
 import { HttpStatus } from './constants/http-status';
+import { Cliente } from '../models/cliente.model';
+import { Infos } from '../models/Infos.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  private infos: BehaviorSubject<Infos> = new BehaviorSubject<Infos>(null);
+  public infos$ = this.infos.asObservable();
+
   constructor(
     private router: Router,
-    public dataManager: DataManagerService,
-    public request: RequestService,
-    public message: MessageService
-  ) { }
+    private dataManager: DataManagerService,
+    private request: RequestService,
+    private message: MessageService
+  ) {
+    this.updateInfos(this.dataManager.getData(StorageKeys.INFOS));
+  }
 
   public isLogged(): Observable<boolean> {
-    if (this.dataManager.getData(StorageKeys.USER) != null)
-      return of(true);
-    else
-      return of(false);
+    return (this.dataManager.getData(StorageKeys.INFOS) != null) ? of(true) : of(false);
+  }
+
+  public updateInfos(data: Infos): void {
+    this.dataManager.setData(StorageKeys.INFOS, data);
+    this.infos.next(data)
   }
 
   public login(credential: Credential, inputs: ElementRef[]): boolean {
@@ -75,7 +84,7 @@ export class UserService {
         if (!HttpStatus.OK(response))
           throw new Error(response.message);
 
-        this.dataManager.setData(StorageKeys.USER, response.data);
+        this.updateInfos(response.data);
         this.router.navigateByUrl('/');
 
       }).catch(response => {
@@ -142,7 +151,7 @@ export class UserService {
 
   public logout() {
     this.message.popup("Deseja sair?", "question", () => {
-      this.dataManager.removeData(StorageKeys.USER)
+      this.dataManager.removeData(StorageKeys.INFOS)
       this.dataManager.removeData(StorageKeys.JWT)
       this.router.navigateByUrl('/login');
     })

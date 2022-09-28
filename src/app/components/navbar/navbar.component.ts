@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { DataManagerService } from 'src/app/services/data-manager.service';
-import { StorageKeys } from 'src/app/services/enums/StorageKeys';
+import { StorageKeys } from 'src/app/services/enums/storage-keys';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,21 +10,19 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
-  constructor(public userService: UserService, public dataManager: DataManagerService) { }
+  public userName: Observable<string>;
 
-  ngOnInit(): void {}
-  
-  logout() {
-    this.userService.logout();
+  constructor(public userService: UserService) {
+    userService.infos$.pipe(
+      tap(infos => {
+        this.userName = infos ? of(infos.cliente.user.name.split(" ")[0]) : of("Guest");
+      })
+    ).subscribe();
   }
 
-  getUserName() {
-    var user = this.dataManager.getData(StorageKeys.USER)
-    if (user != null)
-    return user.name.split(" ")[0];
-    else
-      return "UserNotFound";
+  logout() {
+    this.userService.logout();
   }
 }

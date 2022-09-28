@@ -1,7 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ElementRef, Injectable } from '@angular/core';
-import { TimeoutError } from 'rxjs';
-import { mergeScan } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { DefaultResponse } from '../models/default-response.model';
 import { HttpStatus } from './constants/http-status';

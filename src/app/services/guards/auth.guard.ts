@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataManagerService } from '../data-manager.service';
-import { StorageKeys } from '../enums/StorageKeys';
+import { StorageKeys } from '../enums/storage-keys';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,10 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    var user = this.dataManagerService.getData(StorageKeys.USER);
+    var jwt = this.dataManagerService.getData(StorageKeys.JWT);
+    var infos = this.dataManagerService.getData(StorageKeys.INFOS);
 
-    if (user != null) return true;
+    if (jwt != null && infos != null) return true;
 
     this.router.navigateByUrl('/');
     return false;
