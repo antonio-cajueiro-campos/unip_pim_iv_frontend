@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { DefaultResponse } from '../models/default-response.model';
 import { Jwt } from '../models/jwt.model';
 import { DataManagerService } from './data-manager.service';
@@ -14,19 +15,18 @@ export class RequestService {
 
   constructor(private http: HttpClient, private dataManager: DataManagerService) {}
 
-  public getAsync(endpoint: string) {
-    return this.http.get<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, { headers: this.getHeaders() })
-  }
+  public getAsync = (endpoint: string, headers: HttpHeaders = this.getHeaders()): Observable<DefaultResponse> =>
+    this.http.get<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, { headers });
 
-  public postAsync(endpoint: string, data: object) {
-    return this.http.post<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, data, { headers: this.getHeaders() })
-  }
+  public postAsync = (endpoint: string, data: object, headers: HttpHeaders = this.getHeaders()): Observable<DefaultResponse> =>
+    this.http.post<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, data, { headers });
 
   private getHeaders(): HttpHeaders {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'Show-Loader': 'true'
     });
 
     headers.delete('authorization');

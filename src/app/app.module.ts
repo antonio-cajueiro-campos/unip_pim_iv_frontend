@@ -14,7 +14,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpInterceptorProvider } from './services/http-interceptor';
+import { HttpInterceptorProvider } from './services/http-interceptor.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';

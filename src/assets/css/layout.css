@@ -10495,7 +10495,6 @@ body {
   } 
 }
 
-
 .sidebar {
   width: 70px !important;
   background-color: #212529;
@@ -10509,7 +10508,7 @@ body {
 .sidebar .nav-item .nav-link {
   text-align: center;
   padding: 0.75rem 0;
-  width: 65px;
+  width: 70px;
 }
 
 .sidebar .nav-item .nav-link span {
@@ -10712,9 +10711,9 @@ footer.sticky-footer {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: calc(100% - 65px);
+  width: calc(100% - 70px);
   min-height: 80px;
-  background-color: #e9ecef55;
+  background-color: #e9ecef;
 }
 
 footer.sticky-footer .copyright {

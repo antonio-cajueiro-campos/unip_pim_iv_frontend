@@ -6,8 +6,8 @@ import { StorageKeys } from './enums/storage-keys';
 })
 export class DataManagerService {
 
-	public localStorage: Storage;
-	public readonly UNIQUE_APP_STORAGE: string = "tsb-portal-storage";
+	private localStorage: Storage;
+	private readonly UNIQUE_APP_STORAGE: string = "tsb-portal-storage";
 
 	constructor() {
 		this.localStorage = window.localStorage;

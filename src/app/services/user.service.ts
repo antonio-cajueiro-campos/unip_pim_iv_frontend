@@ -138,17 +138,6 @@ export class UserService {
     return result;
   }
 
-  // runTimeoutInterval(collaborator: Collaborator) {    
-  //   const todaysDate = new Date().getTime();
-  //   const expirationDate = collaborator.expiresIn.getTime();
-  //   const timeInterval = expirationDate - todaysDate;
-
-  //   this.timeoutInterval = setTimeout(() => {
-  //     this.store.dispatch(logout());
-  //     //logout functionality or get the refresh token
-  //   }, timeInterval);
-  // }
-
   public logout() {
     this.message.popup("Deseja sair?", "question", () => {
       this.dataManager.removeData(StorageKeys.INFOS)

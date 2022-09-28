@@ -10,8 +10,8 @@ export class LayoutService {
 
   constructor() { }
 
-  public showLoader() {
-    this.isLoading.next(true);
+  public showLoader(active: boolean = true) {
+    this.isLoading.next(active);
   }
   
   public hideLoader() {

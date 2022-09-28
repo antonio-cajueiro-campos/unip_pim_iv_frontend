@@ -6,14 +6,14 @@ import { LayoutService } from './layout.service';
 import { MessageService } from './message.service';
 
 @Injectable()
-export class HttpInterceptorImpl implements HttpInterceptor {
+class HttpInterceptorService implements HttpInterceptor {
 
 	private timeOutMs: number = 10000;
 
 	constructor(public layoutService: LayoutService, public messageService: MessageService) {}
 	
 	public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {		
-        this.layoutService.showLoader();
+        this.layoutService.showLoader(req.headers.get('show-loader').toLowerCase() == "true");		
         return next.handle(req).pipe(
 			timeout(this.timeOutMs),
 			catchError((e) => {
@@ -27,6 +27,6 @@ export class HttpInterceptorImpl implements HttpInterceptor {
 
 export const HttpInterceptorProvider = {
 	provide: HTTP_INTERCEPTORS,
-	useClass: HttpInterceptorImpl,
+	useClass: HttpInterceptorService,
 	multi: true
 };

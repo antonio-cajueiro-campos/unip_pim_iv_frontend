@@ -15,23 +15,30 @@ export class MessageService {
 		
 		if (HttpStatus.BadRequest(response) && this.instanceOfDefaultResponse(response)) {
 			this.toast(response.message, "error");
+			return;
 		}
 
 		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse && response.error.errors) {
 			this.inputErrorHandle(response, inputs);
+			return;
 		}
 
 		if (HttpStatus.BadRequest(response) && response instanceof HttpErrorResponse && response.error.message) {
 			this.toast(response.error.message, "error");
+			return;
 		}
 		
 		if (HttpStatus.ServerError(response) && response instanceof HttpErrorResponse && response.error.message) {
 			this.serverErrorHandle(response.error.message);
+			return;
 		}		
 
 		if (HttpStatus.Unknown(response) && response instanceof HttpErrorResponse) {
 			this.serverErrorHandle(response.message);
+			return;
 		}
+
+		console.log(response);		
 	}
 
 	public async present(title: string, text: string = "", icon: any) {
@@ -51,8 +58,6 @@ export class MessageService {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				callback();
-
-				this.toast("Até logo!", "success");
 			}
 		});
 	}
@@ -86,8 +91,6 @@ export class MessageService {
 	private instanceOfDefaultResponse = (o: any): o is DefaultResponse  => 'data' in o;
 
 	private serverErrorHandle(message: string) {
-		console.log(message);
-		
 		switch(true) {
 			case message.includes("Microsoft.Data.SqlClient.SqlException"):
 				this.present("Server Error", "Erro no serviço de banco de dados, entre em contato com um administrador do sistema ou tente novamente mais tarde.", "error");
@@ -102,7 +105,6 @@ export class MessageService {
 	}
 
 	private inputErrorHandle(response: HttpErrorResponse, inputs: any[]) {
-
 		var inputsWithError = []
 		for (let inputIdWithError in response.error.errors) {
 			inputsWithError.push(inputIdWithError);
@@ -138,39 +140,6 @@ export class MessageService {
 				}
 			} else {
 				console.log("Erro ao carregar elemento, elemento indefinido", element);
-			}
-		}
-	}
-
-	public inputExceptionHandlerTest(response: HttpErrorResponse, inputs: ElementRef[]) {
-		console.log(inputs)
-
-		var inputsWithError = []
-		for (let inputIdWithError in response.error.errors) {
-			inputsWithError.push(inputIdWithError);
-		}
-
-		for (let input of inputs) {
-			if (input.nativeElement.id == inputsWithError[inputsWithError.indexOf(input.nativeElement.id)]) {
-				let msgError = response.error.errors[inputsWithError[inputsWithError.indexOf(input.nativeElement.id)]];
-				input.nativeElement.focus();
-				input.nativeElement.setAttribute('style', 'border: red 1px solid!important');
-				msgError = msgError.toString()
-
-
-				if (msgError.includes(",")) {
-					let msgErrors = msgError.split(",");
-					msgError = "";
-					for (let msg of msgErrors) {
-						msgError += msg + "<hr>"
-					}
-
-					msgError = msgError.slice(0, -4)
-					console.log(msgError);
-				}
-				this.toast(msgError, "error");
-			} else {
-				input.nativeElement.setAttribute('style', 'border: #ccc 1px solid!important');
 			}
 		}
 	}
