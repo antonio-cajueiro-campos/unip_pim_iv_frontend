@@ -15,7 +15,7 @@ import { LayoutService } from 'src/app/services/layout.service';
 })
 export class ChatComponent implements OnInit {
 
-  private messages: Message[] = []
+  public messages: Message[] = []
   private connection: signalR.HubConnection = null;
   public userId: number = 0;
   public messageForm = this.formBuilder.group({
@@ -53,7 +53,7 @@ export class ChatComponent implements OnInit {
         this.messages.reverse()
         this.layoutService.hideLoader();
       });
-      
+
       this.layoutService.showLoader();
 
       this.connection.start()
