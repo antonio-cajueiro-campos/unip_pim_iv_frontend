@@ -7,6 +7,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginGuard } from './services/guards/login.guard';
+import { ChatComponent } from './pages/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'payment',
     component: PaymentComponent
+  },
+  {
+    path: 'chat',
+    component: ChatComponent
   },
   // {
   //   path: 'profile',

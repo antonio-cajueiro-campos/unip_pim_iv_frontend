@@ -28,6 +28,6 @@ export class LoginComponent {
   }
 
   onSubmit() {    
-    this.userService.login(this.credentials, this.inputs);
+    this.userService.loginUser(this.credentials, this.inputs);
   }
 }

@@ -1,0 +1,22 @@
+<form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="chat-container">
+  <div class="message-container">
+    <ng-template ngFor let-message [ngForOf]="messages" let-i="index">
+      <div class="message-container-box me" id="msg-{{i}}" *ngIf="message.userId == userId">
+        <div class="message-box me">
+          <span class="name">{{message.userName}}</span><br>
+          <span class="text">{{message.text}}</span>
+        </div>
+      </div>
+      <div class="message-container-box other" id="msg-{{i}}" *ngIf="message.userId != userId">
+        <div class="message-box other">
+          <span class="name">{{message.userName}}</span><br>
+          <span class="text">{{message.text}}</span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="input-container">
+    <input formControlName="text" type="text" class="text-input" name="text" id="text">
+    <input type="submit" class="send-button" value="Enviar">
+  </div>
+</form>

@@ -22,12 +22,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoaderScreenComponent } from './components/loader-screen/loader-screen.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    ChatComponent,
     ProfileComponent,
     SidebarComponent,
     NavbarComponent,
@@ -35,7 +37,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     LoaderScreenComponent,
     PaymentComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     IonicModule.forRoot(),

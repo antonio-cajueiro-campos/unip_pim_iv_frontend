@@ -10,8 +10,8 @@ import { MessageService } from './message.service';
 import { RequestService } from './request.service';
 import { StorageKeys } from './enums/storage-keys';
 import { HttpStatus } from './constants/http-status';
-import { Cliente } from '../models/cliente.model';
 import { Infos } from '../models/Infos.model';
+import { DefaultResponse } from '../models/default-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,71 +27,72 @@ export class UserService {
     private request: RequestService,
     private message: MessageService
   ) {
-    this.updateInfos(this.dataManager.getData(StorageKeys.INFOS));
+    this.updateLocalInfos(this.dataManager.getData(StorageKeys.INFOS));
   }
 
   public isLogged(): Observable<boolean> {
     return (this.dataManager.getData(StorageKeys.INFOS) != null) ? of(true) : of(false);
   }
 
-  public updateInfos(data: Infos): void {
+  public loginUser = (credential: Credential, inputs: ElementRef[]): boolean =>
+    this.post('/authenticate/login', credential, inputs, (response: DefaultResponse): void => {
+
+      this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
+      this.getUserInfos();
+      this.router.navigateByUrl('/');
+    });
+
+  public registerUser = (user: User, inputs: ElementRef[]): boolean =>
+    this.post('/user/register', user, inputs, (response: DefaultResponse): void => {
+
+      this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
+      this.getUserInfos();
+      this.router.navigateByUrl('/');
+    });
+
+  public getUserInfos = (): boolean =>
+    this.get('/user/infos', (response: DefaultResponse): void =>
+      this.updateLocalInfos(response.data)
+    );
+
+  public updateUserInfos = (infos: Infos): boolean =>
+    this.post('/user/infos', infos, [], (response: DefaultResponse): void => {
+
+      this.updateLocalInfos(response.data);
+      this.router.navigateByUrl('/profile');
+    });
+
+
+  public updateLocalInfos(data: Infos): void {
     this.dataManager.setData(StorageKeys.INFOS, data);
     this.infos.next(data)
   }
 
-  public login(credential: Credential, inputs: ElementRef[]): boolean {
-    this.request.postAsync('/authenticate/login', credential).toPromise()
-      .then(response => {
+  
 
+  public post(endpoint: string, data: object, inputs: ElementRef[] = [], callback: Function) {
+    this.request.postAsync(endpoint, data).toPromise()
+      .then(response => {
         if (!HttpStatus.OK(response))
           throw new Error(response.message);
-
-        this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
-
-        this.getUserInfos();
-
+        callback(response);
       }).catch(response => {
         this.message.handle(response, inputs);
         return false;
       });
-
     return true;
   }
 
-  public register(user: User, inputs: ElementRef[]): boolean {
-    this.request.postAsync('/user/register', user).toPromise()
+  public get(endpoint: string, callback: Function) {
+    this.request.getAsync(endpoint).toPromise()
       .then(response => {
-
         if (!HttpStatus.OK(response))
           throw new Error(response.message);
-
-        this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
-
-        this.getUserInfos();
-
-      }).catch(response => {
-        this.message.handle(response, inputs);
-        return false;
-      });
-
-    return true;
-  }
-
-  public getUserInfos(): boolean {
-    this.request.getAsync('/user/infos').toPromise()
-      .then(response => {
-
-        if (!HttpStatus.OK(response))
-          throw new Error(response.message);
-
-        this.updateInfos(response.data);
-        this.router.navigateByUrl('/');
-
+        callback(response);
       }).catch(response => {
         this.message.handle(response);
         return false;
       });
-
     return true;
   }
 
@@ -110,7 +111,6 @@ export class UserService {
 
     return result;
   }
-
 
   public isRefreshTokenValid$(): Observable<Jwt> {
 
