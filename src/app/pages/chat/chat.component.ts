@@ -22,7 +22,7 @@ export class ChatComponent {
   public messages: Message[] = []
   public userId: number = 0;
   public isWriting: Subject<string> = new Subject<string>();
-  public typingDelayMillis = 500;
+  public typingDelayMillis = 4000;
 
   constructor(public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.connection = new signalR.HubConnectionBuilder()
@@ -129,7 +129,7 @@ export class ChatComponent {
     if (userName != "" && userId != this.userId) {
       document.getElementById("isWriting").classList.add("animate")
       this.isWriting.next(userName + " está digitando");
-    } else {
+    } else if (userId != this.userId) {
       this.isWriting.next("");
       document.getElementById("isWriting").classList.remove("animate")
     }
