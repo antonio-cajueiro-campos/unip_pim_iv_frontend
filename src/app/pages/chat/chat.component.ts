@@ -22,11 +22,11 @@ export class ChatComponent {
   public messages: Message[] = []
   public userId: number = 0;
   public isWriting: Subject<string> = new Subject<string>();
-  public typingDelayMillis = 1000;
+  public typingDelayMillis = 500;
 
   constructor(public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl(`${this.requestService.BACKEND_BASE_URL}/websocketchat`)
+      .withUrl(`https://localhost:7042/websocketchat`)
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Warning)
       .build();
@@ -49,8 +49,8 @@ export class ChatComponent {
         this.renderNewUserOnChat(userName);
       });
 
-      this.connection.on('isWriting', (userName: string) => {
-        this.renderIsWriting(userName);
+      this.connection.on('isWriting', (userName: string, userId: number) => {
+        this.renderIsWriting(userName, userId);
       });
 
       this.connection.on('previousMessages', (messages: Message[]) => {
@@ -90,14 +90,14 @@ export class ChatComponent {
 
   isWritingNotifyAll() {
     var typing = false;
-    this.getUsername((username: string, id: number) => {
+    this.getUsername((username: string, userId: number) => {
       if (typing === false) {
-        this.delay(() => {
-          this.connection.send("isWriting", "")
+        this.delay(() => {          
+          this.connection.send("isWriting", "", userId)
           typing = false;
         }, this.typingDelayMillis);
         typing = true;
-        this.connection.send("isWriting", username)
+        this.connection.send("isWriting", username, userId)
       }
     })
   }
@@ -125,8 +125,8 @@ export class ChatComponent {
   renderNewUserOnChat(userName: string) {
   }
 
-  renderIsWriting(userName: string) {
-    if (userName != "") {
+  renderIsWriting(userName: string, userId: number) {
+    if (userName != "" && userId != this.userId) {
       document.getElementById("isWriting").classList.add("animate")
       this.isWriting.next(userName + " está digitando");
     } else {
