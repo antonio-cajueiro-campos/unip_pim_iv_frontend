@@ -31,11 +31,13 @@ const routes: Routes = [
   },
   {
     path: 'payment',
-    component: PaymentComponent
+    component: PaymentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'chat',
-    component: ChatComponent
+    component: ChatComponent,
+    canActivate: [AuthGuard]
   },
   // {
   //   path: 'profile',
