@@ -22,7 +22,7 @@ export class ChatComponent {
   public messages: Message[] = []
   public userId: number = 0;
   public isWriting: Subject<string> = new Subject<string>();
-  public typingDelayMillis = 4000;
+  public typingDelayMillis = 600;
 
   constructor(public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.connection = new signalR.HubConnectionBuilder()
