@@ -136,34 +136,26 @@
 	top: 0;
 	height: 30px;
 	background: #dddddd;
-	transition: top 500ms ease;
 	border-start-start-radius: 10px;
 	border-start-end-radius: 10px;
 	padding: 0 15px;
 	line-height: 19px;
+	transition: all 500ms ease;
 }
 
 .isWriting.animate {
 	top: -20px;
-	animation: dotdotdot 1s;
 }
 
 .isWriting.animate::after {
-	content: '';
-	top: -20px;
-	animation: dotdotdot 1s infinite;
+	animation: dotty steps(1, end) 1000ms infinite;
+    content: '';
 }
 
-@keyframes dotdotdot {
-	0% {
-		content: '.';
-	}
-
-	25% {
-		content: '..';
-	}
-
-	50% {
-		content: '...';
-	}
+@keyframes dotty {
+	0%   { content: ''; }
+	25%  { content: '.'; }
+	50%  { content: '..'; }
+	75%  { content: '...'; }
+	100% { content: ''; }
 }

@@ -130,7 +130,6 @@ export class ChatComponent {
       document.getElementById("isWriting").classList.add("animate")
       this.isWriting.next(userName + " está digitando");
     } else if (userId != this.userId) {
-      this.isWriting.next("");
       document.getElementById("isWriting").classList.remove("animate")
     }
   }
