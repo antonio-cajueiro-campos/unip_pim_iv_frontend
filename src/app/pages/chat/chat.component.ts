@@ -26,7 +26,7 @@ export class ChatComponent {
 
   constructor(public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl(`https://localhost:7042/websocketchat`)
+      .withUrl(`${this.requestService.BACKEND_BASE_URL}/websocketchat`)
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Warning)
       .build();

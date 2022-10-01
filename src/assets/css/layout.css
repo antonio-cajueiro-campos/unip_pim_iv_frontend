@@ -10739,6 +10739,19 @@ footer.sticky-footer .copyright {
     width: calc(100% - 225px);
   }
 }
+
+@media (max-width: 568px) {  
+  footer.sticky-footer {
+    display: none;
+  }
+  .sidebar {
+    height: calc(100vh - 69px);
+  }
+  #wrapper #content-wrapper {
+    padding-bottom: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .collapsed-padding {
     padding-top: 20px;
