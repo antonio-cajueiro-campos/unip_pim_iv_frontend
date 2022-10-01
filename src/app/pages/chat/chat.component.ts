@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { RequestService } from 'src/app/services/request.service';
 import * as signalR from '@microsoft/signalr';
 import { Message } from 'src/app/models/message.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder } from '@angular/forms';
@@ -13,14 +13,16 @@ import { LayoutService } from 'src/app/services/layout.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent {
 
-  public messages: Message[] = []
   private connection: signalR.HubConnection = null;
-  public userId: number = 0;
   public messageForm = this.formBuilder.group({
     text: null
   });
+  public messages: Message[] = []
+  public userId: number = 0;
+  public isWriting: Subject<string> = new Subject<string>();
+  public typingDelayMillis = 1000;
 
   constructor(public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.connection = new signalR.HubConnectionBuilder()
@@ -32,24 +34,30 @@ export class ChatComponent implements OnInit {
     this.startConnection();
   }
 
-  ngOnInit() { }
-
   startConnection() {
     try {
-      this.connection.on('newMessage', (text: string, userName: string, userId: number) => {
+      this.connection.on('newMessage', (text: string, userName: string, userId: number, timestamp: string) => {
         this.renderMessageOnChat({
           userId: userId,
           text: text,
-          userName: userName
+          userName: userName,
+          timestamp: this.formatDate(timestamp)
         })
       });
 
       this.connection.on('newUser', (userName: string) => {
-        //enviar no chat outro usuario q entrou
+        this.renderNewUserOnChat(userName);
+      });
+
+      this.connection.on('isWriting', (userName: string) => {
+        this.renderIsWriting(userName);
       });
 
       this.connection.on('previousMessages', (messages: Message[]) => {
         this.messages = messages;
+        this.messages.forEach(message => {
+          message.timestamp = this.formatDate(message.timestamp)
+        });
         this.messages.reverse()
         this.layoutService.hideLoader();
       });
@@ -58,9 +66,7 @@ export class ChatComponent implements OnInit {
 
       this.connection.start()
         .then(() => {
-          // avisar pra quem ta na sala q o usuário atual entrou
           this.getUsername((username: string, userId: number) => {
-
             this.userId = userId;
             this.connection.send("newUser", username, this.connection.connectionId)
             console.warn("Chat conectado", this.connection);
@@ -82,6 +88,28 @@ export class ChatComponent implements OnInit {
     })
   }
 
+  isWritingNotifyAll() {
+    var typing = false;
+    this.getUsername((username: string, id: number) => {
+      if (typing === false) {
+        this.delay(() => {
+          this.connection.send("isWriting", "")
+          typing = false;
+        }, this.typingDelayMillis);
+        typing = true;
+        this.connection.send("isWriting", username)
+      }
+    })
+  }
+
+  delay = (() => {
+    let timer = null;
+    return (callback: Function, ms: number) => {
+      clearTimeout(timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
   getUsername(callback: Function) {
     this.userService.infos$.pipe(
       tap(infos => {
@@ -92,5 +120,26 @@ export class ChatComponent implements OnInit {
 
   renderMessageOnChat(message: Message) {
     this.messages.unshift(message);
+  }
+
+  renderNewUserOnChat(userName: string) {
+  }
+
+  renderIsWriting(userName: string) {
+    if (userName != "") {
+      document.getElementById("isWriting").classList.add("animate")
+      this.isWriting.next(userName + " está digitando");
+    } else {
+      this.isWriting.next("");
+      document.getElementById("isWriting").classList.remove("animate")
+    }
+  }
+
+  formatDate(timestamp: string): string {
+    var time = new Date(timestamp)
+    var hours = time.getHours()
+    var minutes = time.getMinutes()
+    var minutesFixed = minutes <= 9 ? '0' + minutes : minutes;
+    return `${hours}:${minutesFixed}`;
   }
 }
