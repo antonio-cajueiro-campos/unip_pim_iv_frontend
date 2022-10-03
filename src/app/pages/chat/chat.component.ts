@@ -7,7 +7,8 @@ import { tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder } from '@angular/forms';
 import { LayoutService } from 'src/app/services/layout.service';
-
+import { MessageService } from 'src/app/services/message.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -24,7 +25,7 @@ export class ChatComponent {
   public isWriting: Subject<string> = new Subject<string>();
   public typingDelayMillis = 700;
 
-  constructor(public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
+  constructor(public router: Router, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl(`${this.requestService.BACKEND_BASE_URL}/websocketchat`)
       .withAutomaticReconnect()
@@ -36,17 +37,12 @@ export class ChatComponent {
 
   startConnection() {
     try {
-      this.connection.on('newMessage', (text: string, userName: string, userId: number, timestamp: string) => {
-        this.renderMessageOnChat({
-          userId: userId,
-          text: text,
-          userName: userName,
-          timestamp: this.formatDate(timestamp)
-        })
+      this.connection.on('newMessage', (message: Message) => {
+        this.renderMessageOnChat(message)
       });
 
-      this.connection.on('newUser', (userName: string) => {
-        this.renderNewUserOnChat(userName);
+      this.connection.on('closeSession', () => {
+        this.closeSession();
       });
 
       this.connection.on('isWriting', (userName: string, userId: number) => {
@@ -68,7 +64,7 @@ export class ChatComponent {
         .then(() => {
           this.getUsername((username: string, userId: number) => {
             this.userId = userId;
-            this.connection.send("newUser", username, this.connection.connectionId)
+            this.connection.send("newUser", username, userId, this.connection.connectionId, "Cliente")
             console.warn("Chat conectado", this.connection);
           })
         })
@@ -79,12 +75,21 @@ export class ChatComponent {
   }
 
   sendMessage() {
-    this.getUsername((username: string, id: number) => {
-      if (this.messageForm.value.text != "" && this.messageForm.value.text != null)
-        this.connection.send("newMessage", this.messageForm.value.text, username, id)
-          .then(() => {
-            this.messageForm.reset();
-          })
+    this.getUsername((username: string, userId: number) => {
+      console.log(userId);
+      
+      if (this.messageForm.value.text != "" && this.messageForm.value.text != null) {
+
+        var newMessage = {
+          userId: userId,
+          text: this.messageForm.value.text,
+          userName: username,
+          type: "Message"
+        }
+
+        this.connection.send("newMessage", newMessage)
+          .then(() => { this.messageForm.reset() })        
+      }
     })
   }
 
@@ -119,10 +124,8 @@ export class ChatComponent {
   }
 
   renderMessageOnChat(message: Message) {
+    message.timestamp = this.formatDate(message.timestamp);
     this.messages.unshift(message);
-  }
-
-  renderNewUserOnChat(userName: string) {
   }
 
   renderIsWriting(userName: string, userId: number) {
@@ -138,7 +141,24 @@ export class ChatComponent {
     var time = new Date(timestamp)
     var hours = time.getHours()
     var minutes = time.getMinutes()
+    var hoursFixed = hours == 0 ? '0' + hours : hours
     var minutesFixed = minutes <= 9 ? '0' + minutes : minutes;
-    return `${hours}:${minutesFixed}`;
+    return `${hoursFixed}:${minutesFixed}`;
+  }
+
+  closeSession() {
+    this.connection.stop();
+    this.messageService.popup("A sessão foi encerrada.", "info", () => {
+      this.router.navigateByUrl('/');
+    }, "")
+    // deixar todas as msgs cinzas
+    // deixar o botao e a text box desabilitadas
+    // mostrar botao de impressaod e chat
+  }
+
+  encerrarSessaoTest() {
+    console.log("a");
+    
+    this.connection.send("closeSession")
   }
 }
