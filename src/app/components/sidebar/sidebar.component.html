@@ -40,7 +40,7 @@
                 <span>Profile</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="(role | async) == 'Cliente'">
             <a class="nav-link sidebar-btn" routerLink='/services'>
                 <i class='fas fa-fw fa-comments'></i>
                 <span>Solicitar Serviços</span>
@@ -49,7 +49,7 @@
         <li class="nav-item" *ngIf="(role | async) == 'Funcionario'">
             <a class="nav-link sidebar-btn" routerLink='/chat-funcionario'>
                 <i class='fas fa-fw fa-comments'></i>
-                <span>Chat Func Teste</span>
+                <span>Chat Funcionario</span>
             </a>
         </li>
     </div>
