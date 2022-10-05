@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DefaultResponse } from '../models/default-response.model';
 import { Jwt } from '../models/jwt.model';
@@ -12,9 +12,13 @@ import * as signalR from '@microsoft/signalr';
 })
 export class RequestService {
 
-  public readonly BACKEND_BASE_URL: string = "https://tsb-portal.herokuapp.com"
+  public BACKEND_BASE_URL: string = "https://tsb-portal.herokuapp.com"
 
-  constructor(private httpClient: HttpClient, private dataManager: DataManagerService) {}
+  constructor(private httpClient: HttpClient, private dataManager: DataManagerService) {
+    if (isDevMode) {
+      this.BACKEND_BASE_URL = "https://localhost:7042";
+    }
+  }
 
   public getAsync = (endpoint: string, headers: string | Headers = null): Observable<DefaultResponse> =>
     this.httpClient.get<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, { headers: this.getHeaders(headers) });
