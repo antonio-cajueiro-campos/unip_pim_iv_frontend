@@ -5,13 +5,14 @@ import { DefaultResponse } from '../models/default-response.model';
 import { Jwt } from '../models/jwt.model';
 import { DataManagerService } from './data-manager.service';
 import { StorageKeys } from './enums/storage-keys';
+import * as signalR from '@microsoft/signalr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestService {
 
-  public readonly BACKEND_BASE_URL: string = "https://tsb-portal.herokuapp.com"
+  public readonly BACKEND_BASE_URL: string = "http://tsb-portal.herokuapp.com"
 
   constructor(private httpClient: HttpClient, private dataManager: DataManagerService) {}
 
@@ -20,6 +21,26 @@ export class RequestService {
 
   public postAsync = (endpoint: string, data: object, headers: string | Headers = null): Observable<DefaultResponse> =>
     this.httpClient.post<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, data, { headers: this.getHeaders(headers) });
+
+  public signalR(userId: number, role: string) {
+    var jwt: Jwt = this.dataManager.getData(StorageKeys.JWT);
+
+    
+    if (jwt != null) {
+      console.log(jwt);
+      const options: signalR.IHttpConnectionOptions = {
+        accessTokenFactory: () => {
+          return jwt.token.replace("Bearer ", "");
+        }
+      };
+      
+      return new signalR.HubConnectionBuilder()
+        .withUrl(`${this.BACKEND_BASE_URL}/websocketchat?userId=${userId}&role=${role}`, options)
+        .withAutomaticReconnect()
+        .configureLogging(signalR.LogLevel.Warning)
+        .build();
+    }
+  }
 
   private getHeaders(headers: string | Headers = null): HttpHeaders {
     if (!headers)

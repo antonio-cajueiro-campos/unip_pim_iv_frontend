@@ -8,6 +8,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginGuard } from './services/guards/login.guard';
 import { ChatComponent } from './pages/chat/chat.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funcionario.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,16 @@ const routes: Routes = [
   {
     path: 'chat',
     component: ChatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat-funcionario',
+    component: ChatFuncionarioComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'services',
+    component: ServicesComponent,
     canActivate: [AuthGuard]
   },
   // {

@@ -23,6 +23,8 @@ import { LoaderScreenComponent } from './components/loader-screen/loader-screen.
 import { PaymentComponent } from './pages/payment/payment.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funcionario.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ChatComponent } from './pages/chat/chat.component';
     HomeComponent,
     LoginComponent,
     ChatComponent,
+    ServicesComponent,
     ProfileComponent,
     SidebarComponent,
     NavbarComponent,
@@ -38,6 +41,7 @@ import { ChatComponent } from './pages/chat/chat.component';
     LoaderScreenComponent,
     PaymentComponent,
     LoaderComponent,
+    ChatFuncionarioComponent
   ],
   imports: [
     IonicModule.forRoot(),

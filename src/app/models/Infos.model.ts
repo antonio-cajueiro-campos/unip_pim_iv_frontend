@@ -1,5 +1,10 @@
-import { Cliente } from "./cliente.model";
+import { Endereco } from "./endereco.model";
+import { User } from "./user.model";
 
 export interface Infos {
-	cliente?: Cliente;
+	chavePIX: string;
+	endereco: Endereco;
+	telefone: string;
+	user: User;
+	cargo: string;
 }

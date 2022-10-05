@@ -41,9 +41,15 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link sidebar-btn" routerLink='/chat'>
+            <a class="nav-link sidebar-btn" routerLink='/services'>
                 <i class='fas fa-fw fa-comments'></i>
-                <span>Chat test</span>
+                <span>Solicitar Serviços</span>
+            </a>
+        </li>
+        <li class="nav-item" *ngIf="(role | async) == 'Funcionario'">
+            <a class="nav-link sidebar-btn" routerLink='/chat-funcionario'>
+                <i class='fas fa-fw fa-comments'></i>
+                <span>Chat Func Teste</span>
             </a>
         </li>
     </div>

@@ -9,21 +9,24 @@ import { LayoutService } from 'src/app/services/layout.service';
 import { MessageService } from 'src/app/services/message.service';
 import { Router } from '@angular/router';
 import { Chat } from 'src/app/models/chat.model';
+
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss'],
+  selector: 'app-chat-funcionario',
+  templateUrl: './chat-funcionario.component.html',
+  styleUrls: ['./chat-funcionario.component.scss'],
 })
-export class ChatComponent {
+export class ChatFuncionarioComponent {
 
   private connection: signalR.HubConnection = null;
   public messageForm = this.formBuilder.group({
     text: null
   });
   public messages: Message[] = []
+  public chatList: Chat[] = []
   public userId: number = 0;
   public isWriting: Subject<string> = new Subject<string>();
   public typingDelayMillis = 700;
+  public isChatMode: boolean = false;
 
   constructor(public router: Router, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.getUserInfo((_: string, userId: number, role: string) => {
@@ -43,11 +46,26 @@ export class ChatComponent {
         this.closeSession();
       });
 
+      this.connection.on('updateChatList', (chatList: Chat[]) => {
+        this.chatList = chatList;
+      });
+
+      this.connection.on('initFuncionario', (chatList: Chat[]) => {
+        this.chatList = chatList;
+        this.isChatMode = false;
+        this.layoutService.hideLoader();
+      });
+
+      this.connection.on('chatNotFound', () => {
+        console.log("Chat não encontrado");
+      });
+
       this.connection.on('isWriting', (userName: string, userId: number) => {
         this.renderIsWriting(userName, userId);
       });
-      
+
       this.connection.on('previousMessages', (messages: Message[]) => {
+        this.isChatMode = true;
         this.messages = messages;
         this.messages.forEach(message => {
           message.timestamp = this.formatDate(message.timestamp)
@@ -62,14 +80,18 @@ export class ChatComponent {
         .then(() => {
           this.getUserInfo((_: string, userId: number) => {
             this.userId = userId;
-            this.connection.send("createChat", userId);
-            console.warn("Chat conectado", this.connection);
+            this.connection.send("initFuncionario", userId);
+            console.warn("Chat conectado", this.connection);          
           })
         })
     }
     catch (err) {
       console.error(err);
     }
+  }
+
+  updateLobyy() {
+
   }
 
   ngOnDestroy() {
@@ -82,7 +104,11 @@ export class ChatComponent {
     });
   }
 
-  sendMessage() {
+  encerrarSessaoTest(chatId: number) {
+    this.connection.send("closeSession", chatId)
+  }
+
+  sendMessage(chatId: number) {
     this.getUserInfo((username: string, userId: number) => {
       var text = this.messageForm.value.text;
       if (text != "" && text != null) {
@@ -94,7 +120,7 @@ export class ChatComponent {
           type: "Message"
         }
 
-        this.connection.send("newMessage", newMessage, this.userId)
+        this.connection.send("newMessage", newMessage, chatId)
           .then(() => { this.messageForm.reset() })
       }
     })
@@ -154,18 +180,12 @@ export class ChatComponent {
   }
 
   closeSession() {
-    this.connection.stop();
-    this.messageService.popup("A sessão foi encerrada.", "info", () => {
-      this.router.navigateByUrl('/services');
+    this.messageService.popup("Você encerrou a sessão com o cliente.", "info", () => {
+      this.isChatMode = false;
+      this.connection.send("updateChatList");
     }, "")
     // deixar todas as msgs cinzas
     // deixar o botao e a text box desabilitadas
     // mostrar botao de impressaod e chat
-  }
-
-  encerrarSessaoTest() {
-    console.log("a");
-
-    this.connection.send("closeSession", this.userId)
   }
 }

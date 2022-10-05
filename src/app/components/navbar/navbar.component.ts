@@ -16,8 +16,8 @@ export class NavbarComponent {
 
   constructor(public userService: UserService) {
     userService.infos$.pipe(
-      tap(infos => {
-        this.userName = infos ? of(infos.cliente.user.name.split(" ")[0]) : of("Guest");
+      tap(infos => {        
+        this.userName = infos ? of(infos.user.name.split(" ")[0]) : of("Guest");
       })
     ).subscribe();
   }

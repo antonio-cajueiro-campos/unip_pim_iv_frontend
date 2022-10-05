@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,7 +10,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public userService: UserService) { }
+  public role: Observable<string>;
+
+  constructor(public userService: UserService) {
+    userService.infos$.pipe(
+      tap(infos => {        
+        this.role = infos ? of(infos.user.credential.role) : of("Cliente");
+      })
+    ).subscribe();
+  }
   
   ngOnInit(): void {
   }
