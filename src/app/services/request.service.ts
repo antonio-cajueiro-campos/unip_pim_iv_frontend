@@ -12,7 +12,7 @@ import * as signalR from '@microsoft/signalr';
 })
 export class RequestService {
 
-  public readonly BACKEND_BASE_URL: string = "http://tsb-portal.herokuapp.com"
+  public readonly BACKEND_BASE_URL: string = "https://tsb-portal.herokuapp.com"
 
   constructor(private httpClient: HttpClient, private dataManager: DataManagerService) {}
 
