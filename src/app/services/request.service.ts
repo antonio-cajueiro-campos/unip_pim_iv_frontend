@@ -16,7 +16,7 @@ export class RequestService {
 
   constructor(private httpClient: HttpClient, private dataManager: DataManagerService) {
     if (isDevMode) {
-      this.BACKEND_BASE_URL = "https://localhost:7042";
+      //this.BACKEND_BASE_URL = "https://localhost:7042";
     }
   }
 
