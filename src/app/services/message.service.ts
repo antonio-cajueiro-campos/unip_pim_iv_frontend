@@ -62,6 +62,16 @@ export class MessageService {
 		});
 	}
 
+	public async popupOk(title: string, icon: any, callback: any, text: string = "") {
+		await Swal.fire({
+			title, text, icon,
+			showCancelButton: false,
+			confirmButtonText: 'Ok'
+		}).then((result) => {
+			callback();
+		});
+	}
+
 	public async toast(message: string, icon: any, timer: number = 3000) {
 		if (message == "Timeout has occurred") {
 			message = "Erro ao se conectar com o servidor.";

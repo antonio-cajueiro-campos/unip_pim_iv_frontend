@@ -27,6 +27,7 @@ export class ChatFuncionarioComponent {
   public isWriting: Subject<string> = new Subject<string>();
   public typingDelayMillis = 700;
   public isChatMode: boolean = false;
+  public selectedChatId: number = 0;
 
   constructor(public router: Router, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.getUserInfo((_: string, userId: number, role: string) => {
@@ -90,25 +91,26 @@ export class ChatFuncionarioComponent {
     }
   }
 
-  updateLobyy() {
-
+  selectChat(chatId: number) {    
+    this.selectedChatId = chatId;
+    this.enterChat();
   }
 
   ngOnDestroy() {
     this.connection.stop()
   }
 
-  enterChat(chatId: number) {
+  enterChat() {
     this.getUserInfo((_: string, userId: number) => {
-      this.connection.send("connectToChat", userId, chatId)
+      this.connection.send("connectToChat", userId, this.selectedChatId)
     });
   }
 
-  encerrarSessaoTest(chatId: number) {
-    this.connection.send("closeSession", chatId)
+  encerrarSessaoTest() {
+    this.connection.send("closeSession", this.selectedChatId)
   }
 
-  sendMessage(chatId: number) {
+  sendMessage() {
     this.getUserInfo((username: string, userId: number) => {
       var text = this.messageForm.value.text;
       if (text != "" && text != null) {
@@ -120,7 +122,7 @@ export class ChatFuncionarioComponent {
           type: "Message"
         }
 
-        this.connection.send("newMessage", newMessage, chatId)
+        this.connection.send("newMessage", newMessage, this.selectedChatId)
           .then(() => { this.messageForm.reset() })
       }
     })
@@ -180,7 +182,7 @@ export class ChatFuncionarioComponent {
   }
 
   closeSession() {
-    this.messageService.popup("Você encerrou a sessão com o cliente.", "info", () => {
+    this.messageService.popupOk("Você encerrou a sessão com o cliente.", "info", () => {
       this.isChatMode = false;
       this.connection.send("updateChatList");
     }, "")
