@@ -62,8 +62,13 @@ export class ChatComponent {
         .then(() => {
           this.getUserInfo((_: string, userId: number) => {
             this.userId = userId;
-            this.connection.send("createChat", userId);
-            console.warn("Chat conectado", this.connection);
+            this.getChatMode(params => {
+              if (params.service == "sinistro")
+              this.connection.send("createChatSinistro", userId);
+              else if (params.service == "chat")
+              this.connection.send("createChat", userId);
+              console.warn("Chat conectado", this.connection);
+            });
           })
         })
     }
