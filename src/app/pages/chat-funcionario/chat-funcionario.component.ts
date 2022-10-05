@@ -186,8 +186,5 @@ export class ChatFuncionarioComponent {
       this.isChatMode = false;
       this.connection.send("updateChatList");
     }, "")
-    // deixar todas as msgs cinzas
-    // deixar o botao e a text box desabilitadas
-    // mostrar botao de impressaod e chat
   }
 }

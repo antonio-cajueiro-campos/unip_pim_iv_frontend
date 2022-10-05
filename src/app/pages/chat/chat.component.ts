@@ -76,12 +76,6 @@ export class ChatComponent {
     this.connection.stop()
   }
 
-  enterChat(chatId: number) {
-    this.getUserInfo((_: string, userId: number) => {
-      this.connection.send("connectToChat", userId, chatId)
-    });
-  }
-
   sendMessage() {
     this.getUserInfo((username: string, userId: number) => {
       var text = this.messageForm.value.text;
@@ -155,17 +149,8 @@ export class ChatComponent {
 
   closeSession() {
     this.connection.stop();
-    this.messageService.popup("A sessão foi encerrada.", "info", () => {
+    this.messageService.popupOk("A sessão foi encerrada.", "info", () => {
       this.router.navigateByUrl('/services');
     }, "")
-    // deixar todas as msgs cinzas
-    // deixar o botao e a text box desabilitadas
-    // mostrar botao de impressaod e chat
-  }
-
-  encerrarSessaoTest() {
-    console.log("a");
-
-    this.connection.send("closeSession", this.userId)
   }
 }
