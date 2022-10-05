@@ -139,10 +139,12 @@ export class UserService {
   }
 
   public logout() {
-    this.message.popup("Deseja sair?", "question", () => {
+    this.message.popupQuestion("Deseja sair?", "question", () => {
       this.dataManager.removeData(StorageKeys.INFOS)
       this.dataManager.removeData(StorageKeys.JWT)
       this.router.navigateByUrl('/login');
-    })
+    }, () => {
+      // cancelado
+    }, { confirm: "Sair", cancel: "Ficar" })
   }
 }

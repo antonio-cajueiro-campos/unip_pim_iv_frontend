@@ -29,12 +29,12 @@
       <i class="fas fa-fw fa-paper-plane"></i>
     </button>
   </div>
-  <button (click)="encerrarSessaoTest()">Encerrar Sessão</button>
+  <button (click)="encerrarSessao()">Encerrar Sessão</button> <button (click)="sairChat()">Sair da Sessão</button>
 </form>
 
 <ul *ngIf="!isChatMode">
   <li *ngFor="let chat of chatList; let i = index">
-    <input type="button" (click)='selectChat(chat.chatId)' value="Entrar">
+    <input type="button" (click)='enterChat(chat.chatId)' value="Entrar">
     {{chat.chatId}} | Chat com {{chat.userList[0].userName}} 
   </li>
 </ul>

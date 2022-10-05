@@ -1,2 +1,3 @@
 Solicitar serviço
-<button routerLink="/chat">Start Chat Service</button>
+<button [routerLink]="['/chat']" [queryParams]="{service: 'chat'}">Start Chat Service</button><br>
+<button [routerLink]="['/chat']" [queryParams]="{service: 'sinistro'}">Start Chat With Sinistro</button>

@@ -51,7 +51,10 @@ export class ChatFuncionarioComponent {
         this.chatList = chatList;
       });
 
-      this.connection.on('initFuncionario', (chatList: Chat[]) => {
+      this.connection.on('initFuncionario', (chatList: Chat[], selectedChatId: number) => {
+        console.log("id retornado", selectedChatId);
+        
+        this.selectedChatId = selectedChatId;
         this.chatList = chatList;
         this.isChatMode = false;
         this.layoutService.hideLoader();
@@ -91,26 +94,27 @@ export class ChatFuncionarioComponent {
     }
   }
 
-  selectChat(chatId: number) {    
-    this.selectedChatId = chatId;
-    this.enterChat();
-  }
 
-  ngOnDestroy() {
-    this.connection.stop()
-  }
-
-  enterChat() {
+  enterChat(chatId: number) {
     this.getUserInfo((_: string, userId: number) => {
-      this.connection.send("connectToChat", userId, this.selectedChatId)
+      this.connection.send("connectToChat", userId, chatId)
     });
   }
 
-  encerrarSessaoTest() {
+  sairChat() {
+    this.getUserInfo((_: string, userId: number) => {
+      this.connection.send("leaveSession", userId, this.selectedChatId)
+      this.isChatMode = false;
+    });
+  }
+
+  encerrarSessao() {
     this.connection.send("closeSession", this.selectedChatId)
   }
 
   sendMessage() {
+    console.log(this.selectedChatId);
+
     this.getUserInfo((username: string, userId: number) => {
       var text = this.messageForm.value.text;
       if (text != "" && text != null) {
@@ -182,7 +186,7 @@ export class ChatFuncionarioComponent {
   }
 
   closeSession() {
-    this.messageService.popupOk("Você encerrou a sessão com o cliente.", "info", () => {
+    this.messageService.popupInfo("Você encerrou a sessão com o cliente.", () => {
       this.isChatMode = false;
       this.connection.send("updateChatList");
     }, "")

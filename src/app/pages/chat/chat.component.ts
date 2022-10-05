@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { FormBuilder } from '@angular/forms';
 import { LayoutService } from 'src/app/services/layout.service';
 import { MessageService } from 'src/app/services/message.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Chat } from 'src/app/models/chat.model';
 @Component({
   selector: 'app-chat',
@@ -25,7 +25,7 @@ export class ChatComponent {
   public isWriting: Subject<string> = new Subject<string>();
   public typingDelayMillis = 700;
 
-  constructor(public router: Router, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
+  constructor(public router: Router, public route: ActivatedRoute, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.getUserInfo((_: string, userId: number, role: string) => {
       this.connection = requestService.signalR(userId, role);
     })
@@ -72,8 +72,11 @@ export class ChatComponent {
     }
   }
 
-  ngOnDestroy() {
-    this.connection.stop()
+  getChatMode(callback: Function) {
+    this.route.queryParams
+      .subscribe(params => {
+        callback(params)
+      });
   }
 
   sendMessage() {
@@ -148,8 +151,7 @@ export class ChatComponent {
   }
 
   closeSession() {
-    this.connection.stop();
-    this.messageService.popupOk("A sessão foi encerrada.", "info", () => {
+    this.messageService.popupInfo("A sessão foi encerrada.", () => {
       this.router.navigateByUrl('/services');
     }, "")
   }

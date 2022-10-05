@@ -38,7 +38,12 @@ export class MessageService {
 			return;
 		}
 
-		console.log(response);		
+		if (response.name == "TimeoutError" && response) {
+			this.serverErrorHandle(response.message);
+			return
+		}
+
+		console.log("erro não trackeado:", response);		
 	}
 
 	public async present(title: string, text: string = "", icon: any) {
@@ -47,24 +52,30 @@ export class MessageService {
 		});
 	}
 
-	public async popup(title: string, icon: any, callback: any, text: string = "") {
+	public async popupQuestion(title: string, icon: any, callbackConfirm: Function, callbackCancel: Function, buttons: {confirm: string; cancel: string}, text: string = "") {
 		await Swal.fire({
 			title, text, icon,
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Sim',
-			cancelButtonText: 'Não'
+			confirmButtonText: buttons.confirm,
+			cancelButtonText: buttons.cancel
 		}).then((result) => {
 			if (result.isConfirmed) {
-				callback();
+				callbackConfirm();
+			}
+			if (result.isDenied) {
+				callbackCancel();
+			}
+			if (result.isDismissed) {
+				callbackCancel();
 			}
 		});
 	}
 
-	public async popupOk(title: string, icon: any, callback: any, text: string = "") {
+	public async popupInfo(title: string, callback: any, text: string = "") {
 		await Swal.fire({
-			title, text, icon,
+			title, text, icon: "info",
 			showCancelButton: false,
 			confirmButtonText: 'Ok'
 		}).then((result) => {
@@ -73,12 +84,6 @@ export class MessageService {
 	}
 
 	public async toast(message: string, icon: any, timer: number = 3000) {
-		if (message == "Timeout has occurred") {
-			message = "Erro ao se conectar com o servidor.";
-		}
-		if (message.startsWith("Http failure response for")) {
-			message = "Erro ao alcançar serviço, verifique sua conexão de internet.";
-		}
 		const Toast = Swal.mixin({
 			toast: true,
 			position: 'bottom-end',
