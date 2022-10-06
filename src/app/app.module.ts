@@ -25,12 +25,14 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funcionario.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
     ChatComponent,
     ServicesComponent,
     ProfileComponent,

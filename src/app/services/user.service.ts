@@ -12,6 +12,7 @@ import { StorageKeys } from './enums/storage-keys';
 import { HttpStatus } from './constants/http-status';
 import { Infos } from '../models/Infos.model';
 import { DefaultResponse } from '../models/default-response.model';
+import { Register } from '../models/register.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,7 @@ export class UserService {
       this.router.navigateByUrl('/');
     });
 
-  public registerUser = (user: User, inputs: ElementRef[]): boolean =>
+  public registerUser = (user: Register, inputs: ElementRef[]): boolean =>
     this.post('/user/register', user, inputs, (response: DefaultResponse): void => {
 
       this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
