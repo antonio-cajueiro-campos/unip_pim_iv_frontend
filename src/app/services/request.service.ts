@@ -28,10 +28,8 @@ export class RequestService {
 
   public signalR(userId: number) {
     var jwt: Jwt = this.dataManager.getData(StorageKeys.JWT);
-
     
     if (jwt != null) {
-      console.log(jwt);
       const options: signalR.IHttpConnectionOptions = {
         accessTokenFactory: () => {
           return jwt.token.replace("Bearer ", "");
