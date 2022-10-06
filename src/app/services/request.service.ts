@@ -26,7 +26,7 @@ export class RequestService {
   public postAsync = (endpoint: string, data: object, headers: string | Headers = null): Observable<DefaultResponse> =>
     this.httpClient.post<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, data, { headers: this.getHeaders(headers) });
 
-  public signalR(userId: number, role: string) {
+  public signalR(userId: number) {
     var jwt: Jwt = this.dataManager.getData(StorageKeys.JWT);
 
     
@@ -39,7 +39,7 @@ export class RequestService {
       };
       
       return new signalR.HubConnectionBuilder()
-        .withUrl(`${this.BACKEND_BASE_URL}/websocketchat?userId=${userId}&role=${role}`, options)
+        .withUrl(`${this.BACKEND_BASE_URL}/websocketchat?userId=${userId}`, options)
         .withAutomaticReconnect()
         .configureLogging(signalR.LogLevel.Warning)
         .build();

@@ -27,8 +27,8 @@ export class ChatComponent {
   public selectedChatId: number = 0;
 
   constructor(public router: Router, public route: ActivatedRoute, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
-    this.getUserInfo((_: string, userId: number, role: string) => {
-      this.connection = requestService.signalR(userId, role);
+    this.getUserInfo((_: string, userId: number) => {
+      this.connection = requestService.signalR(userId);
     })
 
     this.startConnection();
@@ -142,7 +142,7 @@ export class ChatComponent {
   getUserInfo(callback: Function) {
     this.userService.infos$.pipe(
       tap(infos => {
-        callback(infos ? infos.user.name : "Guest", infos ? infos.user.id : 0, infos ? infos.user.credential.role : "Cliente");
+        callback(infos ? infos.user.name : "Guest", infos ? infos.user.id : 0);
       })
     ).subscribe()
   }
