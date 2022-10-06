@@ -99,6 +99,7 @@
 	border-end-start-radius: 10px;
 	border-start-start-radius: 10px;
 	padding: 0 15px;
+	position: absolute;
 }
 
 .btn-control {
@@ -107,6 +108,7 @@
 	border: none;
 	text-align: center;
 	line-height: 50px;
+	position: absolute;
 }
 
 .btn-control:hover {
@@ -115,10 +117,12 @@
 }
 
 .btn-control.first {
+	right: 130px;
 	background-color: rgb(92, 199, 207);
 }
 
 .btn-control.secound {
+	right: 65px;
 	background-color: rgb(92, 132, 207);
 }
 
@@ -130,6 +134,8 @@
 	border-start-end-radius: 10px;
 	border-end-end-radius: 10px;
 	padding: 0;
+	position: absolute;
+	right: 0;
 }
 
 .send-button.input:hover {
