@@ -52,12 +52,17 @@ export class ChatFuncionarioComponent {
       });
 
       this.connection.on('initFuncionario', (chatList: Chat[], selectedChatId: number) => {
-        console.log("id retornado", selectedChatId);
+        console.log("id retornado init", selectedChatId);
         
         this.selectedChatId = selectedChatId;
         this.chatList = chatList;
         this.isChatMode = false;
         this.layoutService.hideLoader();
+      });
+
+      this.connection.on('connectToChat', (selectedChatId: number) => {
+        console.log("id retornado connect", selectedChatId);
+        this.selectedChatId = selectedChatId;
       });
 
       this.connection.on('chatNotFound', () => {
