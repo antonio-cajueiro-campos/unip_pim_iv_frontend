@@ -3,6 +3,7 @@ import { UserHub } from "./user-hub.model";
 
 export interface Chat {
 	chatId: number;
-	messagesList: Message[];
+	type: string;
 	userList: UserHub[];
+	messagesList: Message[];
 }

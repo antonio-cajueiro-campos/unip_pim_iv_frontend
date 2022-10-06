@@ -21,13 +21,13 @@ export class ChatFuncionarioComponent {
   public messageForm = this.formBuilder.group({
     text: null
   });
-  public messages: Message[] = []
-  public chatList: Chat[] = []
+  public chatList: Chat[] = [];
   public userId: number = 0;
   public isWriting: Subject<string> = new Subject<string>();
   public typingDelayMillis = 700;
   public isChatMode: boolean = false;
   public selectedChatId: number = 0;
+  public startedChatList: Chat[] = [];
 
   constructor(public router: Router, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.getUserInfo((_: string, userId: number, role: string) => {
@@ -39,8 +39,8 @@ export class ChatFuncionarioComponent {
 
   startConnection() {
     try {
-      this.connection.on('newMessage', (message: Message) => {
-        this.renderMessageOnChat(message)
+      this.connection.on('newMessage', (message: Message, chatId: number) => {
+        this.renderMessageOnChat(message, chatId)
       });
 
       this.connection.on('closeSession', () => {
@@ -51,17 +51,17 @@ export class ChatFuncionarioComponent {
         this.chatList = chatList;
       });
 
-      this.connection.on('initFuncionario', (chatList: Chat[], selectedChatId: number) => {
-        console.log("id retornado init", selectedChatId);
-        
-        this.selectedChatId = selectedChatId;
+      this.connection.on('startedChats', (startedChatList: Chat[]) => {
+        this.startedChatList = startedChatList;
+      });
+
+      this.connection.on('initFuncionario', (chatList: Chat[]) => {
         this.chatList = chatList;
         this.isChatMode = false;
         this.layoutService.hideLoader();
       });
 
       this.connection.on('connectToChat', (selectedChatId: number) => {
-        console.log("id retornado connect", selectedChatId);
         this.selectedChatId = selectedChatId;
       });
 
@@ -69,17 +69,17 @@ export class ChatFuncionarioComponent {
         console.log("Chat não encontrado");
       });
 
-      this.connection.on('isWriting', (userName: string, userId: number) => {
-        this.renderIsWriting(userName, userId);
+      this.connection.on('isWriting', (username: string, userId: number, chatId: number) => {
+        this.renderIsWriting(username, userId, chatId);
       });
 
       this.connection.on('previousMessages', (messages: Message[]) => {
         this.isChatMode = true;
-        this.messages = messages;
-        this.messages.forEach(message => {
+        this.getChatSelected(this.selectedChatId).messagesList = messages;
+        this.getChatSelected(this.selectedChatId).messagesList.forEach(message => {
           message.timestamp = this.formatDate(message.timestamp)
         });
-        this.messages.reverse()
+        this.getChatSelected(this.selectedChatId).messagesList.reverse()
         this.layoutService.hideLoader();
       });
 
@@ -99,6 +99,15 @@ export class ChatFuncionarioComponent {
     }
   }
 
+  ngOnDestroy() {
+    this.messageForm.reset()
+  }
+
+  getChatSelected(chatId: number): Chat {
+    return this.chatList.filter(c => {
+      return c.chatId === chatId
+    })[0];    
+  }
 
   enterChat(chatId: number) {
     this.getUserInfo((_: string, userId: number) => {
@@ -118,16 +127,14 @@ export class ChatFuncionarioComponent {
   }
 
   sendMessage() {
-    console.log(this.selectedChatId);
-
     this.getUserInfo((username: string, userId: number) => {
       var text = this.messageForm.value.text;
       if (text != "" && text != null) {
 
         var newMessage = {
-          userId: userId,
+          ownerId: userId,
           text: text,
-          userName: username,
+          username: username,
           type: "Message"
         }
 
@@ -142,11 +149,11 @@ export class ChatFuncionarioComponent {
     this.getUserInfo((username: string, userId: number) => {
       if (typing === false) {
         this.delay(() => {
-          this.connection.send("isWriting", "", userId)
+          this.connection.send("isWriting", "", userId, this.selectedChatId)
           typing = false;
         }, this.typingDelayMillis);
         typing = true;
-        this.connection.send("isWriting", username, userId)
+        this.connection.send("isWriting", username, userId, this.selectedChatId)
       }
     })
   }
@@ -167,16 +174,19 @@ export class ChatFuncionarioComponent {
     ).subscribe()
   }
 
-  renderMessageOnChat(message: Message) {
+  renderMessageOnChat(message: Message, chatId: number) {
     message.timestamp = this.formatDate(message.timestamp);
-    this.messages.unshift(message);
+    this.getChatSelected(chatId).messagesList.unshift(message);
   }
 
-  renderIsWriting(userName: string, userId: number) {
-    if (userName != "" && userId != this.userId) {
+  renderIsWriting(username: string, userId: number, chatId: number) {
+    var isWritingElement = document.getElementById("isWriting");
+    if (username != "" && userId != this.userId && chatId == this.selectedChatId) {
+      if (isWritingElement)
       document.getElementById("isWriting").classList.add("animate")
-      this.isWriting.next(userName + " está digitando");
+      this.isWriting.next(username + " está digitando");
     } else if (userId != this.userId) {
+      if (isWritingElement)
       document.getElementById("isWriting").classList.remove("animate")
     }
   }
@@ -194,6 +204,13 @@ export class ChatFuncionarioComponent {
     this.messageService.popupInfo("Você encerrou a sessão com o cliente.", () => {
       this.isChatMode = false;
       this.connection.send("updateChatList");
+      this.connection.send("startedChats", this.userId);
     }, "")
+  }
+
+  voltarPraLista() {
+    this.isChatMode = false;
+    this.connection.send("updateChatList");
+    this.connection.send("startedChats", this.userId);
   }
 }

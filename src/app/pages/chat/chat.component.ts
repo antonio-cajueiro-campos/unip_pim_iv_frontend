@@ -20,10 +20,11 @@ export class ChatComponent {
   public messageForm = this.formBuilder.group({
     text: null
   });
-  public messages: Message[] = []
+  public chatList: Chat[] = [];
   public userId: number = 0;
   public isWriting: Subject<string> = new Subject<string>();
   public typingDelayMillis = 700;
+  public selectedChatId: number = 0;
 
   constructor(public router: Router, public route: ActivatedRoute, public messageService: MessageService, public layoutService: LayoutService, public requestService: RequestService, public userService: UserService, private formBuilder: FormBuilder) {
     this.getUserInfo((_: string, userId: number, role: string) => {
@@ -35,24 +36,32 @@ export class ChatComponent {
 
   startConnection() {
     try {
-      this.connection.on('newMessage', (message: Message) => {
-        this.renderMessageOnChat(message)
+      this.connection.on('newMessage', (message: Message, chatId: number) => {
+        this.renderMessageOnChat(message, chatId)
       });
 
       this.connection.on('closeSession', () => {
         this.closeSession();
       });
 
-      this.connection.on('isWriting', (userName: string, userId: number) => {
-        this.renderIsWriting(userName, userId);
+      this.connection.on('isWriting', (username: string, userId: number, chatId: number) => {
+        this.renderIsWriting(username, userId, chatId);
+      });
+
+      this.connection.on('initCliente', (selectedChatId: number) => {
+        this.selectedChatId = selectedChatId;
+      });
+
+      this.connection.on('startedChats', (startedChatList: Chat[]) => {
+        this.chatList = startedChatList;
       });
       
       this.connection.on('previousMessages', (messages: Message[]) => {
-        this.messages = messages;
-        this.messages.forEach(message => {
+        this.getChatSelected(this.selectedChatId).messagesList = messages;
+        this.getChatSelected(this.selectedChatId).messagesList.forEach(message => {
           message.timestamp = this.formatDate(message.timestamp)
         });
-        this.messages.reverse()
+        this.getChatSelected(this.selectedChatId).messagesList.reverse()
         this.layoutService.hideLoader();
       });
 
@@ -62,11 +71,8 @@ export class ChatComponent {
         .then(() => {
           this.getUserInfo((_: string, userId: number) => {
             this.userId = userId;
-            this.getChatMode(params => {
-              if (params.service == "sinistro")
-              this.connection.send("createChatSinistro", userId);
-              else if (params.service == "chat")
-              this.connection.send("createChat", userId);
+            this.getChatMode((params: any) => {
+              this.connection.send("initCliente", userId, params.type);
               console.warn("Chat conectado", this.connection);
             });
           })
@@ -77,11 +83,20 @@ export class ChatComponent {
     }
   }
 
+  ngOnDestroy() {
+    this.messageForm.reset()
+  }
+
+  getChatSelected(chatId: number): Chat {
+    return this.chatList.filter(c => {
+      return c.chatId === chatId
+    })[0];    
+  }
+
   getChatMode(callback: Function) {
-    this.route.queryParams
-      .subscribe(params => {
-        callback(params)
-      });
+    this.route.queryParams.subscribe(params => {
+      callback(params)
+    });
   }
 
   sendMessage() {
@@ -90,13 +105,13 @@ export class ChatComponent {
       if (text != "" && text != null) {
 
         var newMessage = {
-          userId: userId,
+          ownerId: userId,
           text: text,
-          userName: username,
+          username: username,
           type: "Message"
         }
 
-        this.connection.send("newMessage", newMessage, this.userId)
+        this.connection.send("newMessage", newMessage, this.selectedChatId)
           .then(() => { this.messageForm.reset() })
       }
     })
@@ -107,11 +122,11 @@ export class ChatComponent {
     this.getUserInfo((username: string, userId: number) => {
       if (typing === false) {
         this.delay(() => {
-          this.connection.send("isWriting", "", userId)
+          this.connection.send("isWriting", "", userId, this.selectedChatId)
           typing = false;
         }, this.typingDelayMillis);
         typing = true;
-        this.connection.send("isWriting", username, userId)
+        this.connection.send("isWriting", username, userId, this.selectedChatId)
       }
     })
   }
@@ -132,16 +147,19 @@ export class ChatComponent {
     ).subscribe()
   }
 
-  renderMessageOnChat(message: Message) {
+  renderMessageOnChat(message: Message, chatId: number) {
     message.timestamp = this.formatDate(message.timestamp);
-    this.messages.unshift(message);
+    this.getChatSelected(chatId).messagesList.unshift(message)    
   }
 
-  renderIsWriting(userName: string, userId: number) {
-    if (userName != "" && userId != this.userId) {
-      document.getElementById("isWriting").classList.add("animate")
-      this.isWriting.next(userName + " está digitando");
+  renderIsWriting(username: string, userId: number, chatId: number) {    
+    var isWritingElement = document.getElementById("isWriting");
+    if (username != "" && userId != this.userId && chatId == this.selectedChatId) {
+      if (isWritingElement)
+      isWritingElement.classList.add("animate")
+      this.isWriting.next(username + " está digitando");
     } else if (userId != this.userId) {
+      if (isWritingElement)
       document.getElementById("isWriting").classList.remove("animate")
     }
   }

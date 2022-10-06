@@ -92,7 +92,7 @@
 }
 
 .text-box.input {
-	width: calc(100% - 195px);
+	width: calc(100% - 260px);
 	height: 50px;
 	border: none;
 	background-color: #dddddd;
@@ -114,6 +114,11 @@
 .btn-control:hover {
 	cursor: pointer;
 	filter: brightness(0.8);
+}
+
+.btn-control.zero {
+	right: 195px;
+	background-color: rgb(92, 207, 173);
 }
 
 .btn-control.first {

@@ -1,21 +1,21 @@
 <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="chat-container" autocomplete="off" *ngIf="isChatMode">
   <div class="message-container">
-    <ng-template ngFor let-message [ngForOf]="messages" let-i="index">
-      <div class="message-container-box me" id="msg-{{i}}" *ngIf="message.userId == userId && message.type == 'Message'">
+    <ng-template ngFor let-message [ngForOf]="getChatSelected(selectedChatId)?.messagesList" let-i="index">
+      <div class="message-container-box me" id="msg-{{i}}" *ngIf="message.ownerId == userId && message.type == 'Message'">
         <div class="message-box me">
-          <span class="name">{{message.userName}}</span><br>
+          <span class="name">{{message.username}}</span><br>
           <span class="text">{{message.text}}</span><br>
           <span class="timestamp">{{message.timestamp}}</span>
         </div>
       </div>
-      <div class="message-container-box other" id="msg-{{i}}" *ngIf="message.userId != userId && message.type == 'Message'">
+      <div class="message-container-box other" id="msg-{{i}}" *ngIf="message.ownerId != userId && message.type == 'Message'">
         <div class="message-box other">
-          <span class="name">{{message.userName}}</span><br>
+          <span class="name">{{message.username}}</span><br>
           <span class="text">{{message.text}}</span><br>
           <span class="timestamp">{{message.timestamp}}</span>
         </div>
       </div>
-      <div class="message-container-box announcement" id="msg-{{i}}" *ngIf="message.userId != userId && message.type == 'Announcement'">
+      <div class="message-container-box announcement" id="msg-{{i}}" *ngIf="message.ownerId != userId && message.type == 'Announcement'">
         <div class="message-box announcement">
           <span class="text">{{message.text}}</span>
         </div>
@@ -25,6 +25,9 @@
   <div class="input-container">
     <span class="isWriting" id="isWriting">{{ isWriting | async }}</span>
     <input placeholder="Mensagem" formControlName="text" type="text" class="text-box input" name="text" id="text" (input)="isWritingNotifyAll()">
+    <div class="btn-control zero" (click)="voltarPraLista()">
+      <i class="fas fa-fw fa-arrow-left"></i>
+    </div>
     <div class="btn-control first" (click)="encerrarSessao()">
       <i class="fas fa-fw fa-xmark"></i>
     </div>
@@ -36,10 +39,18 @@
     </button>
   </div>
 </form>
-
-<ul *ngIf="!isChatMode">
+<ul *ngIf="!isChatMode && chatList.length > 0">
+  <p>Novos chats</p>
   <li *ngFor="let chat of chatList; let i = index">
     <input type="button" (click)='enterChat(chat.chatId)' value="Entrar">
-    {{chat.chatId}} | Chat com {{chat.userList[0].userName}} 
+    {{chat.chatId}} | Start Chat with {{chat.userList[0].username}} 
+  </li>
+</ul>
+<br>
+<ul *ngIf="!isChatMode && startedChatList.length > 0">
+  <p>Chats já iniciados</p>
+  <li *ngFor="let chat of startedChatList; let i = index">
+    <input type="button" (click)='enterChat(chat.chatId)' value="Entrar">
+    {{chat.chatId}} | Continue Chat with {{chat.userList[0].username}} 
   </li>
 </ul>

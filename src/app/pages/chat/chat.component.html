@@ -1,21 +1,21 @@
 <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="chat-container" autocomplete="off">
   <div class="message-container">
-    <ng-template ngFor let-message [ngForOf]="messages" let-i="index">
-      <div class="message-container-box me" id="msg-{{i}}" *ngIf="message.userId == userId && message.type == 'Message'">
+    <ng-template ngFor let-message [ngForOf]="getChatSelected(selectedChatId)?.messagesList" let-i="index">
+      <div class="message-container-box me" id="msg-{{i}}" *ngIf="message.ownerId == userId && message.type == 'Message'">
         <div class="message-box me">
-          <span class="name">{{message.userName}}</span><br>
+          <span class="name">{{message.username}}</span><br>
           <span class="text">{{message.text}}</span><br>
           <span class="timestamp">{{message.timestamp}}</span>
         </div>
       </div>
-      <div class="message-container-box other" id="msg-{{i}}" *ngIf="message.userId != userId && message.type == 'Message'">
+      <div class="message-container-box other" id="msg-{{i}}" *ngIf="message.ownerId != userId && message.type == 'Message'">
         <div class="message-box other">
-          <span class="name">{{message.userName}}</span><br>
+          <span class="name">{{message.username}}</span><br>
           <span class="text">{{message.text}}</span><br>
           <span class="timestamp">{{message.timestamp}}</span>
         </div>
       </div>
-      <div class="message-container-box announcement" id="msg-{{i}}" *ngIf="message.userId != userId && message.type == 'Announcement'">
+      <div class="message-container-box announcement" id="msg-{{i}}" *ngIf="message.ownerId != userId && message.type == 'Announcement'">
         <div class="message-box announcement">
           <span class="text">{{message.text}}</span>
         </div>
