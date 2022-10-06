@@ -81,8 +81,10 @@
 .input-container {
 	position: relative;
 	width: 100%;
-	height: 50px;
+	height: 49px;
 	border-radius: 10px;
+	border: none;
+	display: flex;
 }
 
 .input:focus {
@@ -90,26 +92,44 @@
 }
 
 .text-box.input {
-	width: calc(100% - 65px);
-	height: inherit;
+	width: calc(100% - 195px);
+	height: 50px;
 	border: none;
 	background-color: #dddddd;
 	border-end-start-radius: 10px;
 	border-start-start-radius: 10px;
 	padding: 0 15px;
-	position: absolute;
+}
+
+.btn-control {
+	width: 65px;
+	height: 50px;
+	border: none;
+	text-align: center;
+	line-height: 50px;
+}
+
+.btn-control:hover {
+	cursor: pointer;
+	filter: brightness(0.8);
+}
+
+.btn-control.first {
+	background-color: rgb(92, 199, 207);
+}
+
+.btn-control.secound {
+	background-color: rgb(92, 132, 207);
 }
 
 .send-button.input {
 	width: 65px;
-	height: inherit;
+	height: 50px;
 	border: none;
 	background-color: rgb(92, 184, 207);
 	border-start-end-radius: 10px;
 	border-end-end-radius: 10px;
 	padding: 0;
-	position: absolute;
-	right: 0;
 }
 
 .send-button.input:hover {

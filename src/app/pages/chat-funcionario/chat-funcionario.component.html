@@ -25,11 +25,16 @@
   <div class="input-container">
     <span class="isWriting" id="isWriting">{{ isWriting | async }}</span>
     <input placeholder="Mensagem" formControlName="text" type="text" class="text-box input" name="text" id="text" (input)="isWritingNotifyAll()">
+    <div class="btn-control first" (click)="encerrarSessao()">
+      <i class="fas fa-fw fa-xmark"></i>
+    </div>
+    <div class="btn-control secound" (click)="sairChat()">
+      <i class="fas fa-fw fa-arrow-right-from-bracket"></i>
+    </div>
     <button type="submit" class="send-button input">
       <i class="fas fa-fw fa-paper-plane"></i>
     </button>
   </div>
-  <button (click)="encerrarSessao()">Encerrar Sessão</button> <button (click)="sairChat()">Sair da Sessão</button>
 </form>
 
 <ul *ngIf="!isChatMode">
