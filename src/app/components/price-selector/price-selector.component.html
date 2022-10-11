@@ -2,11 +2,17 @@
   <i class="fa-solid fa-{{icon}} selector-icon"></i>
   <span class="selector-title">{{title}}</span>
   <div class="selector-container">
-    <select name="" id="">
-      <option value=""></option>
-      <option value=""></option>
-      <option value=""></option>
+    <select name="a" id="a" class="select-input">
+      <option class="option" *ngFor="let item of listA" [value]="item.val" [attr.selected]="item.text">
+        {{item.text}}
+      </option>
     </select>
   </div>
-  <div class="selector-container"></div>
+  <div class="selector-container">
+    <select name="b" id="b" class="select-input">
+      <option class="option" *ngFor="let item of listB" [value]="item.val" [attr.selected]="item.text">
+        {{item.text}}
+      </option>
+    </select>
+  </div>
 </div>

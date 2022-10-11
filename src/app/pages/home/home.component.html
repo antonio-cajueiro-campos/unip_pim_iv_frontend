@@ -1,8 +1,15 @@
 <h4 class="price-selector-title">
   Personalize seu plano de seguro com o preço que cabe no seu bolso!
 </h4>
-<div class="prices">
-  <app-price-selector [title]="'Incêndio, raio e explosão'" [icon]="'bolt'"></app-price-selector>
-  <app-price-selector [title]="'Perda e pagamento de aluguel'" [icon]="'building'"></app-price-selector>
-  <app-price-selector [title]="'Vendaval, granizo e ciclone'" [icon]="'wind'"></app-price-selector>
+<div class="prices-col">
+  <div class="prices-row">
+    <app-price-selector [title]="'Incêndio, raio e explosão'" [icon]="'fire'" [listA]="listA" [listB]="listB"></app-price-selector>
+    <app-price-selector [title]="'Perda e pagamento de aluguel'" [icon]="'building'" [listA]="listA" [listB]="listB"></app-price-selector>
+    <app-price-selector [title]="'Vendaval, granizo e ciclone'" [icon]="'wind'" [listA]="listA" [listB]="listB"></app-price-selector>
+  </div>
+  <div class="prices-row">
+    <app-price-selector [title]="'Responsabilidade civil familiar'" [icon]="'user-group'" [listA]="listA" [listB]="listB"></app-price-selector>
+    <app-price-selector [title]="'Danos elétricos'" [icon]="'bolt'" [listA]="listA" [listB]="listB"></app-price-selector>
+    <app-price-selector [title]="'Roubo'" [icon]="'shield'" [listA]="listA" [listB]="listB"></app-price-selector>
+  </div>
 </div>

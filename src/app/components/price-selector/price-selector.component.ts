@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Selector } from 'src/app/models/selector.model';
 
 @Component({
   selector: 'app-price-selector',
@@ -9,6 +10,9 @@ export class PriceSelectorComponent implements OnInit {
 
   @Input() title: string;
   @Input() icon: string;
+
+  @Input() listA: Selector[];
+  @Input() listB: Selector[];
 
   constructor() { }
 

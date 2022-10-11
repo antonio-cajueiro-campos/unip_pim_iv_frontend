@@ -1,6 +1,13 @@
-.prices {
+.prices-col {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.prices-row {
 	display: flex;
 	justify-content: space-evenly;
+	margin: 20px;
 }
 
 .price-selector-title {

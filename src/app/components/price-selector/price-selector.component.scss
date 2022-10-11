@@ -7,16 +7,29 @@
 	border-radius: 20px;
 	height: 50px;
 	width: 200px;
-	margin: 10px 0;
+	margin: 10px auto;
 }
 
 .selector-title {
 	display: block;
 	text-align: center;
+	margin: 15px 0;
 }
 
 .selector-icon {
 	display: block;
 	text-align: center;
 	font-size: 46px;
+}
+
+.select-input {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	border: none;
+	background-color: transparent;
+}
+
+.option {
+	text-align: center;
 }
