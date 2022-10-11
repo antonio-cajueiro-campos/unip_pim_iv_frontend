@@ -3,14 +3,14 @@
   <span class="selector-title">{{title}}</span>
   <div class="selector-container">
     <select name="a" id="a" class="select-input">
-      <option class="option" *ngFor="let item of listA" [value]="item.val" [attr.selected]="item.text">
+      <option class="option" *ngFor="let item of listA" [value]="item.value" [attr.selected]="item.text">
         {{item.text}}
       </option>
     </select>
   </div>
   <div class="selector-container">
     <select name="b" id="b" class="select-input">
-      <option class="option" *ngFor="let item of listB" [value]="item.val" [attr.selected]="item.text">
+      <option class="option" *ngFor="let item of listB" [value]="item.value" [attr.selected]="item.text">
         {{item.text}}
       </option>
     </select>
