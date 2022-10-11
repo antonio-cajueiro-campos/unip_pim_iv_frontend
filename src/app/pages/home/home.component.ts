@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PriceSelector } from 'src/app/models/price-selector.model';
 import { Selector } from 'src/app/models/selector.model';
 
 @Component({
@@ -8,26 +9,73 @@ import { Selector } from 'src/app/models/selector.model';
 })
 export class HomeComponent implements OnInit {
 
-  public listA: Selector[] = [
-    { 
-      value: "abc", 
-      text: "abc" 
-    },
-    { 
-      value: "def", 
-      text: "def" 
-    }
-  ]
-
-  public listB: Selector[] = [
+  public priceSelectorList: PriceSelector[] = [
     {
-      value: "tuv",
-      text: "tuv"
+      title: "Incêndio, raio e explosão",
+      icon: "fire",
+      list: [
+        { 
+          value: "abc", 
+          text: "abc" 
+        },
+      ],
+      total: 0
     },
-    { 
-      value: "xyv", 
-      text: "xyv" 
-    }
+    {
+      title: "Perda e pagamento de aluguel",
+      icon: "building",
+      list: [
+        { 
+          value: "abc", 
+          text: "abc" 
+        },
+      ],
+      total: 0
+    },
+    {
+      title: "Vendaval, granizo e ciclone",
+      icon: "wind",
+      list: [
+        { 
+          value: "abc", 
+          text: "abc" 
+        },
+      ],
+      total: 0
+    },
+    {
+      title: "Responsabilidade civil familiar",
+      icon: "user-group",
+      list: [
+        { 
+          value: "abc", 
+          text: "abc" 
+        },
+      ],
+      total: 0
+    },
+    {
+      title: "Danos elétricos",
+      icon: "bolt",
+      list: [
+        { 
+          value: "abc", 
+          text: "abc" 
+        },
+      ],
+      total: 0
+    },
+    {
+      title: "Roubo",
+      icon: "shield",
+      list: [
+        { 
+          value: "abc", 
+          text: "abc" 
+        },
+      ],
+      total: 0
+    },
   ]
 
   constructor() { }

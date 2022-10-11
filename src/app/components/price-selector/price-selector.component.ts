@@ -10,9 +10,10 @@ export class PriceSelectorComponent implements OnInit {
 
   @Input() title: string;
   @Input() icon: string;
+  @Input() list: Selector[];
+  @Input() total: number;
 
-  @Input() listA: Selector[];
-  @Input() listB: Selector[];
+  public selected: Selector;
 
   constructor() { }
 
