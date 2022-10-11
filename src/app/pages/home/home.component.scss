@@ -13,4 +13,16 @@
 .price-selector-title {
 	text-align: center;
 	margin: 30px 0;
+	padding: 0 60px;
+}
+
+.container-prices {
+	margin: auto;
+	max-width: 1100px;
+}
+
+.app-price {
+	justify-content: space-evenly;
+	flex: 1 0 30%;
+	min-width: 264px;
 }

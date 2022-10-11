@@ -1,8 +1,8 @@
 <h4 class="price-selector-title">
   Personalize seu plano de seguro com o preço que cabe no seu bolso!
 </h4>
-<div class="row justify-content-center">
-    <app-price-selector class="col-auto mb-3"
+<div class="row justify-content-center container-prices">
+    <app-price-selector class="col-auto mb-3 app-price"
       *ngFor="let item of priceSelectorList"
       [title]="item.title"
       [icon]="item.icon"
