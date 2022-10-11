@@ -26,6 +26,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funcionario.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { PriceSelectorComponent } from './components/price-selector/price-selector.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RegisterComponent } from './pages/register/register.component';
     LoaderScreenComponent,
     PaymentComponent,
     LoaderComponent,
-    ChatFuncionarioComponent
+    ChatFuncionarioComponent,
+    PriceSelectorComponent
   ],
   imports: [
     IonicModule.forRoot(),
