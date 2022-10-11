@@ -43,3 +43,7 @@
 	text-align: center;
 	background-color: transparent;
 }
+
+input:focus, textarea:focus, select:focus{
+	outline: none;
+}
