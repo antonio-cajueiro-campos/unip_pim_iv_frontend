@@ -6,7 +6,7 @@ import { RequestService } from './request.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PortalService {
+export class InsuranceService {
 
   constructor(private request: RequestService) { }
 

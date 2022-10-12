@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PriceSelector } from 'src/app/models/price-selector.model';
-import { Selector } from 'src/app/models/selector.model';
-import { PortalService } from 'src/app/services/portal.service';
+import { InsuranceService } from 'src/app/services/portal.service';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +10,13 @@ import { PortalService } from 'src/app/services/portal.service';
 export class HomeComponent implements OnInit {
 
   public priceSelectorList: PriceSelector[]
+  public total: number = 0;
 
-  constructor(private portalService: PortalService) {
+  constructor(private insuranceService: InsuranceService) {
   }
   
   async ngOnInit() {
-    this.priceSelectorList = await this.portalService.getPriceSelectorList()
+    this.priceSelectorList = await this.insuranceService.getPriceSelectorList()
   }
 
 }

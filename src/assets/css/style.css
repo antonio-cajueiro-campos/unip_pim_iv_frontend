@@ -7,6 +7,10 @@
   font-family: barcode;
   src: url("../fonts/bf.ttf") format('truetype');
 } */
+@font-face {
+  font-family: Poppins;
+  src: url("../fonts/Poppins-Regular.ttf") format('truetype');
+}
 
 .a-card:hover {
   text-decoration: none;
