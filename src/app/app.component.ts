@@ -21,7 +21,7 @@ export class AppComponent {
     this.isLoader = of(true);
 
     of(true).pipe(
-      delay(7000),
+      delay(2000),
       tap(() => {
         this.isLoader = of(false);
       })).subscribe()
