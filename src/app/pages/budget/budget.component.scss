@@ -1,0 +1,43 @@
+.prices-row {
+	display: flex;
+	margin: 20px;
+}
+
+.price-selector-title {
+	text-align: center;
+	margin: 30px 0;
+	padding: 0 60px;
+}
+
+.container-prices {
+	margin: auto;
+	max-width: 1100px;
+}
+
+.total-section {
+	margin-top: 50px;
+}
+
+.total-label {
+	line-height: 50px;
+}
+
+.total-input {
+	border: 5px solid #00A88A;
+	border-radius: 20px;
+	height: 50px;
+	width: 250px;
+	text-align: center;
+}
+
+.btn-implemented {
+	width: 250px;
+	font-size: 25px;
+	line-height: 65px;
+	margin: 25px auto;
+	font-family: Poppins;
+}
+
+input:focus, textarea:focus, select:focus{
+	outline: none;
+}

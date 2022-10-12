@@ -1,0 +1,21 @@
+<h4 class="price-selector-title">
+  Personalize seu plano de seguro com o preço que cabe no seu bolso!
+</h4>
+<div class="row justify-content-center container-prices">
+  <app-price-selector class="col-auto mb-3 app-price"
+    *ngFor="let item of priceSelectorList"
+      [title]="item.title"
+      [icon]="item.icon"
+      [list]="item.list"
+      [total]="item.total">
+  </app-price-selector>
+</div>
+<div class="row justify-content-center total-section">
+  <label class="total-label" for="total">Valor total mensal:</label>
+  <div class="col-auto mb-3">
+    <input type="text" name="total" readonly class="total-input" [(ngModel)]="total">
+  </div>
+</div>
+<div class="row justify-content-center">
+  <input type="submit" value="CONTRATAR" class="btn btn-success btn-implemented">
+</div>

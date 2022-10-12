@@ -10,11 +10,16 @@ import { LoginGuard } from './services/guards/login.guard';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funcionario.component';
+import { BudgetComponent } from './pages/budget/budget.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'budget',
+    component: BudgetComponent,
   },
   {
     path: 'login',

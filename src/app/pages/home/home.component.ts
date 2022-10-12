@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PriceSelector } from 'src/app/models/price-selector.model';
-import { InsuranceService } from 'src/app/services/insurance.service';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +6,10 @@ import { InsuranceService } from 'src/app/services/insurance.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
-  public priceSelectorList: PriceSelector[]
-  public total: number = 0;
-
-  constructor(private insuranceService: InsuranceService) {
+  constructor() {
   }
   
-  async ngOnInit() {
-    this.priceSelectorList = await this.insuranceService.getPriceSelectorList()
+  ngOnInit() {
   }
 
 }

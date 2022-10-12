@@ -27,11 +27,14 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funcionario.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PriceSelectorComponent } from './components/price-selector/price-selector.component';
+import { BudgetComponent } from './pages/budget/budget.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    BudgetComponent,
     LoginComponent,
     RegisterComponent,
     ChatComponent,
@@ -45,7 +48,8 @@ import { PriceSelectorComponent } from './components/price-selector/price-select
     PaymentComponent,
     LoaderComponent,
     ChatFuncionarioComponent,
-    PriceSelectorComponent
+    PriceSelectorComponent,
+    BannerComponent
   ],
   imports: [
     IonicModule.forRoot(),
