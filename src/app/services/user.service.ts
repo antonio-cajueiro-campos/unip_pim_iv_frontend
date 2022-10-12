@@ -10,7 +10,6 @@ import { RequestService } from './request.service';
 import { StorageKeys } from './enums/storage-keys';
 import { HttpStatus } from './constants/http-status';
 import { Infos } from '../models/Infos.model';
-import { DefaultResponse } from '../models/default-response.model';
 import { Register } from '../models/register.model';
 
 @Injectable({
@@ -30,40 +29,37 @@ export class UserService {
     this.updateLocalInfos(this.dataManager.getData(StorageKeys.INFOS));
   }
 
-  public isLogged(): Observable<boolean> {
-    return (this.dataManager.getData(StorageKeys.INFOS) != null) ? of(true) : of(false);
-  }
+  public isLogged = (): Observable<boolean> =>
+    (this.dataManager.getData(StorageKeys.INFOS) != null) ? of(true) : of(false);
 
   public loginUser = async (credential: Credential, inputs: ElementRef[]): Promise<boolean> =>
-    await this.request.postAsync('/authenticate/login', credential, inputs, (response: DefaultResponse): void => {
+    await this.request.postAsync('/authenticate/login', credential, inputs, (data: any): void => {
 
-      this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
+      this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos();
       this.router.navigateByUrl('/');
     });
 
   public registerUser = async (user: Register, inputs: ElementRef[]): Promise<boolean> =>
-    await this.request.postAsync('/user/register', user, inputs, (response: DefaultResponse): void => {
+    await this.request.postAsync('/user/register', user, inputs, (data: any): void => {
 
-      this.dataManager.setData(StorageKeys.JWT, response.data.jwt);
+      this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos();
       this.router.navigateByUrl('/');
     });
 
   public getUserInfos = async (): Promise<boolean> =>
-    await this.request.getAsync('/user/infos', (response: DefaultResponse): void =>
+    await this.request.getAsync('/user/infos', (data: any): void => {
 
-      this.updateLocalInfos(response.data)
-    );
-
-  public updateUserInfos = async (infos: Infos): Promise<boolean> =>
-    await this.request.postAsync('/user/infos', infos, [], (response: DefaultResponse): void => {
-
-      this.updateLocalInfos(response.data);
-      this.router.navigateByUrl('/profile');
+      this.updateLocalInfos(data)
     });
 
+  public updateUserInfos = async (infos: Infos): Promise<boolean> =>
+    await this.request.postAsync('/user/infos', infos, [], (data: any): void => {
 
+      this.updateLocalInfos(data);
+      this.router.navigateByUrl('/profile');
+    });
 
 
   public updateLocalInfos(data: Infos): void {

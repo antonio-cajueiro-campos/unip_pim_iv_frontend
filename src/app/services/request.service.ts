@@ -27,7 +27,7 @@ export class RequestService {
       .then(response => {
         if (!HttpStatus.OK(response))
           throw new Error(response.message);        
-        callback(response);
+        callback(response.data);
       }).catch(response => {
         this.message.handle(response);
         return false;
@@ -40,7 +40,7 @@ export class RequestService {
       .then(response => {
         if (!HttpStatus.OK(response))
           throw new Error(response.message);
-        callback(response);
+        callback(response.data);
       }).catch(response => {
         this.message.handle(response, inputs);
         return false;
