@@ -11,14 +11,12 @@ export class InsuranceService {
   constructor(private request: RequestService) { }
 
   public async getPriceSelectorList(): Promise<PriceSelector[]> {
-    var data = null;
+    var priceSelectorList: PriceSelector[] = [];
     
-    await this.request.getAsync("/insurance/getPriceSelectors", (response: DefaultResponse): void => {
-      console.log(response);
-      
-      data = response.data.priceSelectorList as PriceSelector[];
+    await this.request.getAsync("/insurance/getPriceSelectors", (response: DefaultResponse): void => {      
+      priceSelectorList = response.data.priceSelectorList as PriceSelector[];
     });
 
-    return data;
+    return priceSelectorList;
   }
 }

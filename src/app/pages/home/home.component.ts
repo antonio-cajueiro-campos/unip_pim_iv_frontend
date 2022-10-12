@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PriceSelector } from 'src/app/models/price-selector.model';
-import { InsuranceService } from 'src/app/services/portal.service';
+import { InsuranceService } from 'src/app/services/insurance.service';
 
 @Component({
   selector: 'app-home',
