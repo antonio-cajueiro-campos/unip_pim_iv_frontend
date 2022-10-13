@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Infos } from 'src/app/models/Infos.model';
+import { Credential } from 'src/app/models/Credential.model';
+import { LayoutService } from 'src/app/services/layout.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,18 +11,34 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
+
+  public credentials: Credential = {
+    username: "",
+    password: ""
+  }
+
+  public inputs: ElementRef[] = [];
+
+  @ViewChild('Username') username: ElementRef;
+  @ViewChild('Password') password: ElementRef;
 
   public infos: Observable<Infos>;
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, public layoutService: LayoutService) {
     userService.infos$.pipe(
       tap(infos => {        
         this.infos = of(infos);
       })
     ).subscribe();
+  }  
+
+  ngAfterViewInit() {
+    this.inputs.push(this.password);
+    this.inputs.push(this.username);
   }
 
-  ngOnInit() {}
-
+  onSubmit() {    
+    this.userService.loginUser(this.credentials, this.inputs);
+  }
 }

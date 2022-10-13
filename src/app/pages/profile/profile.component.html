@@ -1,7 +1,9 @@
 <h3>Perfil</h3>
 <hr>
-<input type="text" name="name" id="" [value]="(infos | async).user.name"><br>
-<input type="text" name="document" id="" [value]="(infos | async).user.document"><br>
-<input type="text" name="username" id="" [value]="(infos | async).user.credential.username"><br>
-
-<button type="submit" class="btn btn-warning">Atualizar Informações</button>
+<form (ngSubmit)="onSubmit()">
+  <input type="text" name="name" id="" [value]="(infos | async).user.name"><br>
+  <input type="text" name="document" id="" [value]="(infos | async).user.document"><br>
+  <input type="text" name="username" id="" [value]="(infos | async).user.credential.username"><br>
+  
+  <button type="submit" class="btn btn-warning">Atualizar Informações</button>
+</form>
