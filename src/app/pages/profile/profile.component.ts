@@ -13,15 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent {
 
-  public credentials: Credential = {
-    username: "",
-    password: ""
-  }
 
   public inputs: ElementRef[] = [];
-
-  @ViewChild('Username') username: ElementRef;
-  @ViewChild('Password') password: ElementRef;
 
   public infos: Observable<Infos>;
 
@@ -34,11 +27,9 @@ export class ProfileComponent {
   }  
 
   ngAfterViewInit() {
-    this.inputs.push(this.password);
-    this.inputs.push(this.username);
   }
 
   onSubmit() {    
-    this.userService.loginUser(this.credentials, this.inputs);
+    //this.userService.loginUser(this.credentials, this.inputs);
   }
 }
