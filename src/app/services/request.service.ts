@@ -18,7 +18,7 @@ export class RequestService {
 
   constructor(private httpClient: HttpClient, private dataManager: DataManagerService, private message: MessageService) {
     if (isDevMode) {
-      // this.BACKEND_BASE_URL = "https://localhost:7042";
+      this.BACKEND_BASE_URL = "https://localhost:7042";
     }
   }
 
@@ -35,7 +35,7 @@ export class RequestService {
     return true;
   }
 
-  public async postAsync(endpoint: string, data: object, inputs: ElementRef[] = [], callback: Function): Promise<boolean> {
+  public async postAsync(endpoint: string, data: object, callback: Function, inputs: ElementRef[] = []): Promise<boolean> {
     await this.postCore(endpoint, data).toPromise()
       .then(response => {
         if (!HttpStatus.OK(response))

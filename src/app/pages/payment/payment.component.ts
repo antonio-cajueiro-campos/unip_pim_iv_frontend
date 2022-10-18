@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InsurancePlan } from 'src/app/models/insurance-plan.model';
+import { InsuranceService } from 'src/app/services/insurance.service';
 import { PaypalService } from 'src/app/services/paypal.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,16 +11,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PaymentComponent implements OnInit {
 
-  public insurancePlan: InsurancePlan = {
-    value: "6.00"
-  };
+  public insurancePlan: InsurancePlan;
 
-  constructor(public userService: UserService, public paypalService: PaypalService) {
-    //this.userService.dataManager.getData
+  constructor(public insuranceService: InsuranceService, public userService: UserService, public paypalService: PaypalService) {
+    this.insurancePlan = this.insuranceService.insurancePlan;
+    console.log(this.insuranceService.insurancePlan);    
   }
   
   ngOnInit() {
-    this.paypalService.renderPaypalPayment(this.insurancePlan);
+    this.paypalService.renderPaypalPayment(this.insuranceService.insurancePlan);
     // verificar se o usuário tem conta ativa, conta pendente ou conta desativada
   }
 }

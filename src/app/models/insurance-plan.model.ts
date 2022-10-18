@@ -1,3 +1,6 @@
+import { PriceSelector } from "./price-selector.model";
+
 export interface InsurancePlan {
-	value: string;
+	selectedPrices?: PriceSelector[];
+	total: number;
 }

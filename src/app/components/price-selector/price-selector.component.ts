@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Selector } from 'src/app/models/selector.model';
+import { PriceSelector } from 'src/app/models/price-selector.model';
+import { BudgetComponent } from 'src/app/pages/budget/budget.component';
+import { InsuranceService } from 'src/app/services/insurance.service';
 
 @Component({
   selector: 'app-price-selector',
@@ -8,15 +10,13 @@ import { Selector } from 'src/app/models/selector.model';
 })
 export class PriceSelectorComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() icon: string;
-  @Input() list: Selector[];
-  @Input() total: number;
+  @Input() priceSelector: PriceSelector;
 
-  public selected: Selector;
-
-  constructor() { }
+  constructor(public budgetComponent: BudgetComponent) { }
 
   ngOnInit() {}
 
+  updateTotal() {    
+    this.budgetComponent.updateValues();
+  }
 }

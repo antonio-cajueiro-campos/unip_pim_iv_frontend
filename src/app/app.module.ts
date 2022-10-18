@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
+import { APP_INITIALIZER, DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -29,6 +29,12 @@ import { RegisterComponent } from './pages/register/register.component';
 import { PriceSelectorComponent } from './components/price-selector/price-selector.component';
 import { BudgetComponent } from './pages/budget/budget.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { PriceSelectorCalcPipe } from './pipes/price-selector-calc.pipe';
+import { AddBeforeTextPipe } from './pipes/add-before-text.pipe';
+
+registerLocaleData(localePt, 'pt-br');
 
 @NgModule({
   declarations: [
@@ -49,7 +55,9 @@ import { BannerComponent } from './components/banner/banner.component';
     LoaderComponent,
     ChatFuncionarioComponent,
     PriceSelectorComponent,
-    BannerComponent
+    BannerComponent,
+    PriceSelectorCalcPipe,
+    AddBeforeTextPipe
   ],
   imports: [
     IonicModule.forRoot(),
@@ -66,6 +74,7 @@ import { BannerComponent } from './components/banner/banner.component';
   ],
   providers: [
     HttpInterceptorProvider,
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'},
     { provide: LOCALE_ID, useValue: 'pt-br' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],

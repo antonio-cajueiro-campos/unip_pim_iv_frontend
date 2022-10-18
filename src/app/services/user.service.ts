@@ -33,20 +33,20 @@ export class UserService {
     (this.dataManager.getData(StorageKeys.INFOS) != null) ? of(true) : of(false);
 
   public loginUser = async (credential: Credential, inputs: ElementRef[]): Promise<boolean> =>
-    await this.request.postAsync('/authenticate/login', credential, inputs, (data: any): void => {
+    await this.request.postAsync('/authenticate/login', credential, (data: any): void => {
 
       this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos();
       this.router.navigateByUrl('/');
-    });
+    }, inputs);
 
   public registerUser = async (user: Register, inputs: ElementRef[]): Promise<boolean> =>
-    await this.request.postAsync('/user/register', user, inputs, (data: any): void => {
+    await this.request.postAsync('/user/register', user, (data: any): void => {
 
       this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos();
       this.router.navigateByUrl('/');
-    });
+    }, inputs);
 
   public getUserInfos = async (): Promise<boolean> =>
     await this.request.getAsync('/user/infos', (data: any): void => {
@@ -55,7 +55,7 @@ export class UserService {
     });
 
   public updateUserInfos = async (infos: Infos): Promise<boolean> =>
-    await this.request.postAsync('/user/infos', infos, [], (data: any): void => {
+    await this.request.postAsync('/user/infos', infos, (data: any): void => {
 
       this.updateLocalInfos(data);
       this.router.navigateByUrl('/profile');

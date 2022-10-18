@@ -1,14 +1,17 @@
 <div class="price-selector">
-  <i class="fa-solid fa-{{icon}} selector-icon"></i>
-  <span class="selector-title">{{title}}</span>
+  <i class="fa-solid fa-{{priceSelector.icon}} selector-icon"></i>
+  <span class="selector-title">{{priceSelector.title}}</span>
   <div class="selector-container">
-    <select name="a" id="a" class="select-input" [(ngModel)]="selected">
-      <option class="option" *ngFor="let item of list" [value]="item.value" [attr.selected]="item.text">
+    <select name="select-input" id="{{priceSelector.id}}" #{{priceSelector.id}} class="select-input" [(ngModel)]="priceSelector.monthlyPayment"  (change)="updateTotal()">
+      <option class="option" *ngFor="let item of priceSelector.list" [ngValue]="item.value" [attr.selected]="item.text">
         {{item.text}}
       </option>
     </select>
   </div>
   <div class="selector-container">
-    <input class="total-input" readonly type="text" name="" id="" [(ngModel)]="total">
+    <input class="monthly-payment-input" readonly type="text" name="monthlyPayment" id="monthlyPayment"
+      [ngModel]="priceSelector.monthlyPayment | priceSelectorCalc: priceSelector.numberOfMonths | currency | addBeforeText: 'Mensalidade: '" 
+      (ngModelChange)="priceSelector.monthlyPayment=$event"    
+    >
   </div>
 </div>
