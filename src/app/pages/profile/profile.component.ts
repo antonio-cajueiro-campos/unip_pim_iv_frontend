@@ -1,8 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Infos } from 'src/app/models/Infos.model';
-import { Credential } from 'src/app/models/Credential.model';
 import { LayoutService } from 'src/app/services/layout.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,7 +11,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-
 
   public inputs: ElementRef[] = [];
 

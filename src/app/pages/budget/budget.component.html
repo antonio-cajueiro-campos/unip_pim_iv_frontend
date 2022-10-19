@@ -14,7 +14,7 @@
       <input type="text" name="total"
       readonly class="total-input"
       [ngModel]="insuranceService.insurancePlan.total | currency | addBeforeText: 'Mensalidade Total: '" 
-      (ngModelChange)="total=$event" 
+      (ngModelChange)="insuranceService.insurancePlan.total=$event" 
       >
     </div>
   </div>
