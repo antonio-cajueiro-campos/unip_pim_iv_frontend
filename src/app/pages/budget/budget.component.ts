@@ -18,7 +18,7 @@ export class BudgetComponent implements OnInit {
 
   @ViewChildren(PriceSelectorComponent) listItems: QueryList<PriceSelectorComponent>
 
-  constructor(private insuranceService: InsuranceService, private router: Router) {}
+  constructor(public insuranceService: InsuranceService, private router: Router) {}
   
   async ngOnInit() {
     this.priceSelectorList = await this.insuranceService.getPriceSelectorList()
