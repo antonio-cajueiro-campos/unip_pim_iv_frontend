@@ -1,0 +1,460 @@
+
+/*Rodapé*/
+.rodape{
+    box-shadow: black 0px 0px 8px;
+    background-color: rgba(0, 0, 0, 0.87);
+}
+.container-rodape{
+    display: flex;
+    justify-content: space-around;
+    height: 28vh;
+    color: whitesmoke;
+    width: auto;
+    max-width: 1024px;
+    margin: auto;
+    padding-left: 10px;
+    font-size: 85%;
+    overflow: hidden;
+}
+/*Redes sociais e Apps*/
+.tsb-redes-app{
+    width: auto;
+    max-width: 280px;
+    max-height: 28vh;
+    padding: 3px 8px 8px 8px;
+}
+.tsb-redes-app p{
+    color: whitesmoke;
+}
+#logo-tsb{
+    display: flex;
+    padding-left: 0px;
+    font-size: 160%;
+}
+#logo-tsb img{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+#logo-tsb p{
+    margin: 3px 0px 0px 0px;
+}
+.logos-redes img{
+    max-width: 100px;
+    width: 30px;
+    max-height: 100px;
+    height: 30px;
+    color: whitesmoke;
+}
+.logos-redes{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    margin-top: 5px;
+}
+/*Botao App Android*/
+.app-android{
+    cursor: pointer;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    display: flex;
+    border: 1px solid rgba(245, 245, 245, 0.5);
+    max-width: 100%;
+    width: auto;
+    height: 22%;
+    font-family: "Poppins", sans-serif;
+    align-items: center;
+}
+.app-android:hover, .app-apple:hover{
+    color: rgb(70, 255, 70);
+}
+.app-android-txt{
+    width: 100%;
+}
+.app-android img{
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    margin: 2px;
+}
+.app-android p{
+    font-weight: lighter;
+    font-size: 80%;
+    height: 10px;
+    width: auto;
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: -4px;
+}
+.app-android h1{
+    text-align: center;
+    font-size: 130%;
+    margin: 2px;
+}
+/*Botao App Apple*/
+.app-apple{
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    display: flex;
+    border: 1px solid rgba(245, 245, 245, 0.5);
+    max-width: 100%;
+    width: auto;
+    height: 22%;
+    font-family: "Poppins", sans-serif;
+    align-items: center;
+}
+.app-apple img{
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    margin: 2px;
+}
+.app-apple p{
+    font-weight: lighter;
+    font-size: 80%;
+    height: 10px;
+    width: auto;
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: -4px;
+}
+.app-apple h1{
+    text-align: center;
+    font-size: 130%;
+    margin: 2px;
+}
+/*Contatos*/
+.container-contato{
+    width: auto;
+    max-width: 250px;
+    max-height: 28vh;
+    overflow: hidden;
+    padding: 5px;
+}
+.divs-contatos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    padding: 1px;
+}
+.contatos{
+    display: flex;
+    align-items: center;
+    padding: 1px;
+}
+.contatos a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+.contatos img{
+    width: 18px;
+    height: auto;
+    margin-right: 5px;
+}
+/*Transparencia*/
+.container-transparencia{
+    width: auto;
+    max-width: 250px;
+    max-height: 28vh;
+    overflow: hidden;
+    padding: 5px;
+}
+.links-transparencia{
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    padding: 1px;
+}
+.conteudos-t{
+    display: flex;
+    align-items: center;
+    padding: 2px;
+}
+.conteudos-t a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+a:hover{
+    color: rgb(70, 255, 70);
+}
+@media screen and (max-width: 1024px) {
+    .div-imagens-servs{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .responsive-servs1, .responsive-servs2{
+        width: 100vw;
+    }
+    .texto-servs{
+        text-align: center;
+    }
+    .area-app-mobile{
+        background-color: white;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        align-content: center;
+    }
+    .retangulo-app-mobile{
+        background-image: none;
+        height: auto;
+        width: 50vw;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(to top, blue, rgb(0, 225, 255));
+
+    }
+    .foto-app-mobile{
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        border-bottom-left-radius: 0px;
+        height: 30vh;
+        width: 50vw;
+    }
+    .texto-e-btn{
+        border-bottom-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        border-top-right-radius: 0px;
+        width: 50vw;
+        height: 25vh;
+    }
+    .titulo-app-mobile{
+        font-size: 150%;
+    }
+    .txt-app-mobile{
+        font-size: 110%;
+    }
+    .botao-app-mobile input{
+        width: 22vw;
+        height: 5vh;
+        font-size: 100%;
+        text-align: center;
+        padding: 0vh;
+    }
+}
+@media screen and (max-width: 768px) {
+    .btnPlanos input{
+        margin-right: 0px;
+    }
+    .logo-tsb{
+        padding-left: 0px;
+    }
+    .header{
+        flex-direction: column;
+        padding-left: 0px;
+    }
+    .header a{
+        padding-inline: 15px;
+    }
+    .tsb-redes-app p{
+        display: none;
+    }
+    #logo-tsb img{
+        display: none;
+    }
+    .responsive-apps{
+        display: none;
+    }
+    .logos-redes{
+        flex-direction: column;
+        height: 100%;
+    }
+    .logos-redes a{
+        border: 1px dotted rgba(245, 245, 245, 0.521);
+        padding: 2px;
+    }
+}
+@media screen and (max-width: 599px){
+    .txt-app-mobile{
+        display: none;
+    }
+    .botao-app-mobile input{
+        width: 40vw;
+        height: 8vh;
+        font-size: 120%;
+    }
+    .imgs{
+        font-size: 90%;
+    }
+    .txtSeguro{
+        font-size: 170%;
+    }
+    .container-servs-beneficios{
+        padding-left: 0px;
+    }
+    .conteudo2{
+        padding: 30px;
+    }
+    .txtSeguro{
+        font-size: 150%;
+        width: 42vw;
+    }
+}
+@media screen and (max-width: 540px){
+    .txtcelular2, .txtcalendario2, .txtclipboard2{
+        display: none;
+    }
+    .planodefundo{
+        background-image: none;
+    }
+    .subcontainer-img-txt{
+        width: 100vw;
+    }
+    .txtSeguro{
+        max-width: 100vw;
+        width: 60vw;
+    }
+    .imgfire, .imglight, .imgshield{
+        max-width: 100vw;
+    }
+    .img1, .img2, .img3, .img4, .img5, .img6{
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+    .container-servs-beneficios{
+        margin-right: 20px;
+    }
+    .txt4{
+        margin-left: -10px;
+    }
+    .foto-app-mobile{
+        width: 70vw;
+        overflow: hidden;
+        background-size: 150%;
+        height: 28vh;
+    }
+    .retangulo-app-mobile{
+        width: 70vw;
+    }
+    .texto-e-btn{
+        width: 70vw;
+    }
+    .logos-redes{
+        height: auto;
+    }
+}
+/*.img-logos{
+    border-radius: 5px;
+    margin-right: 3vh;
+    box-shadow: rgba(0, 0, 0, 0.233) 0px 0px 5px;
+    width: auto;
+    height: auto;
+}
+.img-logos .img-seguros{
+    max-width: 100vw;
+    max-height: 50vh;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 7pt;
+    margin-top: -10px;
+    margin-bottom: -5px;
+}
+.txtImg{
+    display: block;
+    font-size: 41pt;
+    color: whitesmoke;
+    margin: 10px 100px 10px 100px;
+    font-weight: bolder;
+    font-variant: small-caps;
+    border: 2pt solid rgba(255, 255, 255, 0.753);
+    box-shadow: rgba(0, 0, 0, 0.466) 0px 0px 8px;
+    padding: 5px;
+    /*text-shadow: 1px 1px 10px black;
+}
+.txtTSB-Seguros{
+    margin-top: -225pt;
+    margin-left: 20pt;
+    line-height: 0.8;
+}
+.txtTSB, .txtSeguros{
+    position: relative;
+    color: #0045CA;
+}
+.txtTSB{
+    font-size: 32pt;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.txtSeguros{
+    font-style: italic;
+    font-size: 20pt;
+}
+.imgs{
+    position: absolute;
+    width: auto;
+    height: auto;
+    color: whitesmoke;
+}
+.fireimg{
+    width: 45px;
+    height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.imgfire{
+    width: 90px;
+    position: relative;
+    margin-top: 78pt;
+    margin-left: 140pt;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.lightimg{
+    width: 45px;
+    height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.imglight{
+    width: 157px;
+    position: relative;
+    margin-top: -48pt;
+    margin-left: 10pt;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.lighttxt{
+    width: 140px;
+}
+.shieldimg{
+    width: 45px;
+    height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.imgshield{
+    width: 157px;
+    position: relative;
+    margin-top: -48pt;
+    margin-left: 222pt;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.shieldtxt{
+    width: 65px;
+    margin: auto;
+}*/
