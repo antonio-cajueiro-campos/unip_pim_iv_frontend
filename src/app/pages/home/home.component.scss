@@ -1,3 +1,11 @@
+.container-pag2{
+    font-family: "Poppins", sans-serif;
+}
+.icon-display {
+	color: #2b2b2b;
+	font-size: 50px;
+}
+
 /*Servicos Imagens e Texto*/
 .container-servs-beneficios{
     display: block;
@@ -9,34 +17,16 @@
     padding-left: 25px;
 }
 
-.texto-servs{
-    margin-top: 3%;
-    font-weight: bolder;
-	font-family: "Poppins", sans-serif; 
+.servicos-text {
+	font-weight: 700;
 }
 
-.div-imagens-servs{
-    display: flex;
+.servicos-types {
+	margin: 45px auto 50px auto;
 }
 
-.responsive-servs1, .responsive-servs2{
-    width: 50vw;
-    display: flex;
-}
-
-.div-imagens-servs img{
-    width: 55px;
-    height: 55px;
-}
-
-.img1, .img2, .img3, .img4, .img5, .img6{
-    width: 18%;
-    margin-top: 3%;
-    margin-left: 10%;
-    margin-right: 10%;
-    display: block;
-    text-align: center;
-    font-weight: bold;
+.servicos-types > .col-md-4 {
+	margin: 25px auto 20px auto;
 }
 
 /*Beneneficios Imagens e Texto*/
@@ -46,31 +36,21 @@
     font-family: "Poppins", sans-serif;
 }
 
-.div-imagens-benef img{
-    width: 80px;
-    height: 75px;
+.titulo-100digital, .titulo-assinaturas, .titulo-personalize{
+    font-weight: bolder;
+    font-family: "Poppins", sans-serif;
+    margin-top: 2%;
+    font-size: 120%;   
 }
 
-.imgcelular, .imgcalendario, .imgclipboard{
-    width: 25%;
-    margin-top: 3%;
-    margin-left: 7%;
-    margin-right: 7%;
-    display: block;
-    text-align: center;
-    align-content: center;
-}
-
-.txtcelular, .txtcalendario, .txtclipboard{
+.txt-100digital, .txt-assinaturas, .txt-personalize{
     font-weight: bold;
-    margin-bottom: 5%;    
+    color: #3f3f3f;
+    font-family: "Roboto", sans-serif;
 }
-.txtcelular2, .txtcalendario2, .txtclipboard2{
-    width: 150%;
-    height: auto;
-    text-align: center;
-    margin-left: -25%;
-    overflow: hidden;
+
+.benefits-imgs{
+    margin-top: 5%;
 }
 
 /*Download app Mobile*/
@@ -102,7 +82,7 @@
     align-items: center;
     height: auto;
     width: 50vw;
-    padding: 5px;
+    padding: 8px;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     background-image: linear-gradient(to bottom, blue, rgb(0, 238, 255));
@@ -113,10 +93,10 @@
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
     background-image: url("../../../assets/images/content/app-mobile.jpg");
-    background-size: 100%;
+    background-size: 140%;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100%;
+    height: auto;
     width: 48vw;
     margin: 0;
 }
@@ -127,6 +107,10 @@
     font-size: 200%;
     font-family: "Poppins", sans-serif;
     text-align: center;
+}
+
+.titulo-app-mobile p{
+    margin: 0;
 }
 
 .txt-app-mobile{
@@ -152,20 +136,82 @@
     text-shadow: 0px 0px 1px black;
 }
 
-
-.icon-display {
-	color: #5f5f5f;
-	font-size: 50px;
+.botao-app-mobile input:hover{
+    background-color: #2b2b2b;
+    background-image: linear-gradient(to top, rgba(0, 197, 0, 0.781), rgba(0, 197, 0, 0.781));
 }
 
-.servicos-types {
-	margin: 45px auto 50px auto;
-}
+@media screen and (max-width: 1024px) {
+    .area-app-mobile{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        align-content: center;
+    }
+    .retangulo-app-mobile{
+        background-image: none;
+        height: 80vh;
+        width: 50vw;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(to top, blue, rgb(0, 225, 255));
 
-.servicos-types > .col-md-4 {
-	margin: 25px auto 20px auto;
+    }
+    .foto-app-mobile{
+        background-size: 115%;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        border-bottom-left-radius: 0px;
+        height: 40vh;
+        width: 50vw;
+    }
+    .texto-e-btn{
+        border-bottom-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        border-top-right-radius: 0px;
+        width: 50vw;
+        height: 40vh;
+    }
+    .titulo-app-mobile{
+        font-size: 180%;
+    }
+    .txt-app-mobile{
+        font-size: 130%;
+    }
+    .botao-app-mobile input{
+        width: 22vw;
+        height: 8vh;
+        font-size: 135%;
+        text-align: center;
+        padding: 0vh;
+    }
 }
-
-.servicos-text {
-	font-weight: 700;
+@media screen and (max-width: 768px){
+    .foto-app-mobile{
+        background-size: 140%;
+        background-position: left;
+    }
+}
+@media screen and (max-width: 576px){
+    .foto-app-mobile{
+        background-size: 170%;
+    }
+    .titulo-app-mobile{
+        font-size: 150%;
+    }
+    .txt-app-mobile{
+        font-size: 110%;
+    }
+    .botao-app-mobile input{
+        padding-left: 10px;
+        padding-right: 10px;
+        height: auto;
+        max-height: 6vh;
+        width: auto;
+        max-width: 28vw;
+    }
 }
