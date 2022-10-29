@@ -1,7 +1,7 @@
 .price-selector {
 	justify-self: center;
 	margin-top: 20px;
-	width: 250px;
+	width: 270px;
 }
 
 .selector-container {
@@ -9,10 +9,12 @@
 	border-radius: 20px;
 	height: 50px;
 	width: 250px;
-	margin: 10px 0;
+	margin: 10px 5px;
 }
 
 .selector-title {
+	font-weight: bolder;
+	font-size: 105%;
 	display: block;
 	text-align: center;
 	margin: 15px 0;

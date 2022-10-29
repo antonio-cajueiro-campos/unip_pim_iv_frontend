@@ -2669,7 +2669,7 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #28a745;
+  background-color: rgb(31, 189, 155);
   border-color: #28a745;
 }
 
@@ -10729,6 +10729,7 @@ footer.sticky-footer .copyright {
 }
 
 .container-fluid {
+  min-height: 65vh;
   padding: 1rem;
 }
 
@@ -10743,7 +10744,7 @@ footer.sticky-footer .copyright {
     display: none;
   }
   .sidebar {
-    height: calc(100vh - 69px);
+    min-height: calc(100vh - 69px);
   }
   #wrapper #content-wrapper {
     padding-bottom: 0;

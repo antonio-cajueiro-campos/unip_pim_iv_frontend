@@ -1,0 +1,98 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+/*Titulos*/
+h3{
+    font-weight: bold;
+}
+
+/*Dados do Usuario*/
+.container-dados-usuario{
+    width: auto;
+    margin: auto;
+    display: block;
+}
+
+.dados-usuario{
+    max-width: 410px;
+    height: 45px;
+    display: block;
+    border-color: rgba(0, 0, 0, 0.70);
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-right: 40px; 
+}
+
+.dados-assinatura{
+    max-width: 175px;
+    height: 45px;
+    display: block;
+    border-color: rgba(0, 0, 0, 0.70);
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+
+/*Endereço do Usuario*/
+.endereco-usuario{
+    margin: auto;
+    width: auto;
+    height: auto;
+}
+
+.dados-endereco-usuario{
+        height: 45px;
+        display: block;
+        border-color: rgba(0, 0, 0, 0.70);
+        margin-top: 10px;
+        border-radius: 4px;
+        margin-right: 10px;
+}
+
+#name-user{max-width: 390px;}
+#document-user{max-width: 180px;}
+#username-user{max-width: 175px;}
+#tel-user{max-width: 195px;}
+#cep-user{max-width: 130px;}
+#state-user{max-width: 215px;}
+#city-user{max-width: 170px;}
+#distric-user{max-width: 140px;}
+#road-user{max-width: 215px;}
+#numberofhouse-user{max-width: 70px;}
+#complement-user{max-width: 150px;}
+
+.container-dados-usuario > .dados-usuario:nth-child(4){
+    margin-bottom: 20px;
+}
+
+/*Dados da Assinatura/Mensalidade*/
+.container-assinatura-btn{
+    margin: auto;
+}
+
+.btn-alterar-plano{
+    font-weight: bold;
+    font-size: 110%;
+}
+
+.container-dados-assinatura{
+    width: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.border-assinatura{
+    width: auto;
+    max-width: 440px;
+    border: 2px dashed rgba(0, 0, 0, 0.6);
+    padding: 0px 10px 10px 10px;
+}
+
+/*Style Botões*/
+button{
+    font-weight: bold;
+    font-size: 110%;
+    margin-top: 10px;
+    height: 45px;
+}
