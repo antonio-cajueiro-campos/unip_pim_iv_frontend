@@ -29,6 +29,10 @@
 	margin: 25px auto 20px auto;
 }
 
+.servicos-types > .col-md-4 > .icon-display, .servicos-text{
+    cursor: pointer;
+}
+
 /*Beneneficios Imagens e Texto*/
 .div-imagens-benef{
     display: flex;
@@ -67,7 +71,7 @@
 
 .retangulo-app-mobile{
     display: flex;
-    height: 40vh;
+    height: auto;
     border-radius: 40px;
     width: auto;
     box-shadow: rgba(0, 0, 0, 0.438) 0px 0px 50px;
@@ -78,14 +82,11 @@
 .texto-e-btn{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
+    margin: auto;
     height: auto;
     width: 50vw;
     padding: 8px;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-image: linear-gradient(to bottom, blue, rgb(0, 238, 255));
 }
 
 .foto-app-mobile{
@@ -96,7 +97,7 @@
     background-size: 140%;
     background-repeat: no-repeat;
     background-position: center;
-    height: auto;
+    height: 265px;
     width: 48vw;
     margin: 0;
 }
@@ -121,6 +122,7 @@
     text-align: justify;
     padding-left: 15%;
     padding-right: 15%;
+    margin: 8px 0px 8px 0px;
 }
 
 .botao-app-mobile input{
@@ -158,7 +160,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-image: linear-gradient(to top, blue, rgb(0, 225, 255));
+        background-image: linear-gradient(to bottom, blue, rgb(0, 225, 255));
 
     }
     .foto-app-mobile{
@@ -166,15 +168,13 @@
         border-top-left-radius: 40px;
         border-top-right-radius: 40px;
         border-bottom-left-radius: 0px;
-        height: 40vh;
+        height: 100%;
         width: 50vw;
     }
     .texto-e-btn{
-        border-bottom-right-radius: 40px;
-        border-bottom-left-radius: 40px;
-        border-top-right-radius: 0px;
         width: 50vw;
-        height: 40vh;
+        height: 100%;
+        justify-content: center;
     }
     .titulo-app-mobile{
         font-size: 180%;
@@ -209,9 +209,8 @@
     .botao-app-mobile input{
         padding-left: 10px;
         padding-right: 10px;
-        height: auto;
         max-height: 6vh;
-        width: auto;
-        max-width: 28vw;
+        width: max-content;
+        max-width: 100%;
     }
 }

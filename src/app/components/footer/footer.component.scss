@@ -26,7 +26,7 @@
 }
 /*Redes sociais e Apps*/
 .tsb-redes-app{
-    max-width: 250px;
+    max-width: 210px;
     max-height: auto;
     padding: 5px;
     margin: 5px;
@@ -91,6 +91,7 @@
     padding-bottom: 3px;
     height: auto;
     max-height: 7vh;
+    width: 100%;
 }
 /*Botao App Apple*/
 .app-apple{
@@ -126,6 +127,7 @@
     padding-bottom: 3px;
     height: auto;
     max-height: 7vh;
+    width: 100%
 }
 .footer-icons{
     color: whitesmoke;
@@ -145,7 +147,7 @@
 /*Contatos*/
 .container-contato{
     width: auto;
-    max-width: 250px;
+    max-width: 230px;
     max-height: auto;
     overflow: hidden;
     padding: 5px;
@@ -169,7 +171,7 @@
 /*Transparencia*/
 .container-transparencia{
     width: auto;
-    max-width: 250px;
+    max-width: 230px;
     max-height: auto;
     overflow: hidden;
     padding: 5px;
@@ -220,7 +222,9 @@
         display: none;
     }
     .logos-redes{
-        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 10px;
         height: 100%;
     }
     .logos-redes > .col-sm i{
@@ -299,5 +303,8 @@
     }
     .logos-redes > .col-md-1{
         font-size: 140%;
+    }
+    .logos-redes{
+        flex-direction: row;
     }
 }

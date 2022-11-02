@@ -83,6 +83,16 @@ export class MessageService {
 		});
 	}
 
+	public async showServiceDescription(title: string, text: string) {
+		await Swal.fire({
+			title, text, icon: "info",
+			customClass: 'message-description',
+			showCancelButton: false,
+			confirmButtonText: 'Ok'
+		})
+	}
+
+
 	public async toast(message: string, icon: any, timer: number = 3000) {
 		const Toast = Swal.mixin({
 			toast: true,
