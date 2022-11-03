@@ -1,0 +1,19 @@
+span{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 105% !important;
+}
+
+.nav-item:hover{
+    background-color: #55555521;
+}
+
+.sidebar-icon{
+    font-size: 110%;
+}
+
+@media screen and (max-width: 768px){
+    span{
+        font-size: 90% !important;
+    }
+}

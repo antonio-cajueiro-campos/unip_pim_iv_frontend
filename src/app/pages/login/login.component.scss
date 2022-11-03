@@ -1,0 +1,67 @@
+*{
+    font-family: Poppins;
+}
+
+.area-container-login{
+    min-height: 65vh;
+    padding-top: 40px;
+    background-image: url(../../../assets/images/background-login-register.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 70%;
+}
+
+@media screen and (max-width: 1024px) {
+    .area-container-login{
+        background-size: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .area-container-login{
+        background-size: 115%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .area-container-login{
+        background-image: none;
+    }
+}
+.container-login{
+    min-width: 160px;
+    max-width: 300px;
+    height: 275px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.397);
+    box-shadow: rgba(140, 204, 190, 0.568) 0px 0px 8px;
+}
+
+h4{
+    font-weight: bolder;
+}
+
+.login-password{
+    margin: auto;
+}
+
+.form-control{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.btn-entrar{
+    font-weight: bolder;
+    background-color: rgb(38, 184, 152);
+    border: none;
+    padding: 2px;
+    font-size: 150%;
+    margin-top: 20px;
+    max-width: 250px;
+    width: 100%;
+}

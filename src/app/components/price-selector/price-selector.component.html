@@ -2,6 +2,7 @@
   <i class="fa-solid fa-{{priceSelector.icon}} selector-icon"></i>
   <span class="selector-title">{{priceSelector.title}}</span>
   <div class="selector-container">
+    <span class="select-arrow"></span>
     <select name="select-input" id="{{priceSelector.id}}" #{{priceSelector.id}} class="select-input" [(ngModel)]="priceSelector.monthlyPayment"  (change)="updateTotal()">
       <option class="option" *ngFor="let item of priceSelector.list" [ngValue]="item.value" [attr.selected]="item.text">
         {{item.text}}

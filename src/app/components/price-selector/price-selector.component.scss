@@ -5,11 +5,14 @@
 }
 
 .selector-container {
-	border: 5px solid #00A88A;
+	position: relative;
+    border: 3.5px solid rgba(0, 0, 0, 0.4);
+    box-shadow: rgba(108, 189, 162, 0.568) 0px 0px 8px;
 	border-radius: 20px;
 	height: 50px;
-	width: 250px;
-	margin: 10px 5px;
+	width: auto;
+	max-width: 250px;
+	margin: 10px 10px;
 }
 
 .selector-title {
@@ -27,16 +30,61 @@
 }
 
 .select-input {
+	appearance: none;
 	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 	height: 100%;
 	border-radius: 15px;
 	border: none;
 	background-color: transparent;
 }
 
+.select-arrow{
+	margin-top: 1px;
+	display: block;
+	position: absolute;
+	right: 5%;
+	top: 0;
+	height: 101%;
+	width: 24px;
+	pointer-events: none;
+}
+
+.select-arrow::before,
+.select-arrow::after{
+	--size: 7px;
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+
+	left: 50%;
+	top: 50%;
+	transform: translate(-51%, -50%);
+}
+
+.select-arrow::before{
+	border-left: var(--size) solid transparent;
+	border-right: var(--size) solid transparent;
+	border-bottom: var(--size) solid rgb(0, 0, 0, 0.5);
+
+	top: 35%;
+}
+
+.select-arrow::after{
+	border-left: var(--size) solid transparent;
+	border-right: var(--size) solid transparent;
+	border-top: var(--size) solid rgb(0, 0, 0, 0.5);
+
+	top: 60%;
+}
+
 .option {
 	text-align: center;
 }
+
 
 .monthly-payment-input {
 	width: 100%;
