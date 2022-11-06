@@ -92,7 +92,6 @@ export class MessageService {
 		})
 	}
 
-
 	public async toast(message: string, icon: any, timer: number = 3000) {
 		const Toast = Swal.mixin({
 			toast: true,
@@ -113,7 +112,7 @@ export class MessageService {
 		})
 	}
 
-	private instanceOfDefaultResponse = (o: any): o is DefaultResponse  => 'data' in o;
+	private instanceOfDefaultResponse = (o: any): o is DefaultResponse => 'data' in o;
 
 	private serverErrorHandle(message: string) {
 		switch(true) {

@@ -45,11 +45,8 @@ export class BudgetComponent implements OnInit {
   calculateTotal(priceSelectorList: PriceSelector[]): number {
     var sum = 0;
     priceSelectorList.forEach(priceSelector => {
-      var flo = priceSelector.monthlyPayment / priceSelector.numberOfMonths;
-      var flor = flo.toFixed(2);
-      //sum = parseFloat(sum.toFixed(2))
-      
-      sum += parseFloat(flor);
+      var res = priceSelector.monthlyPayment / priceSelector.numberOfMonths;
+      sum += parseFloat(res.toFixed(2));
     })
     return sum;
   }
