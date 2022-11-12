@@ -26,6 +26,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funcionario.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { CompleteRegistrationComponent } from './pages/complete-registration/complete-registration.component';
 import { PriceSelectorComponent } from './components/price-selector/price-selector.component';
 import { BudgetComponent } from './pages/budget/budget.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -43,6 +44,7 @@ registerLocaleData(localePt, 'pt-br');
     BudgetComponent,
     LoginComponent,
     RegisterComponent,
+    CompleteRegistrationComponent,
     ChatComponent,
     ServicesComponent,
     ProfileComponent,
