@@ -42,8 +42,7 @@ export class UserService {
 
   public registerUser = async (user: Register, inputs: ElementRef[]): Promise<boolean> =>
     await this.request.postAsync('/user/register', user, (data: any): void => {
-      console.log(data);
-      
+
       this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos();
       this.router.navigateByUrl('/');
