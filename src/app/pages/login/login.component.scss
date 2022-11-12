@@ -31,8 +31,7 @@
 .container-login{
     min-width: 160px;
     max-width: 300px;
-    height: 275px;
-    padding: 10px;
+    padding: 0 15px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -41,27 +40,25 @@
     box-shadow: rgba(140, 204, 190, 0.568) 0px 0px 8px;
 }
 
-h4{
+.iniciar {
     font-weight: bolder;
+    padding: 20px 0;
+    margin: 0;
 }
 
-.login-password{
+.login-password {
     margin: auto;
 }
 
-.form-control{
-    margin-top: 10px;
+.form-control {
     margin-bottom: 10px;
-    
 }
 
-.btn-entrar{
+.btn-entrar {
     font-weight: bolder;
     background-color: rgb(38, 184, 152);
     border: none;
-    padding: 2px;
     font-size: 150%;
-    margin-top: 20px;
-    max-width: 250px;
+    margin: 20px auto;
     width: 100%;
 }

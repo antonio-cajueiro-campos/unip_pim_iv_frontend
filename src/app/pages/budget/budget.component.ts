@@ -1,11 +1,8 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
 import { PriceSelectorComponent } from 'src/app/components/price-selector/price-selector.component';
-import { InsurancePlan } from 'src/app/models/insurance-plan.model';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { PriceSelector } from 'src/app/models/price-selector.model';
 import { InsuranceService } from 'src/app/services/insurance.service';
-import { PaypalService } from 'src/app/services/paypal.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-budget',

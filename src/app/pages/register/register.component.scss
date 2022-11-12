@@ -18,7 +18,7 @@
     min-width: 160px;
     max-width: 500px;
     height: max-content;
-    padding: 10px;
+    padding: 0 15px 30px 15px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -47,8 +47,7 @@
 
 h4{
     font-weight: bolder;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .registrar-infos{
@@ -60,23 +59,20 @@ h4{
     margin-bottom: 10px;
 }
 
-.form-control:nth-child(3){
+.form-control:nth-child(3) {
     margin-bottom: 30px;
 }
 
-#Name{min-width: auto; max-width: 390px;}
-#Document{min-width: auto; max-width: 180px;}
-#Username{min-width: auto; max-width: 175px;}
-#Password, #Repassword{min-width: auto; max-width: 250px;}
-
-
-.btn-cadastrar{
+.btn-cadastrar {
     font-weight: bolder;
     background-color: rgb(38, 184, 152);
     border: none;
-    padding: 2px;
     font-size: 150%;
     margin-top: 20px;
     max-width: 250px;
+    width: 100%;
+}
+
+.register-form > input {
     width: 100%;
 }

@@ -12,6 +12,7 @@ export class MessageService {
 	constructor() { }
 
 	public async handle(response: HttpErrorResponse | DefaultResponse | any, inputs: any[] = []) {
+		console.log("error", response);
 		
 		if (HttpStatus.BadRequest(response) && this.instanceOfDefaultResponse(response)) {
 			this.toast(response.message, "error");

@@ -1,10 +1,10 @@
 <div class="area-container-login">
     <div class="container-login">
-        <h4>Iniciar Sessão</h4><br>
+        <h4 class="iniciar">Iniciar Sessão</h4>
         <div class="login-password">
             <form (ngSubmit)="onSubmit()" class="login-form">
                 <input type="username" name="username" class="form-control" placeholder="Usuário" #Username id="Username" [(ngModel)]="credentials.username">
-                <input type="password" name="password" class="form-control" placeholder="Senha" #Password id="Password" [(ngModel)]="credentials.password">
+                <input type="password" name="password" class="form-control" placeholder="Senha" #Password id="Password" [(ngModel)]="credentials.password" autocomplete="new-password">
                 <button class="btn btn-primary btn-entrar">Entrar</button>
             </form>
         </div>
