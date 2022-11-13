@@ -11,6 +11,7 @@ import { StorageKeys } from './enums/storage-keys';
 import { HttpStatus } from './constants/http-status';
 import { Infos } from '../models/Infos.model';
 import { Register } from '../models/register.model';
+import { CompleteRegistration } from '../models/complete-registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class UserService {
   constructor(
     private router: Router,
     private dataManager: DataManagerService,
-    private request: RequestService,
+    public request: RequestService,
     private message: MessageService
   ) {
     this.updateLocalInfos(this.dataManager.getData(StorageKeys.INFOS));
@@ -45,8 +46,17 @@ export class UserService {
 
       this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos();
+      this.router.navigateByUrl('/complete-registration');
+    }, inputs);
+
+  public completeRegistration = async (user: CompleteRegistration, inputs: ElementRef[]): Promise<boolean> =>
+    await this.request.postAsync('/user/complete-registration', user, (data: any): void => {
+
+      this.dataManager.setData(StorageKeys.JWT, data.jwt);
+      this.getUserInfos();
       this.router.navigateByUrl('/');
     }, inputs);
+
 
   public getUserInfos = async (): Promise<boolean> =>
     await this.request.getAsync('/user/infos', (data: any): void => {

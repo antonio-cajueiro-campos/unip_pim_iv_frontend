@@ -13,14 +13,14 @@ class HttpInterceptorService implements HttpInterceptor {
 	constructor(public layoutService: LayoutService, public messageService: MessageService) {}
 	
 	public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {		
-        this.layoutService.showLoader(req.headers.get('show-loader').toLowerCase() == "true");		
+        //this.layoutService.showLoader(req.headers.get('show-loader').toLowerCase() == "true");		
         return next.handle(req).pipe(
 			timeout(this.timeOutMs),
 			catchError((e) => {
-				this.messageService.handle(e)
+				//this.messageService.handle(e)
 				return throwError(e);
 			} ),
-            finalize(() => this.layoutService.hideLoader())
+            //finalize(() => this.layoutService.hideLoader())
         );
     }
 }

@@ -1,0 +1,82 @@
+*{
+    font-family: Poppins;
+}
+
+.area-container-registrar{
+    height: max-content;
+    min-height: 65vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(../../../assets/images/background-login-register.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 1000px;
+}
+
+.container-registrar{
+    background-color: whitesmoke;
+    min-width: 160px;
+    max-width: 500px;
+    height: max-content;
+    padding: 0 15px 30px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.397);
+    box-shadow: rgba(140, 204, 190, 0.568) 0px 0px 8px;
+}
+/*
+@media screen and (max-width: 1024px) {
+    .area-container-registrar{
+        background-size: 110%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .area-container-registrar{
+        background-size: 125%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .area-container-registrar{
+        background-image: none;
+    }
+}
+*/
+h4{
+    font-weight: bolder;
+    margin: 20px 0;
+}
+
+.registrar-infos{
+    margin: auto;
+}
+
+.form-control{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-control:nth-child(2) {
+    margin-bottom: 30px;
+}
+
+.btn-cadastrar {
+    font-weight: bolder;
+    background-color: rgb(38, 184, 152);
+    border: none;
+    font-size: 150%;
+    margin-top: 20px;
+    max-width: 250px;
+    width: 100%;
+}
+
+.register-form > input {
+    width: 100%;
+}
+
+.form-control:nth-child(8){
+    display: flex;
+}

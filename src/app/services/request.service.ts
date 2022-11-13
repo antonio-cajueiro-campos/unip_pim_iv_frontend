@@ -8,6 +8,7 @@ import { StorageKeys } from './enums/storage-keys';
 import * as signalR from '@microsoft/signalr';
 import { HttpStatus } from './constants/http-status';
 import { MessageService } from './message.service';
+import { ViaCEP } from '../models/viacep.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,16 @@ export class RequestService {
     if (isDevMode) {
       // this.BACKEND_BASE_URL = "https://localhost:7042";
     }
+  }
+
+  public async getViaCep(cep: string, callback: Function): Promise<boolean> {
+    await this.getApiCore(`https://viacep.com.br/ws/${cep}/json/`).toPromise()
+      .then(response => {        
+        callback(response);
+      }).catch(response => {
+        return false;
+      });
+    return true;
   }
 
   public async getAsync(endpoint: string, callback: Function): Promise<boolean> {
@@ -47,6 +58,9 @@ export class RequestService {
       });
     return true;
   }
+
+  public getApiCore = (url: string): Observable<ViaCEP> =>
+  this.httpClient.get<ViaCEP>(url);
 
   public getCore = (endpoint: string, headers: string | Headers = null): Observable<DefaultResponse> =>
     this.httpClient.get<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, { headers: this.getHeaders(headers) });

@@ -39,7 +39,7 @@
             </a>
         </li>
     </div>
-    <div >
+    <div *ngIf="(userService.isLogged() | async)">
         <li class="nav-item">
             <a class="nav-link sidebar-btn" routerLink='/profile'>
                 <i class='fas fa-fw fa-user sidebar-icon'></i>
