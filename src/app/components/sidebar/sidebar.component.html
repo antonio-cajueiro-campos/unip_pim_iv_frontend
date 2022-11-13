@@ -58,5 +58,11 @@
                 <span>Chat Funcionario</span>
             </a>
         </li>
+        <li class="nav-item" *ngIf="(infos | async).endereco == null">
+            <a class="nav-link sidebar-btn" routerLink='/complete-registration'>
+                <i class='fas fa-fw fa-file-contract sidebar-icon'></i>
+                <span>Finalizar Cadastro</span>
+            </a>
+        </li>
     </div>
 </ul>

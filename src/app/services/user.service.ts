@@ -37,24 +37,27 @@ export class UserService {
     await this.request.postAsync('/authenticate/login', credential, (data: any): void => {
 
       this.dataManager.setData(StorageKeys.JWT, data.jwt);
-      this.getUserInfos();
-      this.router.navigateByUrl('/');
+      this.getUserInfos().then(() => {
+        this.router.navigateByUrl('/');
+      });
     }, inputs);
 
   public registerUser = async (user: Register, inputs: ElementRef[]): Promise<boolean> =>
     await this.request.postAsync('/user/register', user, (data: any): void => {
-
+      
       this.dataManager.setData(StorageKeys.JWT, data.jwt);
-      this.getUserInfos();
-      this.router.navigateByUrl('/complete-registration');
+      this.getUserInfos().then(() => {
+        this.router.navigateByUrl('/complete-registration');
+      });
     }, inputs);
 
   public completeRegistration = async (user: CompleteRegistration, inputs: ElementRef[]): Promise<boolean> =>
     await this.request.postAsync('/user/complete-registration', user, (data: any): void => {
-      this.getUserInfos();
+      this.getUserInfos().then(() => {
+        this.message.toast("Cadastro completo!", "success")
+        this.router.navigateByUrl('/');
+      });
 
-      this.message.toast("Cadastro completo!", "success")
-      this.router.navigateByUrl('/');
     }, inputs);
 
   public getUserInfos = async (): Promise<boolean> =>
