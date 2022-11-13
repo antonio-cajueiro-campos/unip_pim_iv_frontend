@@ -1,5 +1,8 @@
 /*Rodapé*/
 .rodape{
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 225px);
     box-shadow: black 0px 0px 8px;
     background-color: rgba(0, 0, 0, 0.87);
     font-family: "Roboto", sans-serif; 
@@ -202,6 +205,10 @@
     color: rgb(31, 189, 155);
 }
 @media screen and (max-width: 768px) {
+    .rodape{
+        width: calc(100% - 70px);
+    }
+    
     .btnPlanos input{
         margin-right: 0px;
     }

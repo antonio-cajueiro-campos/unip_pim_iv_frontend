@@ -8,6 +8,10 @@ h3{
 }
 
 /*Dados do Usuario*/
+.container-infos{
+    min-width: 170px;
+}
+
 .container-dados-usuario{
     width: auto;
     margin: auto;
@@ -25,6 +29,7 @@ h3{
 }
 
 .dados-assinatura{
+    min-width: 170px;
     max-width: 175px;
     height: 45px;
     display: block;
@@ -42,6 +47,7 @@ h3{
 }
 
 .dados-endereco-usuario{
+        max-width: 410px;
         height: 45px;
         display: block;
         border-color: rgba(0, 0, 0, 0.70);
@@ -50,19 +56,15 @@ h3{
         margin-right: 10px;
 }
 
-#name-user{max-width: 390px;}
-#document-user{max-width: 180px;}
-#username-user{max-width: 175px;}
-#tel-user{max-width: 195px;}
-#cep-user{max-width: 130px;}
-#state-user{max-width: 215px;}
-#city-user{max-width: 170px;}
-#distric-user{max-width: 140px;}
-#road-user{max-width: 215px;}
-#numberofhouse-user{max-width: 70px;}
-#complement-user{max-width: 150px;}
 
-.container-dados-usuario > .dados-usuario:nth-child(4){
+#document-user{max-width: 205px;}
+#username-user{max-width: 205px;}
+#tel-user{max-width: 205px;}
+#cep-user{max-width: 205px;}
+#numberofhouse-user{max-width: 205px;}
+#complement-user{max-width: 205px;}
+
+.container-dados-usuario > .dados-usuario:nth-child(5){
     margin-bottom: 20px;
 }
 
@@ -83,6 +85,7 @@ h3{
 }
 
 .border-assinatura{
+    min-width: 190px;
     width: auto;
     max-width: 440px;
     border: 2px dashed rgba(0, 0, 0, 0.6);
@@ -91,8 +94,11 @@ h3{
 
 /*Style Botões*/
 button{
+    min-width: 170px;
     font-weight: bold;
     font-size: 110%;
     margin-top: 10px;
-    height: 45px;
+    height: max-content;
+    margin-bottom: 10px;
+    padding: 5px;
 }

@@ -10,7 +10,7 @@
     background-image: url(../../../assets/images/background-login-register.png);
     background-repeat: no-repeat;
     background-position: top;
-    background-size: 85%;
+    background-size: 975px;
 }
 
 .container-registrar{
@@ -26,7 +26,7 @@
     border: 2px solid rgba(0, 0, 0, 0.397);
     box-shadow: rgba(140, 204, 190, 0.568) 0px 0px 8px;
 }
-
+/*
 @media screen and (max-width: 1024px) {
     .area-container-registrar{
         background-size: 110%;
@@ -44,7 +44,7 @@
         background-image: none;
     }
 }
-
+*/
 h4{
     font-weight: bolder;
     margin: 20px 0;

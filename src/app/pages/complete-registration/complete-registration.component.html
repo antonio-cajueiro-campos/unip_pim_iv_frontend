@@ -1,3 +1,19 @@
-<p>
-  complete-registration works!
-</p>
+<div class="area-container-registrar">
+  <div class="container-registrar">
+      <h4>Complete seu registro</h4>
+      <div class="registrar-infos">
+          <form (ngSubmit)="onSubmit()" class="register-form">
+              <input type="telefone" name="telefone" class="form-control" placeholder="Telefone" #Telefone id="Telefone" [(ngModel)]="completeRegistration.telefone">
+              <input type="chavePIX" name="chavePIX" class="form-control" placeholder="Chave PIX" #ChavePIX id="ChavePIX" [(ngModel)]="completeRegistration.chavePIX">
+              <input type="cep" name="cep" class="form-control" placeholder="CEP" #CEP id="CEP" [(ngModel)]="completeRegistration.cep" (change)="viaCEPinfos(this.cep.nativeElement.value)">
+              <input type="estado" name="estado" class="form-control" placeholder="Estado" #Estado id="Estado" [(ngModel)]="completeRegistration.estado">
+              <input type="cidade" name="cidade" class="form-control" placeholder="Cidade" #Cidade id="Cidade" [(ngModel)]="completeRegistration.cidade">
+              <input type="bairro" name="bairro" class="form-control" placeholder="Bairro" #Bairro id="Bairro" [(ngModel)]="completeRegistration.bairro">
+              <input type="rua" name="rua" class="form-control" placeholder="Rua" #Rua id="Rua" [(ngModel)]="completeRegistration.rua">
+              <input type="numero" name="numero" class="form-control" placeholder="Número" #Numero id="Numero" [(ngModel)]="completeRegistration.numero">
+              <input type="complemento" name="complemento" class="form-control" placeholder="Complemento" #Complemento id="Complemento" [(ngModel)]="completeRegistration.complemento">
+              <button class="btn btn-primary btn-cadastrar">Finalizar</button>
+          </form>
+      </div>
+  </div>
+</div>
