@@ -6,11 +6,11 @@
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Nome" name="name" id="name-user" [value]="(infos | async).user.name">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Documento" maxlength="14" name="document" id="document-user" [value]="(infos | async).user.document">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Usuário" name="username" id="username-user" [value]="(infos | async).user.credential.username">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Telefone" maxlength="18" name="phone number" id="tel-user">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Chave PIX" name="chavePIX" id="chavePIX">
+      <input class="col-md dados-usuario" type="text" required="required" placeholder="Telefone" maxlength="18" name="phone number" id="tel-user" [value]="(infos | async).telefone">
+      <input class="col-md dados-usuario" type="text" required="required" placeholder="Chave PIX" name="chavePIX" id="chavePIX" [value]="(infos | async).chavePIX">
       <h3>Endereço</h3>
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="CEP" name="address" maxlength="9" id="cep-user">
-        <select class="col-md dados-endereco-usuario" name="state" required="required" id="state-user">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="CEP" name="address" maxlength="9" id="cep-user" [value]="(infos | async).endereco.cep">
+        <select class="col-md dados-endereco-usuario" name="state" required="required" id="state-user" [value]="(infos | async).endereco.estado">
           <option value="">Estado</option>
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
@@ -40,11 +40,11 @@
           <option value="SE">Sergipe</option>
           <option value="TO">Tocantis</option>
         </select>
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Cidade" name="city" id="city-user">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Bairro" name="" id="distric-user">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Rua" name="" id="road-user">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Número" name="number" id="numberofhouse-user">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Complemento" name="complement" id="complement-user">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Cidade" name="city" id="city-user" [value]="(infos | async).endereco.cidade">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Bairro" name="" id="distric-user" [value]="(infos | async).endereco.bairro">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Rua" name="" id="road-user" [value]="(infos | async).endereco.rua">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Número" name="number" id="numberofhouse-user" [value]="(infos | async).endereco.numero">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Complemento" name="complement" id="complement-user" [value]="(infos | async).endereco.complemento">
     </div>
     <div class="container-dados-assinatura">
       <div class="border-assinatura">

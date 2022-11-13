@@ -8,20 +8,25 @@ import { MessageService } from './message.service';
 @Injectable()
 class HttpInterceptorService implements HttpInterceptor {
 
-	private timeOutMs: number = 10000;
+	private timeOutMs: number = 20000;
 
 	constructor(public layoutService: LayoutService, public messageService: MessageService) {}
 	
-	public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {		
-        //this.layoutService.showLoader(req.headers.get('show-loader').toLowerCase() == "true");		
-        return next.handle(req).pipe(
-			timeout(this.timeOutMs),
-			catchError((e) => {
-				//this.messageService.handle(e)
-				return throwError(e);
-			} ),
-            //finalize(() => this.layoutService.hideLoader())
-        );
+	public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+		if (req.url.includes('tsb-portal.herokuapp.com')) {
+			this.layoutService.showLoader(req.headers.get('show-loader').toLowerCase() == "true");
+			return next.handle(req).pipe(
+				timeout(this.timeOutMs),
+				catchError((e) => {
+					this.messageService.handle(e)
+					return throwError(e);
+				} ),
+				finalize(() => this.layoutService.hideLoader())
+			);
+		} else {
+			return next.handle(req);
+		}
     }
 }
 

@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CompleteRegistration } from 'src/app/models/complete-registration.model';
 import { ViaCEP } from 'src/app/models/viacep.model';
+import { RequestService } from 'src/app/services/request.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,14 +13,14 @@ export class CompleteRegistrationComponent {
 
   public completeRegistration: CompleteRegistration = {
     telefone: "",
+    chavePIX: "",
     cep: "",
-    cidade: "",
     estado: "",
+    cidade: "",
     bairro: "",
     rua: "",
     numero: "",
-    complemento: "",
-    chavePIX: ""
+    complemento: ""
   }
 
   public inputs: ElementRef[] = [];
@@ -34,12 +35,12 @@ export class CompleteRegistrationComponent {
   @ViewChild('Numero') numero: ElementRef;
   @ViewChild('Complemento') complemento: ElementRef;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private request: RequestService) { }
 
   viaCEPinfos(cep: string) {
     console.log(cep);
     if (cep.length == 8 || cep.length == 9) {
-      this.userService.request.getViaCep(cep, (response: ViaCEP) => {
+      this.request.getViaCep(cep, (response: ViaCEP) => {
         this.rua.nativeElement.value = response.logradouro;
         this.bairro.nativeElement.value = response.bairro;
         this.cidade.nativeElement.value = response.localidade;
@@ -67,5 +68,4 @@ export class CompleteRegistrationComponent {
   onSubmit() {
     this.userService.completeRegistration(this.completeRegistration, this.inputs);
   }
-
 }

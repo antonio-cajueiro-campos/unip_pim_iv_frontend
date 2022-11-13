@@ -24,7 +24,7 @@ export class UserService {
   constructor(
     private router: Router,
     private dataManager: DataManagerService,
-    public request: RequestService,
+    private request: RequestService,
     private message: MessageService
   ) {
     this.updateLocalInfos(this.dataManager.getData(StorageKeys.INFOS));
@@ -51,12 +51,11 @@ export class UserService {
 
   public completeRegistration = async (user: CompleteRegistration, inputs: ElementRef[]): Promise<boolean> =>
     await this.request.postAsync('/user/complete-registration', user, (data: any): void => {
-
-      this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos();
+
+      this.message.toast("Cadastro completo!", "success")
       this.router.navigateByUrl('/');
     }, inputs);
-
 
   public getUserInfos = async (): Promise<boolean> =>
     await this.request.getAsync('/user/infos', (data: any): void => {
