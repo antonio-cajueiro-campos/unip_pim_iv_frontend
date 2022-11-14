@@ -71,8 +71,10 @@ export class ChatComponent {
         .then(() => {
           this.getUserInfo((_: string, userId: number) => {
             this.userId = userId;
+            console.log("exec", userId);
+            
             this.getChatMode((params: any) => {
-              this.connection.send("initCliente", userId, params.type);
+              this.connection.send("initCliente", userId, params.type, "");
               console.warn("Chat conectado", this.connection);
             });
           })
