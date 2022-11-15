@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ElementRef, Injectable } from '@angular/core';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, tap } from 'rxjs/operators';
 import { Credential } from '../models/credential.model';
 import { Jwt } from '../models/jwt.model';
 import { Router } from '@angular/router';
@@ -38,7 +38,17 @@ export class UserService {
 
       this.dataManager.setData(StorageKeys.JWT, data.jwt);
       this.getUserInfos().then(() => {
-        this.router.navigateByUrl('/');
+
+        this.infos$.pipe(
+          tap(infos => {   
+            if (infos?.endereco == null) {
+              this.router.navigateByUrl('/complete-registration');
+            } else {
+              this.router.navigateByUrl('/profile');
+            }
+          })
+        ).subscribe();
+
       });
     }, inputs);
 
@@ -55,7 +65,7 @@ export class UserService {
     await this.request.postAsync('/user/complete-registration', user, (data: any): void => {
       this.getUserInfos().then(() => {
         this.message.toast("Cadastro completo!", "success")
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/profile');
       });
 
     }, inputs);

@@ -1,60 +1,108 @@
-<h3>Seu Perfil</h3>
-<hr>
-<form (ngSubmit)="onSubmit()">
-  <div class="container-infos">
-    <div class="row container-dados-usuario">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Nome" name="name" id="name-user" [value]="(infos | async).user.name">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Documento" maxlength="14" name="document" id="document-user" [value]="(infos | async).user.document">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Usuário" name="username" id="username-user" [value]="(infos | async).user.credential.username">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Telefone" maxlength="18" name="phone number" id="tel-user" [value]="(infos | async).telefone">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Chave PIX" name="chavePIX" id="chavePIX" [value]="(infos | async).chavePIX">
-      <h3>Endereço</h3>
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="CEP" name="address" maxlength="9" id="cep-user" [value]="(infos | async).endereco.cep">
-        <select class="col-md dados-endereco-usuario" name="state" required="required" id="state-user" [value]="(infos | async).endereco.estado">
-          <option value="">Estado</option>
-          <option value="AC">Acre</option>
-          <option value="AL">Alagoas</option>
-          <option value="AP">Amapá</option>
-          <option value="AM">Amazonas</option>
-          <option value="BA">Bahia</option>
-          <option value="CE">Ceará</option>
-          <option value="DF">Distrito Federal</option>
-          <option value="ES">Espírito Santo</option>
-          <option value="GO">Goiás</option>
-          <option value="MA">Maranhão</option>
-          <option value="MT">Mato Grosso</option>
-          <option value="MS">Mato Grosso do Sul</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="PA">Pará</option>
-          <option value="PB">Paraíba</option>
-          <option value="PR">Paraná</option>
-          <option value="PE">Pernambuco</option>
-          <option value="PI">Piauí</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="RN">Rio Grande do Norte</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="RO">Rondônia</option>
-          <option value="RR">Roraima</option>
-          <option value="SC">Santa Catanarina</option>
-          <option value="SP">São Paulo</option>
-          <option value="SE">Sergipe</option>
-          <option value="TO">Tocantis</option>
-        </select>
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Cidade" name="city" id="city-user" [value]="(infos | async).endereco.cidade">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Bairro" name="" id="distric-user" [value]="(infos | async).endereco.bairro">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Rua" name="" id="road-user" [value]="(infos | async).endereco.rua">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Número" name="number" id="numberofhouse-user" [value]="(infos | async).endereco.numero">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Complemento" name="complement" id="complement-user" [value]="(infos | async).endereco.complemento">
+<h2 class="profile-name">Olá, {{ (infos | async).user.name }}</h2>
+<section class="profile-sec">
+  <h5>Apólice e Pagamentos</h5>
+  <div class="row">
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-receipt"></i>Segunda via da Apolice
+      </a>
     </div>
-    <div class="container-dados-assinatura">
-      <div class="border-assinatura">
-        <div class="row container-assinatura-btn">
-          <input class="col-md dados-assinatura" type="text" placeholder="Assinatura" name="plan-type" id="">
-          <button type="submit" class="btn btn-success btn-alterar-plano">Adquirir novo plano</button>
-        </div>
-        <input class="col-md dados-assinatura" type="text" placeholder="Mensalidade" name="montlypayment" id="montlypayment">
-      </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-file-invoice-dollar"></i>Relação de Parcelas
+      </a>
     </div>
-    <button type="submit" class="btn btn-warning">Atualizar Informações</button>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-file-lines"></i>Orientações Débito em conta
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-file-invoice"></i>Condições Gerais
+      </a>
+    </div>
   </div>
-</form>
+</section>
+<section class="profile-sec">
+  <h5>Sinistro</h5>
+  <div class="row">
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/services">
+        <i class="fa-solid profile-icon fa-bell"></i>Aviso de sinistro
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-display"></i>Envio de Documentos online
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-file"></i>Documentação de Sinistro
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-rotate"></i>Constatação Online
+      </a>
+    </div>
+  </div>
+</section>
+<section class="profile-sec">
+  <h5>Assistência 24h</h5>
+  <div class="row">
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-bullhorn"></i>SOS
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-phone"></i>Telefones 24h
+      </a>
+    </div>
+  </div>
+</section>
+<section class="profile-sec">
+  <h5>Mais Serviços</h5>
+  <div class="row">
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-wrench"></i>Rede de Serviços
+      </a>
+    </div>
+  </div>
+</section>
+<section class="profile-sec">
+  <h5>Meu Perfil</h5>
+  <div class="row">
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/configuration">
+        <i class="fa-solid profile-icon fa-user"></i>Dados Pessoais
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-mobile-screen-button"></i>Informações de Contato
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-pen-to-square"></i>Alteração de Dados
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/">
+        <i class="fa-solid profile-icon fa-shield"></i>Informações por Produto
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <a class="text-dark" routerLink="/configuration">
+        <i class="fa-solid profile-icon fa-lock"></i>Configurações de Privacidade
+      </a>
+    </div>
+  </div>
+</section>

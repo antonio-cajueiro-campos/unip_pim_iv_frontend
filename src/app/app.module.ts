@@ -34,6 +34,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { PriceSelectorCalcPipe } from './pipes/price-selector-calc.pipe';
 import { AddBeforeTextPipe } from './pipes/add-before-text.pipe';
+import { ConfigComponent } from './pages/config/config.component';
 
 registerLocaleData(localePt, 'pt-br');
 
@@ -56,6 +57,7 @@ registerLocaleData(localePt, 'pt-br');
     PaymentComponent,
     LoaderComponent,
     ChatFuncionarioComponent,
+    ConfigComponent,
     PriceSelectorComponent,
     BannerComponent,
     PriceSelectorCalcPipe,

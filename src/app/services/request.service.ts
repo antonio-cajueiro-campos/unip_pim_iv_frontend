@@ -60,7 +60,7 @@ export class RequestService {
   }
 
   public getApiCore = (url: string): Observable<ViaCEP> =>
-  this.httpClient.get<ViaCEP>(url);
+    this.httpClient.get<ViaCEP>(url);
 
   public getCore = (endpoint: string, headers: string | Headers = null): Observable<DefaultResponse> =>
     this.httpClient.get<DefaultResponse>(this.BACKEND_BASE_URL + endpoint, { headers: this.getHeaders(headers) });

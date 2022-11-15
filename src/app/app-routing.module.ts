@@ -13,6 +13,7 @@ import { ChatFuncionarioComponent } from './pages/chat-funcionario/chat-funciona
 import { BudgetComponent } from './pages/budget/budget.component';
 import { CompleteRegistrationComponent } from './pages/complete-registration/complete-registration.component';
 import { NotCompleteRegistrationGuard } from './services/guards/not-complete-registration.guard';
+import { ConfigComponent } from './pages/config/config.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,11 @@ const routes: Routes = [
     path: 'complete-registration',
     component: CompleteRegistrationComponent,
     canActivate: [AuthGuard, NotCompleteRegistrationGuard]
+  },
+  {
+    path: 'configuration',
+    component: ConfigComponent,
+    canActivate: [AuthGuard]
   },
   // {
   //   path: 'profile',

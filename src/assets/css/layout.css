@@ -10731,7 +10731,7 @@ footer.sticky-footer .copyright {
 .container-fluid {
   min-height: 65vh;
   padding: 1rem;
-  padding-bottom: 220px;
+  padding-bottom: 228px;
 }
 
 @media (min-width: 768px) {  
