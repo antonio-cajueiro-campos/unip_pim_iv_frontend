@@ -1,14 +1,16 @@
-<h3>Seu Perfil</h3>
+<h3 class="text-center">Configure Seu Perfil</h3>
 <hr>
 <form (ngSubmit)="onSubmit()">
   <div class="container-infos">
     <div class="row container-dados-usuario">
+      <h4>Informações</h4>
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Nome" name="name" id="name-user" [value]="(infos | async).user.name">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Documento" maxlength="14" name="document" id="document-user" [value]="(infos | async).user.document">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Usuário" name="username" id="username-user" [value]="(infos | async).user.credential.username">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Telefone" maxlength="18" name="phone number" id="tel-user" [value]="(infos | async).telefone">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Chave PIX" name="chavePIX" id="chavePIX" [value]="(infos | async).chavePIX">
-      <h3>Endereço</h3>
+      <br><br>
+      <h4>Endereço</h4>
         <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="CEP" name="address" maxlength="9" id="cep-user" [value]="(infos | async).endereco.cep">
         <select class="col-md dados-endereco-usuario" name="state" required="required" id="state-user" [value]="(infos | async).endereco.estado">
           <option value="">Estado</option>

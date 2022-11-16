@@ -12,13 +12,12 @@
   <div class="row justify-content-center total-section">
     <div class="col-auto mb-3">
       <input type="text" name="total"
-      readonly class="total-input"
-      [ngModel]="insuranceService.insurancePlan.total | currency | addBeforeText: 'Mensalidade Total: '" 
-      (ngModelChange)="insuranceService.insurancePlan.total=$event" 
-      >
+        readonly class="total-input"
+        [ngModel]="insuranceService.insurancePlan.total | currency | addBeforeText: 'Mensalidade Total: '" 
+        (ngModelChange)="insuranceService.insurancePlan.total=$event">
     </div>
   </div>
   <div class="row justify-content-center">
-    <input type="submit" value="CONTRATAR" class="btn btn-success btn-implemented">
+    <button type="submit" [disabled]="btnDisabled" class="btn btn-success btn-implemented">{{ btnConfirmText }}</button>
   </div>
 </form>

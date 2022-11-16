@@ -3,6 +3,7 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { PriceSelector } from 'src/app/models/price-selector.model';
 import { InsuranceService } from 'src/app/services/insurance.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-budget',
@@ -12,10 +13,12 @@ import { Router } from '@angular/router';
 export class BudgetComponent implements OnInit {
 
   public priceSelectorList: PriceSelector[];
+  public btnConfirmText = 'CONTRATAR';
+  public btnDisabled = false;
 
   @ViewChildren(PriceSelectorComponent) listItems: QueryList<PriceSelectorComponent>
 
-  constructor(public insuranceService: InsuranceService, private router: Router) {}
+  constructor(public insuranceService: InsuranceService, private router: Router, private messageService: MessageService) {}
   
   async ngOnInit() {
     this.priceSelectorList = await this.insuranceService.getPriceSelectorList()
@@ -34,6 +37,10 @@ export class BudgetComponent implements OnInit {
   }
   
   async onSubmit() {
+    if (this.insuranceService.insurancePlan.total == 0) {
+      this.messageService.toast("Valor mensal não pode ser zero", "error");
+      return;
+    }
     this.updateValues();
 
     this.router.navigateByUrl('/payment');
