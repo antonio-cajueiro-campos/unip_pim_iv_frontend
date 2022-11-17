@@ -25,32 +25,36 @@
   <div class="input-container">
     <span class="isWriting" id="isWriting">{{ isWriting | async }}</span>
     <input placeholder="Mensagem" formControlName="text" type="text" class="text-box input" name="text" id="text" (input)="isWritingNotifyAll()">
-    <div class="btn-control zero" (click)="voltarPraLista()">
+    <div class="btn-control zero" (click)="voltarPraLista()" title="Retornar aos Chats">
       <i class="fas fa-fw fa-arrow-left"></i>
     </div>
-    <div class="btn-control first" (click)="encerrarSessao()">
+    <div class="btn-control first" (click)="encerrarSessao()" title="Finalizar Sessão">
       <i class="fas fa-fw fa-xmark"></i>
     </div>
-    <div class="btn-control secound" (click)="sairChat()">
+    <div class="btn-control secound" (click)="sairChat()" title="Sair do Chat">
       <i class="fas fa-fw fa-arrow-right-from-bracket"></i>
     </div>
-    <button type="submit" class="send-button input">
+    <button type="submit" class="send-button input" title="Enviar Mensagem">
       <i class="fas fa-fw fa-paper-plane"></i>
     </button>
   </div>
 </form>
-<ul *ngIf="!isChatMode && chatList.length > 0">
+
+<div *ngIf="!isChatMode && chatList.length == 0" class="noChats">
+  <span>Nenhum chat ativo no momento</span>
+</div>
+<ul *ngIf="!isChatMode && chatList.length > 0" class="novos-chats">
   <p>Novos chats</p>
   <li *ngFor="let chat of chatList; let i = index">
     <input type="button" (click)='enterChat(chat.chatId)' value="Entrar">
-    {{chat.chatId}} | Start Chat with {{chat.userList[0].username}} 
+     Iniciar Chat com {{chat.userList[0].username}} 
   </li>
 </ul>
 <br>
-<ul *ngIf="!isChatMode && startedChatList.length > 0">
-  <p>Chats já iniciados</p>
+<ul *ngIf="!isChatMode && startedChatList.length > 0" class="chats-ativos">
+  <p>Chats ativos</p>
   <li *ngFor="let chat of startedChatList; let i = index">
     <input type="button" (click)='enterChat(chat.chatId)' value="Entrar">
-    {{chat.chatId}} | Continue Chat with {{chat.userList[0].username}} 
+     Continuar Chat com {{chat.userList[0].username}} 
   </li>
 </ul>

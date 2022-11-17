@@ -1,4 +1,14 @@
-<h4 class="text-center">Solicitar Serviço</h4>
+<h4 class="text-center">Iniciar Solicitação</h4>
 <hr>
-<button [routerLink]="['/chat']" [queryParams]="{type: 'service'}" class="btn btn-warning">Start Chat Service</button> | 
-<button [routerLink]="['/chat']" [queryParams]="{type: 'sinistro'}" class="btn btn-warning">Start Chat Sinistro</button>
+<div class="chats">
+    <div class="container-chats">
+        <h4>Chat de Serviços</h4>
+        <p>Use este chat para serviços como solicitar 2° via da Apólice, Relação de parcelas, Dúvidas sobre seu Contrato, Incertezas sobre o valor da sua Residência e etc..</p>
+        <button [routerLink]="['/chat']" [queryParams]="{type: 'service'}" class="btn btn-warning chat-servico">Iniciar Chat Serviços</button> 
+    </div>
+    <div class="container-chats">
+        <h4>Chat de Sinistro</h4>
+        <p>Use este chat para solicitar seu Sinistro, Verificar Sinistro ativo, Documentação do Sinistro, e qualquer dúvida sobre o Sinistro.</p>
+        <button [routerLink]="['/chat']" [queryParams]="{type: 'sinistro'}" class="btn btn-warning chat-sinistro">Iniciar Chat Sinistro</button>
+    </div>
+</div>

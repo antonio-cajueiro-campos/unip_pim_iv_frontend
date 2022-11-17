@@ -4,15 +4,15 @@
   <div class="container-infos">
     <div class="row container-dados-usuario">
       <h4>Informações</h4>
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Nome" name="name" id="name-user" [value]="(infos | async).user.name">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Documento" maxlength="14" name="document" id="document-user" [value]="(infos | async).user.document">
+      <input class="col-md dados-usuario" type="text" required="required" placeholder="Nome Completo" name="name" id="name-user" [value]="(infos | async).user.name">
+      <input class="col-md dados-usuario" type="text" required="required" placeholder="Documento" name="document" id="document-user" [value]="(infos | async).user.document">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Usuário" name="username" id="username-user" [value]="(infos | async).user.credential.username">
-      <input class="col-md dados-usuario" type="text" required="required" placeholder="Telefone" maxlength="18" name="phone number" id="tel-user" [value]="(infos | async).telefone">
+      <input class="col-md dados-usuario" type="text" required="required" placeholder="Telefone" maxlength="19" name="phone number" id="tel-user" [value]="(infos | async).telefone">
       <input class="col-md dados-usuario" type="text" required="required" placeholder="Chave PIX" name="chavePIX" id="chavePIX" [value]="(infos | async).chavePIX">
       <br><br>
       <h4>Endereço</h4>
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="CEP" name="address" maxlength="9" id="cep-user" [value]="(infos | async).endereco.cep">
-        <select class="col-md dados-endereco-usuario" name="state" required="required" id="state-user" [value]="(infos | async).endereco.estado">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="CEP" name="address" maxlength="9" id="cep-user" [value]="(infos | async).endereco?.cep">
+        <select class="col-md dados-endereco-usuario" name="state" required="required" id="state-user" [value]="(infos | async).endereco?.estado">
           <option value="">Estado</option>
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
@@ -42,21 +42,20 @@
           <option value="SE">Sergipe</option>
           <option value="TO">Tocantis</option>
         </select>
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Cidade" name="city" id="city-user" [value]="(infos | async).endereco.cidade">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Bairro" name="" id="distric-user" [value]="(infos | async).endereco.bairro">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Rua" name="" id="road-user" [value]="(infos | async).endereco.rua">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Número" name="number" id="numberofhouse-user" [value]="(infos | async).endereco.numero">
-        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Complemento" name="complement" id="complement-user" [value]="(infos | async).endereco.complemento">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Cidade" name="city" id="city-user" [value]="(infos | async).endereco?.cidade">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Bairro" name="" id="distric-user" [value]="(infos | async).endereco?.bairro">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Rua" name="" id="road-user" [value]="(infos | async).endereco?.rua">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Número" name="number" id="numberofhouse-user" [value]="(infos | async).endereco?.numero">
+        <input class="col-md dados-endereco-usuario" type="text" required="required" placeholder="Complemento" name="complement" id="complement-user" [value]="(infos | async).endereco?.complemento">
     </div>
     <div class="container-dados-assinatura">
       <div class="border-assinatura">
         <div class="row container-assinatura-btn">
-          <input class="col-md dados-assinatura" type="text" placeholder="Assinatura" name="plan-type" id="">
-          <button type="submit" class="btn btn-success btn-alterar-plano">Adquirir novo plano</button>
+          <input class="col-md dados-assinatura" type="text" placeholder="Mensalidade" name="montlypayment" id="montlypayment">
+          <a href="/services"><button type="button" class="btn btn-success btn-alterar-plano">Solicitar novo plano</button></a>
         </div>
-        <input class="col-md dados-assinatura" type="text" placeholder="Mensalidade" name="montlypayment" id="montlypayment">
       </div>
     </div>
-    <button type="submit" class="btn btn-warning">Atualizar Informações</button>
+    <button type="submit" class="btn btn-warning" id="attDados">Atualizar Informações</button>
   </div>
 </form>

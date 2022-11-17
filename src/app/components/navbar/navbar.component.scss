@@ -4,3 +4,12 @@
 	box-shadow: black 0px 0px 8px;
 	font-family: "Poppins", sans-serif;
 }
+
+@media screen and (max-width: 420px){
+	.nav-link span{
+		display: none;
+	}
+	.nav-link i{
+		font-size: 175%;
+	}
+}

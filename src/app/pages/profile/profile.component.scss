@@ -1,3 +1,7 @@
+h2, h5, .text-dark{
+    font-family: "Poppins", sans-serif;
+}
+
 .profile-name {
     margin: 30px 0 40px 0;
 }
@@ -10,13 +14,24 @@
     border-radius: 5px;
 }
 
+span {
+    font-size: 120%;
+}
+
+.profile-sec > .row > .col-md {
+    max-width: 330px;
+    margin: 10px 0;
+    font-weight: 400;
+}
+
 .profile-sec > h5 {
     margin-bottom: 20px;
+    font-size: 150%;
 }
 
 
 .profile-sec > .row {
-    margin-bottom: 10px;
+    justify-content: space-between;
 }
 
 .profile-icon {
