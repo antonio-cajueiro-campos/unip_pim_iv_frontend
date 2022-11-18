@@ -15,6 +15,7 @@ export class BudgetComponent implements OnInit {
   public priceSelectorList: PriceSelector[];
   public btnConfirmText = 'CONTRATAR';
   public btnDisabled = false;
+  public valorResidencia: number = 0;
 
   @ViewChildren(PriceSelectorComponent) listItems: QueryList<PriceSelectorComponent>
 
@@ -41,8 +42,6 @@ export class BudgetComponent implements OnInit {
       this.messageService.toast("Valor mensal não pode ser zero", "error");
       return;
     }
-    this.updateValues();
-
     this.router.navigateByUrl('/payment');
   }
 
@@ -54,4 +53,5 @@ export class BudgetComponent implements OnInit {
     })
     return sum;
   }
+
 }

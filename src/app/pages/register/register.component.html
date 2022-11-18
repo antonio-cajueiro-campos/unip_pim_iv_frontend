@@ -3,7 +3,7 @@
         <h4>Cadastre-se</h4>
         <div class="registrar-infos">
             <form (ngSubmit)="onSubmit()" class="register-form">
-                <input type="name" name="name" class="form-control" placeholder="Nome" #Name id="Name" [(ngModel)]="register.name">
+                <input type="name" name="name" class="form-control" placeholder="Nome Completo" #Name id="Name" [(ngModel)]="register.name">
                 <input type="document" name="document" class="form-control" placeholder="Documento" #Document id="Document" [(ngModel)]="register.document">
                 <input type="username" name="username" class="form-control" placeholder="Usuário" #Username id="Username" [(ngModel)]="register.username">
                 <input type="password" name="password" class="form-control" placeholder="Senha" #Password id="Password" [(ngModel)]="register.password" autocomplete="new-password">

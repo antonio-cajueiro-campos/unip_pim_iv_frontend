@@ -76,6 +76,7 @@ h3{
 .btn-alterar-plano{
     font-weight: bold;
     font-size: 110%;
+    height: 45px;
 }
 
 .container-dados-assinatura{
@@ -87,9 +88,13 @@ h3{
 .border-assinatura{
     min-width: 190px;
     width: auto;
-    max-width: 440px;
+    max-width: 410px;
     border: 2px dashed rgba(0, 0, 0, 0.6);
-    padding: 0px 10px 10px 10px;
+    padding: 0px 10px 0px 10px;
+}
+
+#montlypayment{
+    margin-right: 30px;
 }
 
 /*Style Botões*/

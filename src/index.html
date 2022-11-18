@@ -60,7 +60,12 @@
 
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#1190CB">
-  <script src="https://www.paypal.com/sdk/js?client-id=AcEGXC3G4xb7sFpRlY-8yQo0iy5NdM7k0bZefBUAhGZGcdW0D9eTFHAjlRMC6erwsCLkrJvQ27f8OEE8"></script>
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AcEGXC3G4xb7sFpRlY-8yQo0iy5NdM7k0bZefBUAhGZGcdW0D9eTFHAjlRMC6erwsCLkrJvQ27f8OEE8"></script>
+  <script src="https://plentz.github.io/jquery-maskmoney/javascripts/jquery.maskMoney.min.js"
+    type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -78,9 +83,43 @@
     $(document).ready(() => {
       var footerYear = document.getElementById("year");
       if (footerYear)
-      footerYear.insertAdjacentHTML('beforeend', new Date().getFullYear());
+        footerYear.insertAdjacentHTML('beforeend', new Date().getFullYear());
       //$('[data-toggle="tooltip"]').tooltip()
     });
+  </script>
+  <script>
+    $(function () {
+      $('#valorRESIDENCIA').maskMoney({
+        prefix: 'R$',
+        thousands: '.',
+        decimal: ',',
+        affixesStay: true,
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+
+      $("#document-user").mask("000.000.000-00")
+      $("#document-user").blur(function(event){
+      if ($(this).val().length == 14) {
+        $("#document-user").mask("000.000.000-00")
+      } else { 
+        $("#document-user").mask("00.000.000/0000-00") 
+        }
+      })
+
+      $("#tel-user").mask("(00) 00000-0009")  
+      $("#tel-user").blur(function(event){
+        if ($(this).val().length == 15) {
+        $("#tel-user").mask("(00) 00000-0009")
+      } else { 
+        $("#tel-user").mask("(00) 0000-00009") 
+        }
+      })
+      
+    $("#cep-user").mask("00000-000")
+    })
   </script>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>

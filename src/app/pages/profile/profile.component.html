@@ -1,25 +1,40 @@
 <h2 class="profile-name">Olá, {{ (infos | async).user.name }}</h2>
 <section class="profile-sec">
+  <h5>Meu Perfil</h5>
+  <div class="row">
+    <div class="col-md">
+      <a class="text-dark" href="/configuration">
+        <i class="fa-solid profile-icon fa-user"></i><span>Dados Pessoais</span>
+      </a>
+    </div>
+    <div class="col-md">
+      <a class="text-dark" routerLink="/configuration">
+        <i class="fa-solid profile-icon fa-pen-to-square"></i><span>Alteração de Dados</span>
+      </a>
+    </div>
+    <div class="col-md">
+      <a class="text-dark" [routerLink]="['/configuration']" [queryParams]="{scroll: 'mensalidade'}">
+        <i class="fa-solid profile-icon fa-lock"></i><span>Verificar Mensalidade</span>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="profile-sec">
   <h5>Apólice e Pagamentos</h5>
   <div class="row">
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-receipt"></i>Segunda via da Apolice
+    <div class="col-md">
+      <a class="text-dark" routerLink="/services">
+        <i class="fa-solid profile-icon fa-receipt"></i><span>Segunda via da Apolice</span>
       </a>
     </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-file-invoice-dollar"></i>Relação de Parcelas
+    <div class="col-md">
+      <a class="text-dark" routerLink="/services">
+        <i class="fa-solid profile-icon fa-file-invoice-dollar"></i><span>Relação de Parcelas</span>
       </a>
     </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-file-lines"></i>Orientações Débito em conta
-      </a>
-    </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-file-invoice"></i>Condições Gerais
+    <div class="col-md">
+      <a class="text-dark" routerLink="/services">
+        <i class="fa-solid profile-icon fa-file-invoice"></i><span>Condições Gerais</span>
       </a>
     </div>
   </div>
@@ -27,24 +42,19 @@
 <section class="profile-sec">
   <h5>Sinistro</h5>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md">
       <a class="text-dark" routerLink="/services">
-        <i class="fa-solid profile-icon fa-bell"></i>Aviso de sinistro
+        <i class="fa-solid profile-icon fa-bell"></i><span>Aviso de sinistro</span>
       </a>
     </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-display"></i>Envio de Documentos online
+    <div class="col-md">
+      <a class="text-dark" routerLink="/services">
+        <i class="fa-solid profile-icon fa-file"></i><span>Documentação de Sinistro</span>
       </a>
     </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-file"></i>Documentação de Sinistro
-      </a>
-    </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-rotate"></i>Constatação Online
+    <div class="col-md">
+      <a class="text-dark" routerLink="/services">
+        <i class="fa-solid profile-icon fa-rotate"></i><span>Constatação Online</span>
       </a>
     </div>
   </div>
@@ -52,56 +62,24 @@
 <section class="profile-sec">
   <h5>Assistência 24h</h5>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md">
       <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-bullhorn"></i>SOS
+        <i class="fa-solid profile-icon fa-bullhorn"></i><span>SOS</span>
       </a>
     </div>
-    <div class="col-md-3">
+    <div class="col-md">
       <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-phone"></i>Telefones 24h
+        <i class="fa-solid profile-icon fa-phone"></i><span>Telefones 24h</span>
       </a>
     </div>
-  </div>
-</section>
-<section class="profile-sec">
-  <h5>Mais Serviços</h5>
-  <div class="row">
-    <div class="col-md-3">
+    <div class="col-md">
       <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-wrench"></i>Rede de Serviços
+        <i class="fa-solid profile-icon fa-wrench"></i><span>Rede de Serviços</span>
       </a>
     </div>
-  </div>
-</section>
-<section class="profile-sec">
-  <h5>Meu Perfil</h5>
-  <div class="row">
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/configuration">
-        <i class="fa-solid profile-icon fa-user"></i>Dados Pessoais
-      </a>
-    </div>
-    <div class="col-md-3">
+    <div class="col-md">
       <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-mobile-screen-button"></i>Informações de Contato
-      </a>
-    </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-pen-to-square"></i>Alteração de Dados
-      </a>
-    </div>
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/">
-        <i class="fa-solid profile-icon fa-shield"></i>Informações por Produto
-      </a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <a class="text-dark" routerLink="/configuration">
-        <i class="fa-solid profile-icon fa-lock"></i>Configurações de Privacidade
+        <i class="fa-solid profile-icon fa-hashtag"></i><span>Nossas Redes Sociais</span>
       </a>
     </div>
   </div>
