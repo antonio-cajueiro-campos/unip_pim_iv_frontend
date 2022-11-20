@@ -2,8 +2,33 @@
     font-family: "Poppins", sans-serif;
 }
 .icon-display {
-	color: #2b2b2b;
+	color: #494949;
 	font-size: 50px;
+}
+
+/*container text-typing*/
+
+.container-text-typing{
+    width: auto;
+    max-width: 1024px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 25px;
+    margin: auto auto 30px auto;
+    display: block;
+    background-color: rgb(226, 226, 226, 0.5);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.fixed-text{
+    font-size: 175%;
+    font-weight: bolder;
+}
+
+.typing-text{
+    color: #1FBD9B;
 }
 
 /*Servicos Imagens e Texto*/
@@ -17,6 +42,11 @@
     padding-left: 25px;
 }
 
+.titulo-serv-benef{
+    color: #1FBD9B;
+    font-weight: bolder;
+}
+
 .servicos-text {
 	font-weight: 700;
 }
@@ -26,11 +56,14 @@
 }
 
 .servicos-types > .col-md-4 {
-	margin: 25px auto 20px auto;
+	margin: 10px auto 10px auto;
+    padding: 20px;
+    cursor: pointer;
 }
 
-.servicos-types > .col-md-4 > .icon-display, .servicos-text{
-    cursor: pointer;
+.servicos-types > .col-md-4:hover {
+    background-color: #e2e2e2;
+    border-radius: 10px;
 }
 
 /*Beneneficios Imagens e Texto*/
@@ -49,7 +82,7 @@
 
 .txt-100digital, .txt-assinaturas, .txt-personalize{
     font-weight: bold;
-    color: #3f3f3f;
+    color: #6e6e6e;
     font-family: "Roboto", sans-serif;
 }
 
@@ -59,7 +92,7 @@
 
 /*Download app Mobile*/
 .area-app-mobile{
-    display: block;
+    display: none;
     margin: auto;
     width: auto;
     max-width: 1024px;

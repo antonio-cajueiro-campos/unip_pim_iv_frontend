@@ -62,3 +62,17 @@
     margin: 20px auto;
     width: 100%;
 }
+
+.regis-forgetpass{
+    margin: auto;
+    width: 100%;
+    font-size: 90%;
+    justify-content: space-between;
+}
+
+.regis-forgetpass > .col-md{
+    text-align: center;
+    display: flex;
+    width: max-content;
+    padding: 0 !important;
+}

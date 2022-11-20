@@ -65,7 +65,6 @@
   <script src="https://plentz.github.io/jquery-maskmoney/javascripts/jquery.maskMoney.min.js"
     type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-
 </head>
 
 <body id="page-top">
@@ -120,6 +119,18 @@
       
     $("#cep-user").mask("00000-000")
     })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    $(function() {
+    var typed = new Typed (".typing-text", {
+      strings: ["seu Lar.", "seus Familiares.", "seu Futuro."],
+      typeSpeed: 120,
+      backSpeed: 120,
+      loop: true
+    })
+  })
   </script>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>

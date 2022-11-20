@@ -5,8 +5,10 @@
             <form (ngSubmit)="onSubmit()" class="login-form">
                 <input type="username" name="username" class="form-control" placeholder="Usuário" #Username id="Username" [(ngModel)]="credentials.username">
                 <input type="password" name="password" class="form-control" placeholder="Senha" #Password id="Password" [(ngModel)]="credentials.password" autocomplete="new-password">
-                <a routerLink="/register" class="text-dark"><sub style="float:left;">Cadastre-se</sub></a>
-                <a routerLink="/" class="text-dark"><sub style="float:right">Esqueci minha senha</sub></a><br>
+                <div class="row regis-forgetpass">
+                    <a routerLink="/register" class="col-md text-dark"><span>Cadastre-se</span></a>
+                    <a routerLink="/" class="col-md text-dark"><span>Esqueci minha senha</span></a>
+                </div>
                 <button class="btn btn-primary btn-entrar">Entrar</button>
             </form>
         </div>
