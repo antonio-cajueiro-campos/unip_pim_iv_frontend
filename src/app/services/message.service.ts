@@ -87,9 +87,15 @@ export class MessageService {
 	public async showServiceDescription(title: string, text: string) {
 		await Swal.fire({
 			title, text, icon: "info",
-			customClass: 'message-description',
-			showCancelButton: false,
-			confirmButtonText: 'Ok'
+			customClass: {
+				container: 'container-popup',
+				popup: 'content-popup',
+				icon: 'icon-popup',
+				title: 'title-popup',
+				htmlContainer: 'text-popup',
+				actions: 'actions-popup'
+			  },
+			showCancelButton: false
 		})
 	}
 
