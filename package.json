@@ -44,9 +44,13 @@
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
     "creditcardpayments": "^1.0.3",
     "express": "^4.18.1",
+    "inputmask": "^5.0.7",
+    "jquery": "^3.6.1",
+    "jquery-mask-plugin": "^1.14.16",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.4.30",
     "tslib": "^2.2.0",
+    "typed.js": "^2.0.12",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

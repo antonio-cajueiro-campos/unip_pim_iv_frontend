@@ -33,12 +33,21 @@
             ],
             "styles": [
               "src/theme/variables.scss",
-              "src/global.scss",              
+              "src/global.scss",
               "src/assets/vendor/fontawesome-free/css/all.min.css",
               "src/assets/css/style.css",
               "src/assets/css/layout.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/vendor/jquery/jquery.min.js",
+              "src/assets/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/vendor/jquery-easing/jquery.easing.min.js",
+              "src/assets/js/jquery-mask-money/src/jquery.maskMoney.js",
+              "src/assets/lib/jquery-mask/jquery.mask.min.js",
+              "node_modules/typed.js/lib/typed.min.js",
+              "src/assets/js/site.js",
+              "src/assets/js/layout.js"
+            ],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
