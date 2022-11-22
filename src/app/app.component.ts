@@ -10,7 +10,7 @@ import { delay, map, tap } from 'rxjs/operators';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-
+  
   public isLoader: Observable<boolean>;
 
   constructor(public platform: Platform) {
