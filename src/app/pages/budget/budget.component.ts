@@ -15,18 +15,18 @@ export class BudgetComponent implements OnInit {
   public priceSelectorList: PriceSelector[];
   public btnConfirmText = 'CONTRATAR';
   public btnDisabled = false;
-  public valorResidencia: number = 0;
+  public valorResidencia = '';
 
   @ViewChildren(PriceSelectorComponent) listItems: QueryList<PriceSelectorComponent>
 
-  constructor(public insuranceService: InsuranceService, private router: Router, private messageService: MessageService) {}
-  
+  constructor(public insuranceService: InsuranceService, private router: Router, private messageService: MessageService) { }
+
   async ngOnInit() {
     this.priceSelectorList = await this.insuranceService.getPriceSelectorList()
     this.insuranceService.insurancePlan.total = this.calculateTotal(this.priceSelectorList);
   }
 
-  updateValues() {    
+  updateValues() {
     this.insuranceService.insurancePlan.selectedPrices = [];
 
     this.listItems.forEach((priceSelectorComponent: PriceSelectorComponent) => {
@@ -36,7 +36,7 @@ export class BudgetComponent implements OnInit {
 
     this.insuranceService.insurancePlan.total = this.calculateTotal(this.priceSelectorList);
   }
-  
+
   async onSubmit() {
     if (this.insuranceService.insurancePlan.total == 0) {
       this.messageService.toast("Valor mensal não pode ser zero", "error");
@@ -46,6 +46,15 @@ export class BudgetComponent implements OnInit {
   }
 
   calculateTotal(priceSelectorList: PriceSelector[]): number {
+
+    function replacer(valor: string) {
+      valor = valor.replace('R$', '');
+      valor = valor.replace('.', '');
+      valor = valor.replace(',', '');
+      return valor;
+    }
+    var valorRes = parseInt(replacer(this.valorResidencia));
+
     var sum = 0;
     priceSelectorList.forEach(priceSelector => {
       var res = priceSelector.monthlyPayment / priceSelector.numberOfMonths;

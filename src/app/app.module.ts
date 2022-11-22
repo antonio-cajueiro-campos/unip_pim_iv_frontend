@@ -35,6 +35,7 @@ import localePt from '@angular/common/locales/pt';
 import { PriceSelectorCalcPipe } from './pipes/price-selector-calc.pipe';
 import { AddBeforeTextPipe } from './pipes/add-before-text.pipe';
 import { ConfigComponent } from './pages/config/config.component';
+import { AddCurrencyPipe } from './pipes/add-currency.pipe';
 
 registerLocaleData(localePt, 'pt-br');
 
@@ -61,7 +62,8 @@ registerLocaleData(localePt, 'pt-br');
     PriceSelectorComponent,
     BannerComponent,
     PriceSelectorCalcPipe,
-    AddBeforeTextPipe
+    AddBeforeTextPipe,
+    AddCurrencyPipe
   ],
   imports: [
     IonicModule.forRoot(),
