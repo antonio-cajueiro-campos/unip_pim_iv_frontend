@@ -5,6 +5,7 @@
     <input 
     [ngModel]="valorResidencia | addCurrency" 
     (ngModelChange)="valorResidencia=$event"
+    (input)="updateValues()"
     type="text" name="valorRESIDENCIA" id="valorRESIDENCIA" class="text-center" placeholder="Ex: R$250.000,00"/>
   </div>
 </div>

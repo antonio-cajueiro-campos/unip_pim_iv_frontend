@@ -14,9 +14,12 @@ export class PriceSelectorComponent implements OnInit {
 
   constructor(public budgetComponent: BudgetComponent) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  updateTotal() {    
+  updateTotal() {
+    console.log(this.priceSelector.id)
     this.budgetComponent.updateValues();
   }
+
 }
