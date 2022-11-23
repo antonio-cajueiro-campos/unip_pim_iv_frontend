@@ -85,3 +85,15 @@ input:focus, textarea:focus, select:focus{
 	max-width: 550px;
 	margin: 5px auto 15px auto;
 }
+
+.only-numbers{
+	color: rgb(223, 83, 83);
+	text-align: center;
+	width: 100%;
+	display: block;
+	margin: auto;
+}
+
+.only-numbers-false{
+	display: none;
+}

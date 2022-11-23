@@ -11,7 +11,7 @@
   </div>
   <div class="selector-container">
     <input class="monthly-payment-input" readonly type="text" name="monthlyPayment" id="monthlyPayment"
-      [ngModel]="priceSelector.monthlyPayment | priceSelectorCalc: priceSelector.numberOfMonths | currency | addBeforeText: 'Mensalidade: '" 
+      [ngModel]="budgetComponent.dict[priceSelector.id] | currency | addBeforeText: 'Mensalidade: '" 
       (ngModelChange)="priceSelector.monthlyPayment=$event"    
     >
   </div>
