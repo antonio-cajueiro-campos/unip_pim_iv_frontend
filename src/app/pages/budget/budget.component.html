@@ -3,7 +3,8 @@
   <p class="desc-res text-center">*Obs: O valor aproximado da sua residencia é definido pelo valor que foi pago na compra, ou valor similar as residencias semelhantes por perto*</p>
   <div class="container-input text-center">
     <input 
-    [(ngModel)]="valorResidencia" 
+    [ngModel]="valorResidencia | addCurrency" 
+    (ngModelChange)="valorResidencia=$event"
     type="text" name="valorRESIDENCIA" id="valorRESIDENCIA" class="text-center" placeholder="Ex: R$250.000,00"/>
   </div>
 </div>

@@ -2,16 +2,6 @@
 // for details on configuring this project to bundle and minify static web assets.
 
     $(function () {
-        $('#valorRESIDENCIA').maskMoney({
-            prefix: 'R$',
-            thousands: '.',
-            decimal: ',',
-            affixesStay: true,
-        })
-        console.log("oba")
-    })
-
-    $(function () {
         var idPag = document.getElementById("typing-text")
         if (idPag) {
             var typed = new Typed(".typing-text", {
