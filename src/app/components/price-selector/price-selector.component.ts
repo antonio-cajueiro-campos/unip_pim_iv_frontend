@@ -18,7 +18,6 @@ export class PriceSelectorComponent implements OnInit {
   }
 
   updateTotal() {
-    console.log(this.priceSelector.id)
     this.budgetComponent.updateValues();
   }
 

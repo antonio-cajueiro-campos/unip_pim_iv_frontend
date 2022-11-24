@@ -5,11 +5,23 @@
 	font-family: "Poppins", sans-serif;
 }
 
+.nav-title{
+	color: #1FBD9B;
+	text-shadow: 5px 5px 5px black;
+	//color: rgb(240, 240, 240);
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
 @media screen and (max-width: 420px){
 	.nav-link span{
+		display: none;
+	}
+	.nav-title {
 		display: none;
 	}
 	.nav-link i{
 		font-size: 175%;
 	}
 }
+

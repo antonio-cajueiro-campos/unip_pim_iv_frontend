@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { DataManagerService } from 'src/app/services/data-manager.service';
 import { StorageKeys } from 'src/app/services/enums/storage-keys';
+import { UserService } from 'src/app/services/user.service';
+import { Observable, of } from 'rxjs';
+import { Infos } from 'src/app/models/Infos.model';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -20,10 +24,12 @@ export class BudgetComponent implements OnInit {
   public btnDisabled = false;
   public valorResidencia = '';
   public dict = {}
+  public infos: Observable<Infos>;
 
   @ViewChildren(PriceSelectorComponent) listItems: QueryList<PriceSelectorComponent>
 
-  constructor(public insuranceService: InsuranceService, private router: Router, private messageService: MessageService, public dataManagerService: DataManagerService) { }
+  constructor(public insuranceService: InsuranceService, private router: Router, private messageService: MessageService, public dataManagerService: DataManagerService, public userService: UserService) { 
+  }
 
   async ngOnInit() {
     this.priceSelectorList = await this.insuranceService.getPriceSelectorList()
@@ -39,7 +45,6 @@ export class BudgetComponent implements OnInit {
     this.priceSelectorList = this.insuranceService.insurancePlan.selectedPrices;
 
     this.insuranceService.insurancePlan.total = this.calculateTotal(this.priceSelectorList);
-    console.log("a")
   }
 
   async onSubmit() {
@@ -47,15 +52,27 @@ export class BudgetComponent implements OnInit {
       this.messageService.toast("Valor mensal não pode ser zero", "error");
       return;
     }
-    this.router.navigateByUrl('/payment');
-    this.dataManagerService.setData(StorageKeys.ValorFICTICIO, this.insuranceService.insurancePlan.total)
+    this.userService.infos$.pipe(
+      tap(infos => {   
+        this.infos = of(infos);
+        if (infos?.endereco == null) {
+          this.messageService.toast("Complete seu registro", "error");
+          this.router.navigateByUrl('/complete-registration');
+          console.log("não esta registrado")
+        } else {
+          this.router.navigateByUrl('/payment');
+          this.dataManagerService.setData(StorageKeys.VALORFIC, this.insuranceService.insurancePlan.total)
+          console.log("tudo ok")
+        }
+      })
+    ).subscribe();
   }
 
   calculateTotal(priceSelectorList: PriceSelector[]): number {
 
     var sum = 0;
     priceSelectorList.forEach(priceSelector => {
-      var res = this.calcValorTaxa(priceSelector)
+      var res = (this.calcValorTaxa(priceSelector) * priceSelector.sinistroTax)
       this.dict[priceSelector.id] = res;
       sum += parseFloat(res.toFixed(2));
     })

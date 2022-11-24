@@ -7,4 +7,5 @@ export interface PriceSelector {
 	list: Selector[];
 	monthlyPayment: number;
 	numberOfMonths: number;
+	sinistroTax: number;
 }

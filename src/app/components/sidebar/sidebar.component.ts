@@ -17,9 +17,7 @@ export class SidebarComponent implements OnInit {
   constructor(public userService: UserService) {
     userService.infos$.pipe(
       tap(infos => {   
-        this.infos = of(infos);
-        console.log(infos?.endereco);
-        
+        this.infos = of(infos);        
         this.role = infos ? of(infos.user.credential.role) : of("Cliente");
       })
     ).subscribe();

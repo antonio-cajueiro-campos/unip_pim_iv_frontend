@@ -13,12 +13,13 @@ import { StorageKeys } from 'src/app/services/enums/storage-keys';
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.scss'],
 })
+
 export class ConfigComponent implements OnInit{
 
   public inputs: ElementRef[] = [];
 
   public infos: Observable<Infos>;
-  public ficticio: String;
+  public valorFIC: string;
 
   constructor(public userService: UserService, private route: ActivatedRoute, public dataManagerService: DataManagerService) {
     userService.infos$.pipe(
@@ -26,7 +27,7 @@ export class ConfigComponent implements OnInit{
         this.infos = of(infos);
       })
     ).subscribe();
-    this.ficticio = dataManagerService.getData(StorageKeys.ValorFICTICIO)
+    this.valorFIC = dataManagerService.getData(StorageKeys.VALORFIC)
   }  
 
   ngOnInit() {
