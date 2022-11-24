@@ -19,7 +19,7 @@
     "heroku-postbuild": "npx ionic build --configuration=production",
     "build-android": "npx ionic capacitor build android --prod --release --no-open",
     "build-resources": "npx capacitor-resources -p android",
-    "compile-debug": "cd android && gradlew assembleDebug && cd .. && rm -rf debug && mkdir debug && cp ./android/app/build/outputs/apk/debug/app-debug.apk debug/app-debug.apk",
+    "compile-debug": "cd android && gradlew assembleDebug && cd .. && rm -rf debug && mkdir debug && cp ./android/app/build/outputs/apk/debug/app-debug.apk debug/app-debug.apk && cp ./android/app/build/outputs/apk/debug/app-debug.apk src/assets/app/app.apk",
     "build-and-compile": "npm run build-android && npm run build-resources && npm run compile-debug",
     "bac": "npm run build-and-compile"
   },
