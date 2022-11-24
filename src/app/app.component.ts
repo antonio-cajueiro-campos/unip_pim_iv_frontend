@@ -14,9 +14,9 @@ export class AppComponent {
   public isLoader: Observable<boolean>;
 
   constructor(public platform: Platform) {
-    this.initializeApp();
+    //this.initializeApp();
   }
-  async initializeApp() {
+  /*async initializeApp() {
     if (this.platform.is('android'))
     this.isLoader = of(true);
 
@@ -28,5 +28,5 @@ export class AppComponent {
 
     this.platform.ready().then(() => {
     });
-  }
+  }*/
 }

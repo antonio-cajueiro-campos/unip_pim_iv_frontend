@@ -36,6 +36,7 @@ import { PriceSelectorCalcPipe } from './pipes/price-selector-calc.pipe';
 import { AddBeforeTextPipe } from './pipes/add-before-text.pipe';
 import { ConfigComponent } from './pages/config/config.component';
 import { AddCurrencyPipe } from './pipes/add-currency.pipe';
+import { HistorySinistroComponent } from './pages/history-sinistro/history-sinistro.component';
 
 registerLocaleData(localePt, 'pt-br');
 
@@ -63,7 +64,8 @@ registerLocaleData(localePt, 'pt-br');
     BannerComponent,
     PriceSelectorCalcPipe,
     AddBeforeTextPipe,
-    AddCurrencyPipe
+    AddCurrencyPipe,
+    HistorySinistroComponent
   ],
   imports: [
     IonicModule.forRoot(),

@@ -1,0 +1,32 @@
+<div class="container-history-sinistro">
+  <div class="content-history">
+    <h5>Histórico de Sinistros</h5>
+    <div class="title-hist-vazio">
+      {{ textResponse }}
+    </div>
+    <div class="sinistro-dados" *ngFor = "let hist of ArrayHistorySinistro">
+      <div class="sinistro-ocorrencia dados-sinistro">
+        <div class="sinistro-infos">
+          <div class="sinistro-titles">Data:</div>
+          &nbsp;
+          <span class="sinistro-values">{{formatarData(hist.ocorrencia)}}</span>
+        </div>
+      </div >
+      <div class="sinistro-tipo dados-sinistro">
+        <div class="sinistro-infos">
+          <div class="sinistro-titles">Tipo do sinistro:</div>
+          &nbsp;
+          <i class="fas fa-fw {{getIconeSinistro(hist.tipoSinistro)}} icon-tipo-sinistro"></i>&nbsp;
+          <span class="sinistro-values">{{getTipoSinistro(hist.tipoSinistro)}}</span>
+        </div>
+      </div>
+      <div class="sinistr-valor dados-sinistro">
+        <div class="sinistro-infos">
+          <div class="sinistro-titles">Valor do Sinistro:</div>
+          &nbsp;
+          <span class="sinistro-values">{{hist.valor | currency}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
