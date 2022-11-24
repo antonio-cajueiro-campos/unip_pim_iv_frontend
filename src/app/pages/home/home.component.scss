@@ -99,7 +99,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 50px 50px 50px 50px;
+    padding: 50px 5px 50px 5px;
 }
 
 .retangulo-app-mobile{
@@ -178,6 +178,11 @@
 
 @media screen and (max-width: 1024px) {
     .area-app-mobile{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px){
+    .area-app-mobile{
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -187,7 +192,7 @@
     .retangulo-app-mobile{
         background-image: none;
         height: 80vh;
-        width: 50vw;
+        width: 70vw;
         margin: auto;
         display: flex;
         flex-direction: column;
@@ -202,11 +207,11 @@
         border-top-right-radius: 40px;
         border-bottom-left-radius: 0px;
         height: 100%;
-        width: 50vw;
+        width: 70vw;
     }
     .texto-e-btn{
-        width: 50vw;
-        height: 100%;
+        width: 70vw;
+        height: 60%;
         justify-content: center;
     }
     .titulo-app-mobile{
@@ -222,8 +227,6 @@
         text-align: center;
         padding: 0vh;
     }
-}
-@media screen and (max-width: 768px){
     .foto-app-mobile{
         background-size: 140%;
         background-position: left;
@@ -232,18 +235,43 @@
 @media screen and (max-width: 576px){
     .foto-app-mobile{
         background-size: 170%;
+        background-position-x: -100px;
+        height: 260px;
     }
     .titulo-app-mobile{
-        font-size: 150%;
+        font-size: 200%;
     }
     .txt-app-mobile{
-        font-size: 110%;
+        font-size: 160%;
+    }
+    .botao-app-mobile input{
+        padding-left: 10px;
+        padding-right: 10px;
+        max-height: 7vh;
+        width: 180px;
+        max-width: 100%;
+        font-size: 160%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .foto-app-mobile{
+        background-size: 230%;
+    }
+    .area-app-mobile{
+        padding: 50px 0 50px 0;
+    }
+    .titulo-app-mobile{
+        font-size: 160%;
+    }
+    .txt-app-mobile{
+        font-size: 120%;
     }
     .botao-app-mobile input{
         padding-left: 10px;
         padding-right: 10px;
         max-height: 6vh;
-        width: max-content;
+        width: 150px;
         max-width: 100%;
+        font-size: 140%;
     }
 }
