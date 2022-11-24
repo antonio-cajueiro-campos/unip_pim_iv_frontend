@@ -14,6 +14,7 @@ import { BudgetComponent } from './pages/budget/budget.component';
 import { CompleteRegistrationComponent } from './pages/complete-registration/complete-registration.component';
 import { NotCompleteRegistrationGuard } from './services/guards/not-complete-registration.guard';
 import { ConfigComponent } from './pages/config/config.component';
+import { HistorySinistroComponent } from './pages/history-sinistro/history-sinistro.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
   {
     path: 'configuration',
     component: ConfigComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'history-sinistro',
+    component: HistorySinistroComponent,
     canActivate: [AuthGuard]
   },
   // {

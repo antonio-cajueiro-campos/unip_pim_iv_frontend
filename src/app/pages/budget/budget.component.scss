@@ -66,6 +66,8 @@ input:focus, textarea:focus, select:focus{
     box-shadow: rgba(140, 204, 190, 0.568) 0px 0px 8px;
 	border-radius: 20px;
 	height: 50px;
+	width: 100%;
+	max-width: 270px;
 	font-weight: 600;
 	font-size: 130%;
 	text-decoration: none;

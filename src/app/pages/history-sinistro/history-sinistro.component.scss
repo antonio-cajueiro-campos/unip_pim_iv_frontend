@@ -1,0 +1,40 @@
+h5 {
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 20px;
+    font-size: 200%;
+}
+
+.title-hist-vazio{
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    font-size: 130%;
+}
+
+.sinistro-dados{
+    background-color: rgb(228, 228, 228);
+    border: 2px solid #5f5f5f96;
+    box-shadow: rgba(140, 204, 190, 0.568) 0px 0px 8px;
+    margin: 5px auto 25px auto;
+    border-radius: 5px;
+}
+
+.dados-sinistro{
+    padding: 10px;
+}
+
+.sinistro-titles, .sinistro-values{
+    font-family: "Poppins", sans-serif;
+}
+
+.sinistro-titles{
+    font-weight: bold;
+}
+
+.sinistro-infos{
+    display: flex;
+}
+
+.icon-tipo-sinistro{
+    font-size: 140%;
+    color: #494949;
+}
