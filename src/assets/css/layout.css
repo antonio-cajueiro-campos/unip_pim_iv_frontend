@@ -10729,23 +10729,16 @@ footer.sticky-footer .copyright {
 }
 
 .container-fluid {
-  min-height: 65vh;
+  min-height: 100vh;
   padding: 1rem;
-  padding-bottom: 228px;
 }
 
 @media (min-width: 768px) {  
   footer.sticky-footer {
     width: calc(100% - 225px);
-  }
-  
+  } 
 }
 
-@media screen and (max-width: 577px) {
-  .container-fluid {
-    padding-bottom: 370px;
-  }
-}
 
 @media (max-width: 568px) {  
   footer.sticky-footer {
@@ -10756,12 +10749,6 @@ footer.sticky-footer .copyright {
   }
   #wrapper #content-wrapper {
     padding-bottom: 0;
-  }
-}
-
-@media screen and (max-width: 438px) {
-  .container-fluid{
-    padding-bottom: 440px;
   }
 }
 
