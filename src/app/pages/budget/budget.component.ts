@@ -61,7 +61,7 @@ export class BudgetComponent implements OnInit {
           console.log("não esta registrado")
         } else {
           this.router.navigateByUrl('/payment');
-          this.dataManagerService.setData(StorageKeys.ValorFICTICIO, this.insuranceService.insurancePlan.total)
+          this.dataManagerService.setData(StorageKeys.VALORFIC, this.insuranceService.insurancePlan.total)
           console.log("tudo ok")
         }
       })
@@ -72,7 +72,7 @@ export class BudgetComponent implements OnInit {
 
     var sum = 0;
     priceSelectorList.forEach(priceSelector => {
-      var res = this.calcValorTaxa(priceSelector)
+      var res = (this.calcValorTaxa(priceSelector) * priceSelector.sinistroTax)
       this.dict[priceSelector.id] = res;
       sum += parseFloat(res.toFixed(2));
     })
