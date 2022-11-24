@@ -1,13 +1,43 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+.content-payment{
+    display: block;
+    margin: 60px auto;
+    width: 100%;
+    max-width: 500px;
+    min-width: 225px;
+    height: max-content;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.397);
+    box-shadow: rgba(140, 204, 190, 0.568) 0px 0px 8px;
+}
+
+@media screen and (max-width: 540px){
+    .content-payment{
+        padding: 10px;
+    }
+    .btn-cancelar-compra span{
+        font-size: 15px;
+    }
+}
+
+.paypalBtn{
+    width: 100%;
+    max-width: 450px;
+}
+
 .btn-cancelar-compra {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 500;
     font-size: 20px;
     width: 100%;
-	line-height: 55px;
-	max-width: 750px;
+	max-width: 450px;
+    height: 45px;
     color: #2C2E2F;
     border-radius: 4px;
-    text-align: center;
     background: transparent;
 	padding: 0;
 	border: none;
@@ -15,6 +45,10 @@
     -moz-box-shadow: inset 0px 0px 0px 2px #2C2E2F;
     box-shadow: inset 0px 0px 0px 2px #2C2E2F;
 	transition: all 170ms ease-in-out ;
+}
+
+.btn-cancelar-compra span{
+    font-weight: bold;
 }
 
 .btn-cancelar-compra:hover {

@@ -1,7 +1,10 @@
-<div id="paypalButtons"></div>
-
-<div class="campo">
-  <button class="btn-cancelar-compra">
-    Cancelar Compra
-  </button>
+<div class="container-payment">
+  <div class="content-payment">
+    <div id="paypalButtons" class="paypalBtn"></div>
+    <form (ngSubmit)="onSubmit()" class="campo">
+      <button type="submit" class="btn-cancelar-compra">
+        <span>Cancelar Compra</span>
+      </button>
+    </form>
+  </div>
 </div>

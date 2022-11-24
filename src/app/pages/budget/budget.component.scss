@@ -40,6 +40,8 @@
 }
 
 .residencia-mensalidade > .mb-3{
+	margin: auto 10px;
+	min-width: 190px;
 	width: 350px;
 }
 
@@ -58,10 +60,6 @@ input:focus, textarea:focus, select:focus{
 	outline: none;
 }
 
-.valor-residencia > .col-6{
-	margin: 0 auto;
-	align-items: center;
-}
 
 #valorRESIDENCIA {
 	border: 3px solid rgba(0, 0, 0, 0.6);
@@ -96,4 +94,15 @@ input:focus, textarea:focus, select:focus{
 
 .only-numbers-false{
 	display: none;
+}
+
+.row button{
+	margin: 15px 10px 45px 10px;
+	min-width: 250px;
+}
+
+@media screen and (max-width: 360px) {
+	#prices{
+		margin-left: -40px;
+	}
 }
