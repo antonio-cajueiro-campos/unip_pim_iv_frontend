@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Infos } from '../models/Infos.model';
 import { InsurancePlan } from '../models/insurance-plan.model';
 import { PriceSelector } from '../models/price-selector.model';
 import { HistorySinistro } from '../models/sinistro-history.model';
@@ -32,9 +33,11 @@ export class InsuranceService {
 
   public async getHistorySinistro(): Promise<HistorySinistro[]> {
     var historySinistro: HistorySinistro[] = [];
-    var info = this.dataManagerService.getData(StorageKeys.INFOS)
-
-    await this.request.getAsync(`/insurance/gethistoricosinistros/${info.user.id}`, (data: any): void => {
+    var info = this.dataManagerService.getData(StorageKeys.INFOS) as Infos
+    
+    await this.request.getAsync(`/Insurance/getHistoricoSinistros/${info.id}`, (data: any): void => {
+      console.log(data);
+      
       historySinistro = data.sinistros as HistorySinistro[];
     });
 
