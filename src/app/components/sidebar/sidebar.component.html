@@ -5,12 +5,6 @@
             <span>Início</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link sidebar-btn" href="/budget">
-            <i class="fas fa-fw fa-money-bill sidebar-icon"></i>
-            <span>Simulação</span>
-        </a>
-    </li>
     <!--<li class="nav-item dropdown">
         <a role="button" data-toggle="collapse" data-target="#pagesDropdown" class="nav-link dropdown-toggle">
             <i class="fas fa-fw fa-folder"></i>&nbsp;
@@ -27,6 +21,12 @@
     </li>-->
     <div *ngIf="!(userService.isLogged() | async)">
         <li class="nav-item">
+            <a class="nav-link sidebar-btn" href="/budget">
+                <i class="fas fa-fw fa-money-bill sidebar-icon"></i>
+                <span>Simulação</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link sidebar-btn" routerLink='/login'>
                 <i class='fas fa-fw fa-sign-in sidebar-icon'></i>
                 <span>Login</span>
@@ -40,6 +40,12 @@
         </li>
     </div>
     <div *ngIf="(userService.isLogged() | async)">
+        <li class="nav-item" *ngIf="!((role | async) == 'Funcionario')">
+            <a class="nav-link sidebar-btn" href="/budget">
+                <i class="fas fa-fw fa-money-bill sidebar-icon"></i>
+                <span>Simulação</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link sidebar-btn" routerLink='/profile'>
                 <i class='fas fa-fw fa-user sidebar-icon'></i>
@@ -58,13 +64,13 @@
                 <span>Chat Funcionario</span>
             </a>
         </li>
-        <li class="nav-item" *ngIf="(infos | async).endereco == null">
+        <li class="nav-item" *ngIf="(infos | async).endereco == null && !((role | async) == 'Funcionario')">
             <a class="nav-link sidebar-btn" routerLink='/complete-registration'>
                 <i class='fas fa-fw fa-file-contract sidebar-icon'></i>
                 <span>Finalizar Cadastro</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!((role | async) == 'Funcionario')">
             <a class="nav-link sidebar-btn" routerLink='/history-sinistro'>
                 <i class="fas fa-fw fa-file-invoice sidebar-icon"></i>
                 <span>Histórico de Sinistro</span>
