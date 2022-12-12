@@ -34,10 +34,8 @@ export class InsuranceService {
   public async getHistorySinistro(): Promise<HistorySinistro[]> {
     var historySinistro: HistorySinistro[] = [];
     var info = this.dataManagerService.getData(StorageKeys.INFOS) as Infos
-    
+
     await this.request.getAsync(`/Insurance/getHistoricoSinistros/${info.id}`, (data: any): void => {
-      console.log(data);
-      
       historySinistro = data.sinistros as HistorySinistro[];
     });
 

@@ -1,6 +1,8 @@
 import { ElementRef, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { render } from 'creditcardpayments/creditCardPayments';
 import { InsurancePlan } from '../models/insurance-plan.model';
+import { MessageService } from './message.service';
 import { RequestService } from './request.service';
 
 @Injectable({
@@ -8,9 +10,9 @@ import { RequestService } from './request.service';
 })
 export class PaypalService {
 
-  constructor(private request: RequestService) { }
+  constructor(private router: Router, private request: RequestService, private messageService: MessageService) { }
 
-  renderPaypalPayment( insurancePlan: InsurancePlan) {
+  renderPaypalPayment(insurancePlan: InsurancePlan) {
     var { total } = insurancePlan
 
     render({
@@ -18,9 +20,8 @@ export class PaypalService {
       currency: "BRL",
       value: total.toString(),
       onApprove: (details) => {
-        console.log(details);
-        
-        alert("transacao feita")
+        this.messageService.present("Transação realizada com sucesso!", "", "success")
+        this.router.navigateByUrl("/profile")
       }
     })
   }

@@ -15,7 +15,7 @@ import { ViaCEP } from '../models/viacep.model';
 })
 export class RequestService {
 
-  public BACKEND_BASE_URL: string = "https://tsb-portal.herokuapp.com"
+  public BACKEND_BASE_URL: string = "http://topsegurosbrasil.ddns.net:5140"
 
   constructor(private httpClient: HttpClient, private dataManager: DataManagerService, private message: MessageService) {
     if (isDevMode) {

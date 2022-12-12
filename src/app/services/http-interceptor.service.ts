@@ -14,7 +14,7 @@ class HttpInterceptorService implements HttpInterceptor {
 	
 	public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-		if (req.url.includes('tsb-portal.herokuapp.com') || req.url.includes('localhost')) {
+		if (req.url.includes('tsb-portal.herokuapp.com') || req.url.includes('localhost') || req.url.includes('topsegurosbrasil.ddns.net')) {
 			this.layoutService.showLoader(req.headers.get('show-loader').toLowerCase() == "true");
 			return next.handle(req).pipe(
 				timeout(this.timeOutMs),
